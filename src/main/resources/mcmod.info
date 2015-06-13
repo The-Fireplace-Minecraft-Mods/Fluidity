@@ -1,0 +1,18 @@
+[
+{
+  "modid": "fluidity",
+  "name": "Fluidity",
+  "description": "Adds all kinds of content that should only exist when certain mods are loaded together.",
+  "version": "2.0.0.1",
+  "mcversion": "1.8",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["The_Fireplace"],
+  "credits": "The_Fireplace for the idea of and making the mod",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [ "fireplacecore","VersionChecker","basemetals","poweradvantage","SteelIndustries","NotEnoughItems" ],
+  "requiredMods": [ "Forge@[11.14.1.*,)" ],
+  "useDependencyInformation": true
+}
+]
