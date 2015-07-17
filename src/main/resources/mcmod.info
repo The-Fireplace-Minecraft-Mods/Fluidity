@@ -11,7 +11,7 @@
   "credits": "The_Fireplace for the idea of and making the mod",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": [ "fireplacecore","VersionChecker","basemetals","poweradvantage","SteelIndustries","NotEnoughItems" ],
+  "dependencies": [ "fireplacecore","VersionChecker","basemetals","poweradvantage","adobeblocks","glassshards","unlogicii" ],
   "requiredMods": [ "Forge@[11.14.1.*,)" ],
   "useDependencyInformation": true
 }
