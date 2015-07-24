@@ -10,8 +10,9 @@ This is the repository for the Fluidity Minecraft mod. The goal of this mod is t
 ### How do I get set up? ###
 
 * First, clone the repo
-* Second, you should just be able to run setupforge.bat, it sets it up for use with Eclipse
-* Third, as usual, point Eclipse to the eclipse folder
+* Second, copy the eclipse folder from the forge 11.14.3.1446 src zip to the repo folder
+* Third, you should just be able to run setupforge.bat, it sets it up for use with Eclipse
+* Fourth, as usual, point Eclipse to the eclipse folder
 
 ### Contribution guidelines ###
 
