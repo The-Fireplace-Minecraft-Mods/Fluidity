@@ -1,2 +1,15 @@
 item.adobe_paxel.name=Adobe Paxel
+tile.ironchest:BRONZE.name=Bronze Chest
+tile.ironchest:INVAR.name=Invar Chest
+tile.ironchest:ELECTRUM.name=Electrum Chest
+tile.ironchest:TIN.name=Tin Chest
+tile.ironchest:BRASS.name=Brass Chest
+tile.ironchest:LEAD.name=Lead Chest
+tile.ironchest:STEEL.name=Steel Chest
+tile.ironchest:NICKEL.name=Nickel Chest
+tile.ironchest:COLDIRON.name=Cold-Iron Chest
+tile.ironchest:MITHRIL.name=Mithril Chest
+tile.ironchest:AQUARIUM.name=Aquarium Chest
+tile.ironchest:ADAMANTINE.name=Adamantine Chest
+tile.ironchest:STARSTEEL.name=Star-Steel Chest
 itemGroup.fluidity=Fluidity
