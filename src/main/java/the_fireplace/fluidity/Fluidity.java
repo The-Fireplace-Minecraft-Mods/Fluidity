@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.compat.AdobeBlocksUnLogicII;
+import the_fireplace.fluidity.compat.CannibalismRealStoneTools;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.compat.IModCompat;
 
@@ -45,6 +46,10 @@ public class Fluidity {
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
+		}
+		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
+			compat = new CannibalismRealStoneTools();
+			compat.init();
 		}
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
