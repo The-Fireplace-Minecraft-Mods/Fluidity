@@ -37,11 +37,11 @@ public enum FluidityIronChestType implements IStringSerializable {
 	LEAD(72, 9, "Lead Chest", "leadchest.png", 5, Arrays.asList("ingotLead"), TileEntityLeadChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
 	STEEL(72, 9, "Steel Chest", "steelchest.png", 6, Arrays.asList("ingotSteel"), TileEntitySteelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
 	NICKEL(72, 9, "Nickel Chest", "nickelchest.png", 7, Arrays.asList("ingotNickel"), TileEntityNickelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	COLDIRON(72, 9, "Cold-Iron Chest", "coldironchest.png", 8, Arrays.asList("ingotColdIron"), TileEntityColdIronChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
+	COLDIRON(72, 9, "Cold-Iron Chest", "coldironchest.png", 8, Arrays.asList("ingotColdiron"), TileEntityColdIronChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
 	ADAMANTINE(117, 13, "Adamantine Chest", "adamantinechest.png", 9, Arrays.asList("ingotAdamantine"), TileEntityAdamantineChest.class, "mmmmDmmmm", "mmmmammmm", "mmmmbmmmm"),
 	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Arrays.asList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmGmmmm", "mmmm1mmmm", "mmmm2mmmm"),
 	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Arrays.asList("ingotMithril"), TileEntityMithrilChest.class, "mmmmGmmmm", "mmmm1mmmm", "mmmm2mmmm"),
-	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Arrays.asList("plateStarSteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
+	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Arrays.asList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
 
 	public int size;
 	private int rowLength;
