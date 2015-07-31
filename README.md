@@ -17,7 +17,6 @@ This is the repository for the Fluidity Minecraft mod. The goal of this mod is t
 ### Contribution guidelines ###
 
 * I have a few simple guidelines for contributing to the mod:
-* I don't require much documentation, but I would like you to use `@author` documentation at the top of each class file, between the imports and the actual class
 * If you do something that requires a certain Forge version, and that version is higher than the one listed in mcmod.info, update the one in mcmod.info
 * You cannot add any hard dependency(required mod) other than Forge. Any interaction with other mods must be designed with the other mods as soft-dependencies.
 * When adding content, feel free to look through the extraassets folder to see if there are any textures or sounds you can use or modify for use with that content. You don't have to use something from that folder, but it may have something useful.
