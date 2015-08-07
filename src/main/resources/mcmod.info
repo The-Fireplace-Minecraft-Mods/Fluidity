@@ -11,7 +11,7 @@
   "credits": "The_Fireplace for the idea of and making the mod",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": [ "fireplacecore","VersionChecker","basemetals","poweradvantage","adobeblocks","glassshards","unlogicii" ],
+  "dependencies": [ "basemetals","adobeblocks","unlogicii","cannibalism","neotech","breadstone","realstonnetools","IronChest" ],
   "requiredMods": [ "Forge@[11.14.1.*,)" ],
   "useDependencyInformation": true
 }
