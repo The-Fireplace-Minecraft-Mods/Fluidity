@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.compat.AdobeBlocksUnLogicII;
+import the_fireplace.fluidity.compat.BaseMetalsBreadstone;
 import the_fireplace.fluidity.compat.CannibalismRealStoneTools;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.compat.IModCompat;
@@ -34,6 +35,10 @@ public class Fluidity {
 			compat = new AdobeBlocksUnLogicII();
 			compat.preInit();
 		}
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("breadstone")){
+			compat = new BaseMetalsBreadstone();
+			compat.preInit();
+		}
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
 			compat.preInit();
@@ -45,6 +50,12 @@ public class Fluidity {
 		IModCompat compat;
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("unlogicii")){
 			compat = new AdobeBlocksUnLogicII();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
+		}
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("breadstone")){
+			compat = new BaseMetalsBreadstone();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
@@ -68,6 +79,14 @@ public class Fluidity {
 		boolean something = false;//TODO: Look up the mod name instead of typing it
 		if(Loader.isModLoaded("adobeblocks")){
 			mods = mods.concat("\nAdobe Blocks");
+			something=true;
+		}
+		if(Loader.isModLoaded("basemetals")){
+			mods = mods.concat("\nBase Metals");
+			something=true;
+		}
+		if(Loader.isModLoaded("breadstone")){
+			mods = mods.concat("\nBreadstone Mod");
 			something=true;
 		}
 		if(Loader.isModLoaded("cannibalism")){
