@@ -1,6 +1,7 @@
 package the_fireplace.fluidity;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -37,6 +38,7 @@ public class Fluidity {
 			compat = new FluidityIronChests();
 			compat.preInit();
 		}
+		overrideDescription(event);
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent event){
@@ -60,5 +62,34 @@ public class Fluidity {
 	}
 	private boolean canIronChest(){
 		return !OreDictionary.getOres("ingotBronze").isEmpty() || !OreDictionary.getOres("ingotInvar").isEmpty() || !OreDictionary.getOres("ingotElectrum").isEmpty() || !OreDictionary.getOres("ingotTin").isEmpty() || !OreDictionary.getOres("ingotBrass").isEmpty() || !OreDictionary.getOres("ingotLead").isEmpty() || !OreDictionary.getOres("ingotSteel").isEmpty() || !OreDictionary.getOres("ingotNickel").isEmpty();
+	}
+	private void overrideDescription(FMLPreInitializationEvent event){
+		String mods = "";
+		boolean something = false;//TODO: Look up the mod name instead of typing it
+		if(Loader.isModLoaded("adobeblocks")){
+			mods = mods.concat("\nAdobe Blocks");
+			something=true;
+		}
+		if(Loader.isModLoaded("cannibalism")){
+			mods = mods.concat("\nCannibalism");
+			something=true;
+		}
+		if(Loader.isModLoaded("IronChest")){
+			mods = mods.concat("\nIron Chest");
+			something=true;
+		}
+		if(Loader.isModLoaded("realstonetools")){
+			mods = mods.concat("\nReal Stone Tools");
+			something=true;
+		}
+		if(Loader.isModLoaded("unlogicii")){
+			mods = mods.concat("\nUnLogic II");
+			something=true;
+		}
+		if(!something)
+			mods = mods.concat("\n"+EnumChatFormatting.RED+"none");
+		event.getModMetadata().description = "Adds all kinds of content that should only exist when certain mods are loaded together.\n"
+				+ "Loaded mods that Fluidity improves upon:"
+				+ mods;
 	}
 }
