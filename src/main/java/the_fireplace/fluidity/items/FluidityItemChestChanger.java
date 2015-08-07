@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.compat.FluidityIronChests;
@@ -58,6 +59,12 @@ public class FluidityItemChestChanger extends Item
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("fluidity:" + type.name());
 		this.setCreativeTab(Fluidity.tabFluidity);
+	}
+
+	@Override
+	public String getItemStackDisplayName(ItemStack stack)
+	{
+		return String.format(StatCollector.translateToLocal("fluidity.upgrade"), StatCollector.translateToLocal("fluidity."+this.getSourceName().toLowerCase()), StatCollector.translateToLocal("fluidity."+this.getTargetName().toLowerCase()));
 	}
 
 	@Override
