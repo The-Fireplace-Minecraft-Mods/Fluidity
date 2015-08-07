@@ -28,7 +28,7 @@ public class AdobeBlocksUnLogicII implements IModCompat {
 
 	@Override
 	public void registerInvRenderers() {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(adobe_paxel, 0, new ModelResourceLocation("fluidity:adobe_paxel", "inventory"));
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(adobe_paxel, 0, new ModelResourceLocation(Fluidity.MODID+":adobe_paxel", "inventory"));
 	}
 
 }

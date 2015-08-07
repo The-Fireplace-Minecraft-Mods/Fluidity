@@ -89,7 +89,7 @@ public class Fluidity {
 		if(!something)
 			mods = mods.concat("\n"+EnumChatFormatting.RED+"none");
 		event.getModMetadata().description = "Adds all kinds of content that should only exist when certain mods are loaded together.\n"
-				+ "Loaded mods that Fluidity improves upon:"
+				+ "Loaded mods that Fluidity can improve upon:"
 				+ mods;
 	}
 }
