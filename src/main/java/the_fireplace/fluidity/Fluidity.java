@@ -10,11 +10,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.compat.AdobeBlocksUnLogicII;
-import the_fireplace.fluidity.compat.BaseMetalsBreadstone;
 import the_fireplace.fluidity.compat.BaseMetalsCannibalism;
-import the_fireplace.fluidity.compat.BreadstoneNeoTech;
 import the_fireplace.fluidity.compat.CannibalismRealStoneTools;
-import the_fireplace.fluidity.compat.FluidityBreadstone;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.compat.IModCompat;
 
@@ -44,10 +41,10 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 		}
-		if(Loader.isModLoaded("breadstone") && (Loader.isModLoaded("basemetals") || Loader.isModLoaded("neotech"))){
+		/*if(Loader.isModLoaded("breadstone") && (Loader.isModLoaded("basemetals") || Loader.isModLoaded("neotech"))){
 			compat = new FluidityBreadstone();
 			compat.preInit();
-		}
+		}*/
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
 			compat.preInit();
@@ -63,17 +60,17 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("breadstone")){
+		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("breadstone")){
 			compat = new BaseMetalsBreadstone();
 			compat.init();
-		}
+		}*/
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		if(Loader.isModLoaded("breadstone") && (Loader.isModLoaded("basemetals") || Loader.isModLoaded("neotech"))){
+		/*if(Loader.isModLoaded("breadstone") && (Loader.isModLoaded("basemetals") || Loader.isModLoaded("neotech"))){
 			compat = new FluidityBreadstone();
 			compat.init();
 			if(event.getSide().isClient())
@@ -82,7 +79,7 @@ public class Fluidity {
 		if(Loader.isModLoaded("breadstone") && Loader.isModLoaded("neotech")){
 			compat = new BreadstoneNeoTech();
 			compat.init();
-		}
+		}*/
 		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
 			compat = new CannibalismRealStoneTools();
 			compat.init();
@@ -108,10 +105,10 @@ public class Fluidity {
 			mods = mods.concat("\nBase Metals");
 			something=true;
 		}
-		if(Loader.isModLoaded("breadstone")){
+		/*if(Loader.isModLoaded("breadstone")){
 			mods = mods.concat("\nBreadstone Mod");
 			something=true;
-		}
+		}*/
 		if(Loader.isModLoaded("cannibalism")){
 			mods = mods.concat("\nCannibalism");
 			something=true;
