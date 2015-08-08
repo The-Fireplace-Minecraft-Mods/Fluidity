@@ -3,7 +3,7 @@
   "modid": "fluidity",
   "name": "Fluidity",
   "description": "Adds all kinds of content that should only exist when certain mods are loaded together.",
-  "version": "2.0.0.1",
+  "version": "2.0.0.2",
   "mcversion": "1.8",
   "url": "",
   "updateUrl": "",
