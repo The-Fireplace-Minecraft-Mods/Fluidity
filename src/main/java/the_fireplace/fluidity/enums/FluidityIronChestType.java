@@ -39,8 +39,8 @@ public enum FluidityIronChestType implements IStringSerializable {
 	NICKEL(72, 9, "Nickel Chest", "nickelchest.png", 7, Arrays.asList("ingotNickel"), TileEntityNickelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
 	COLDIRON(72, 9, "Cold-Iron Chest", "coldironchest.png", 8, Arrays.asList("ingotColdiron"), TileEntityColdIronChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
 	ADAMANTINE(117, 13, "Adamantine Chest", "adamantinechest.png", 9, Arrays.asList("ingotAdamantine"), TileEntityAdamantineChest.class, "mmmmDmmmm", "mmmmammmm", "mmmmbmmmm"),
-	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Arrays.asList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmGmmmm", "mmmm1mmmm", "mmmm2mmmm"),
-	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Arrays.asList("ingotMithril"), TileEntityMithrilChest.class, "mmmmGmmmm", "mmmm1mmmm", "mmmm2mmmm"),
+	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Arrays.asList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
+	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Arrays.asList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
 	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Arrays.asList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
 
 	public int size;
@@ -145,7 +145,7 @@ public enum FluidityIronChestType implements IStringSerializable {
 						'b', new ItemStack(blockResult, 1, 11),/* Mithril Chest */
 						'c', new ItemStack(blockResult, 1, 12), /* Star-Steel Chest */
 						'I', new ItemStack(IronChest.ironChestBlock, 1, 0), /* Iron Chest */
-						'G', new ItemStack(IronChest.ironChestBlock, 1, 1), /* Gold Chest */
+						'g', new ItemStack(IronChest.ironChestBlock, 1, 1), /* Gold Chest */
 						'D', new ItemStack(IronChest.ironChestBlock, 1, 2), /* Diamond Chest */
 						'B', new ItemStack(IronChest.ironChestBlock, 1, 3), /* Copper Chest */
 						'S', new ItemStack(IronChest.ironChestBlock, 1, 4)  /* Silver Chest */
