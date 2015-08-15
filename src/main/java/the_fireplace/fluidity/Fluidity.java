@@ -22,7 +22,7 @@ import the_fireplace.fluidity.compat.IModCompat;
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
-	public static final String VERSION = "2.0.0.3";
+	public static final String VERSION = "2.0.0.4";
 	public static final String LATEST = "https://dl.dropboxusercontent.com/s/532e9ihhlbnmr2j/latest.version?dl=0";
 	public static final String DOWNLOADURL = "https://dl.dropboxusercontent.com/s/6jxiwwls1967f3b/url.txt?dl=0";
 	@Instance(MODID)

@@ -160,9 +160,9 @@ public class VersionChecker {
 				br.close();
 			}
 		}catch(MalformedURLException e){
-			return "";
+			return "0.0.0.0";
 		}catch(IOException e){
-			return "";
+			return "0.0.0.0";
 		}
 		return output;
 	}
