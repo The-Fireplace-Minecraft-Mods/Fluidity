@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.compat.AdobeBlocksUnLogicII;
 import the_fireplace.fluidity.compat.BaseMetalsCannibalism;
+import the_fireplace.fluidity.compat.BaseMetalsCarbonPaper;
 import the_fireplace.fluidity.compat.CannibalismRealStoneTools;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.compat.IModCompat;
@@ -22,9 +23,7 @@ import the_fireplace.fluidity.compat.IModCompat;
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
-	public static final String VERSION = "2.0.0.4";
-	public static final String LATEST = "https://dl.dropboxusercontent.com/s/532e9ihhlbnmr2j/latest.version?dl=0";
-	public static final String DOWNLOADURL = "https://dl.dropboxusercontent.com/s/6jxiwwls1967f3b/url.txt?dl=0";
+	public static final String VERSION = "2.0.0.5";
 	@Instance(MODID)
 	public static Fluidity instance;
 
@@ -41,10 +40,6 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 		}
-		/*if(Loader.isModLoaded("breadstone") && (Loader.isModLoaded("basemetals") || Loader.isModLoaded("neotech"))){
-			compat = new FluidityBreadstone();
-			compat.preInit();
-		}*/
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
 			compat.preInit();
@@ -60,26 +55,16 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("breadstone")){
-			compat = new BaseMetalsBreadstone();
-			compat.init();
-		}*/
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		/*if(Loader.isModLoaded("breadstone") && (Loader.isModLoaded("basemetals") || Loader.isModLoaded("neotech"))){
-			compat = new FluidityBreadstone();
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("samscarbonpaper")){
+			compat = new BaseMetalsCarbonPaper();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}
-		if(Loader.isModLoaded("breadstone") && Loader.isModLoaded("neotech")){
-			compat = new BreadstoneNeoTech();
-			compat.init();
-		}*/
 		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
 			compat = new CannibalismRealStoneTools();
 			compat.init();
@@ -95,44 +80,34 @@ public class Fluidity {
 		return !OreDictionary.getOres("ingotBronze").isEmpty() || !OreDictionary.getOres("ingotInvar").isEmpty() || !OreDictionary.getOres("ingotElectrum").isEmpty() || !OreDictionary.getOres("ingotTin").isEmpty() || !OreDictionary.getOres("ingotBrass").isEmpty() || !OreDictionary.getOres("ingotLead").isEmpty() || !OreDictionary.getOres("ingotSteel").isEmpty() || !OreDictionary.getOres("ingotNickel").isEmpty();
 	}
 	private void overrideDescription(FMLPreInitializationEvent event){
-		String mods = "";
-		boolean something = false;//TODO: Look up the mod name instead of typing it
+		String mods = "";//TODO: Look up the mod name instead of typing it
 		if(Loader.isModLoaded("adobeblocks")){
 			mods = mods.concat("\nAdobe Blocks");
-			something=true;
 		}
 		if(Loader.isModLoaded("basemetals")){
 			mods = mods.concat("\nBase Metals");
-			something=true;
 		}
-		/*if(Loader.isModLoaded("breadstone")){
-			mods = mods.concat("\nBreadstone Mod");
-			something=true;
-		}*/
 		if(Loader.isModLoaded("cannibalism")){
 			mods = mods.concat("\nCannibalism");
-			something=true;
+		}
+		if(Loader.isModLoaded("samscarbonpaper")){
+			mods = mods.concat("\nCarbon Paper");
 		}
 		if(Loader.isModLoaded("IronChest")){
 			mods = mods.concat("\nIron Chest");
-			something=true;
-		}
-		if(Loader.isModLoaded("neotech")){
-			mods = mods.concat("\nNeoTech");
-			something=true;
 		}
 		if(Loader.isModLoaded("realstonetools")){
 			mods = mods.concat("\nReal Stone Tools");
-			something=true;
 		}
 		if(Loader.isModLoaded("unlogicii")){
 			mods = mods.concat("\nUnLogic II");
-			something=true;
 		}
-		if(!something)
+		if(mods.equals(""))
 			mods = mods.concat("\n"+EnumChatFormatting.RED+"none");
 		event.getModMetadata().description = "Adds all kinds of content that should only exist when certain mods are loaded together.\n"
 				+ "Loaded mods that Fluidity can improve upon:"
 				+ mods;
 	}
+	public static final String LATEST = "https://dl.dropboxusercontent.com/s/532e9ihhlbnmr2j/latest.version?dl=0";
+	public static final String DOWNLOADURL = "https://dl.dropboxusercontent.com/s/6jxiwwls1967f3b/url.txt?dl=0";
 }
