@@ -1,5 +1,6 @@
 package the_fireplace.fluidity.container;
 
+import invtweaks.api.container.ChestContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -8,7 +9,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 
-//@ChestContainer(isLargeChest = true)
+@ChestContainer(isLargeChest = true)
 public class ContainerFluidityIronChest extends Container {
 	private FluidityIronChestType type;
 	private EntityPlayer player;
@@ -106,7 +107,7 @@ public class ContainerFluidityIronChest extends Container {
 		return player;
 	}
 
-	//@ChestContainer.RowSizeCallback
+	@ChestContainer.RowSizeCallback
 	public int getNumColumns() {
 		return type.getRowLength();
 	}

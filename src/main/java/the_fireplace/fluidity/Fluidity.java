@@ -93,6 +93,9 @@ public class Fluidity {
 		if(Loader.isModLoaded("samscarbonpaper")){
 			mods = mods.concat("\nCarbon Paper");
 		}
+		if(Loader.isModLoaded("invtweaks")){
+			mods = mods.concat("\nInventory Tweaks");
+		}
 		if(Loader.isModLoaded("IronChest")){
 			mods = mods.concat("\nIron Chest");
 		}
