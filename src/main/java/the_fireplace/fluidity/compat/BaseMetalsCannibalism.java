@@ -15,18 +15,18 @@ public class BaseMetalsCannibalism implements IModCompat {
 	public static final Item copper_knife = new ItemBaseMetalKnife(Materials.copper).setUnlocalizedName("copper_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item silver_knife = new ItemBaseMetalKnife(Materials.silver).setUnlocalizedName("silver_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item tin_knife = new ItemBaseMetalKnife(Materials.tin).setUnlocalizedName("tin_knife").setCreativeTab(Fluidity.tabFluidity);
-	public static final Item lead_knife = new ItemBaseMetalKnife(Materials.lead).setUnlocalizedName("lead_knife").setCreativeTab(Fluidity.tabFluidity);//TODO: Lead poisoning
+	public static final Item lead_knife = new ItemBaseMetalKnife(Materials.lead).setUnlocalizedName("lead_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item nickel_knife = new ItemBaseMetalKnife(Materials.nickel).setUnlocalizedName("nickel_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item bronze_knife = new ItemBaseMetalKnife(Materials.bronze).setUnlocalizedName("bronze_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item brass_knife = new ItemBaseMetalKnife(Materials.brass).setUnlocalizedName("brass_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item steel_knife = new ItemBaseMetalKnife(Materials.steel).setUnlocalizedName("steel_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item invar_knife = new ItemBaseMetalKnife(Materials.invar).setUnlocalizedName("invar_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item electrum_knife = new ItemBaseMetalKnife(Materials.electrum).setUnlocalizedName("electrum_knife").setCreativeTab(Fluidity.tabFluidity);
-	public static final Item coldiron_knife = new ItemBaseMetalKnife(Materials.coldiron).setUnlocalizedName("coldiron_knife").setCreativeTab(Fluidity.tabFluidity);//TODO: damage against fiery enemies
+	public static final Item coldiron_knife = new ItemBaseMetalKnife(Materials.coldiron).setUnlocalizedName("coldiron_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item mithril_knife = new ItemBaseMetalKnife(Materials.mithril).setUnlocalizedName("mithril_knife").setCreativeTab(Fluidity.tabFluidity);
-	public static final Item adamantine_knife = new ItemBaseMetalKnife(Materials.adamantine).setUnlocalizedName("adamantine_knife").setCreativeTab(Fluidity.tabFluidity);//TODO: Damage against tough enemies
+	public static final Item adamantine_knife = new ItemBaseMetalKnife(Materials.adamantine).setUnlocalizedName("adamantine_knife").setCreativeTab(Fluidity.tabFluidity);
 	public static final Item starsteel_knife = new ItemBaseMetalKnife(Materials.starsteel).setUnlocalizedName("starsteel_knife").setCreativeTab(Fluidity.tabFluidity);
-	public static final Item aquarium_knife = new ItemBaseMetalKnife(Materials.aquarium).setUnlocalizedName("aquarium_knife").setCreativeTab(Fluidity.tabFluidity);//TODO: damage against aquatic enemies
+	public static final Item aquarium_knife = new ItemBaseMetalKnife(Materials.aquarium).setUnlocalizedName("aquarium_knife").setCreativeTab(Fluidity.tabFluidity);
 
 	@Override
 	public void preInit() {

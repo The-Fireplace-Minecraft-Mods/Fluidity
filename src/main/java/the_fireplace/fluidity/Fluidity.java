@@ -1,11 +1,16 @@
 package the_fireplace.fluidity;
 
+import java.util.ArrayList;
+
+import com.google.common.collect.Lists;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
@@ -23,14 +28,27 @@ import the_fireplace.fluidity.compat.IModCompat;
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
-	public static final String VERSION = "2.0.0.5";
+	public static final String VERSION = "2.0.0.6";
+	public final ArrayList<String> supportedMods = Lists.newArrayList();
 	@Instance(MODID)
 	public static Fluidity instance;
 
 	public static final CreativeTabs tabFluidity = new TabFluidity();
 
+	private void addSupported(){
+		supportedMods.add("adobeblocks");
+		supportedMods.add("basemetals");
+		supportedMods.add("cannibalism");
+		supportedMods.add("invtweaks");
+		supportedMods.add("IronChest");
+		supportedMods.add("realstonetools");
+		supportedMods.add("samscarbonpaper");
+		supportedMods.add("unlogicii");
+	}
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
+		addSupported();
 		IModCompat compat;
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("unlogicii")){
 			compat = new AdobeBlocksUnLogicII();
@@ -80,31 +98,12 @@ public class Fluidity {
 		return !OreDictionary.getOres("ingotBronze").isEmpty() || !OreDictionary.getOres("ingotInvar").isEmpty() || !OreDictionary.getOres("ingotElectrum").isEmpty() || !OreDictionary.getOres("ingotTin").isEmpty() || !OreDictionary.getOres("ingotBrass").isEmpty() || !OreDictionary.getOres("ingotLead").isEmpty() || !OreDictionary.getOres("ingotSteel").isEmpty() || !OreDictionary.getOres("ingotNickel").isEmpty();
 	}
 	private void overrideDescription(FMLPreInitializationEvent event){
-		String mods = "";//TODO: Look up the mod name instead of typing it
-		if(Loader.isModLoaded("adobeblocks")){
-			mods = mods.concat("\nAdobe Blocks");
-		}
-		if(Loader.isModLoaded("basemetals")){
-			mods = mods.concat("\nBase Metals");
-		}
-		if(Loader.isModLoaded("cannibalism")){
-			mods = mods.concat("\nCannibalism");
-		}
-		if(Loader.isModLoaded("samscarbonpaper")){
-			mods = mods.concat("\nCarbon Paper");
-		}
-		if(Loader.isModLoaded("invtweaks")){
-			mods = mods.concat("\nInventory Tweaks");
-		}
-		if(Loader.isModLoaded("IronChest")){
-			mods = mods.concat("\nIron Chest");
-		}
-		if(Loader.isModLoaded("realstonetools")){
-			mods = mods.concat("\nReal Stone Tools");
-		}
-		if(Loader.isModLoaded("unlogicii")){
-			mods = mods.concat("\nUnLogic II");
-		}
+		String mods = "";
+		for(String mid:supportedMods)
+			if(Loader.isModLoaded(mid))
+				for(ModContainer mod:Loader.instance().getActiveModList())
+					if(mid.equals(mod.getModId()))
+						mods += "\n"+mod.getName();
 		if(mods.equals(""))
 			mods = mods.concat("\n"+EnumChatFormatting.RED+"none");
 		event.getModMetadata().description = "Adds all kinds of content that should only exist when certain mods are loaded together.\n"
