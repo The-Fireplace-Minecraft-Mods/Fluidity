@@ -60,7 +60,7 @@ public enum IronFluidityChestChangerType {
 	public FluidityItemChestChanger item;
 	private String[] recipe;
 
-	private IronFluidityChestChangerType(IronChestType source, FluidityIronChestType target, String itemName, String... recipe)
+	IronFluidityChestChangerType(IronChestType source, FluidityIronChestType target, String itemName, String... recipe)
 	{
 		this.source = source;
 		this.target = target;

@@ -56,7 +56,7 @@ public enum FluidityIronChestType implements IStringSerializable {
 	FluidityIronChestType(int size, int rowLength, String friendlyName, String modelTexture, int textureRow, List<String> mats,
 			Class<? extends TileEntityFluidityIronChest> clazz, String... recipes)
 	{
-		this(size, rowLength, friendlyName, modelTexture, textureRow, mats, clazz, (Item)null, recipes);
+		this(size, rowLength, friendlyName, modelTexture, textureRow, mats, clazz, null, recipes);
 	}
 	FluidityIronChestType(int size, int rowLength, String friendlyName, String modelTexture, int textureRow, List<String> mats,
 			Class<? extends TileEntityFluidityIronChest> clazz, Item itemFilter, String... recipes)

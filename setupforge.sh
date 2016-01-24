@@ -1,14 +1,12 @@
 #!/bin/bash
 GRADLE_PATH="./gradlew"
-echo "The_Fireplace's Forge Tools - Setup v1.4"
+echo "The_Fireplace's Forge Tools - Setup v1.6"
 
 which gradle && GRADLE_PATH="$(which gradle)"
 
-"$GRADLE_PATH" setupDecompWorkspace
-"$GRADLE_PATH" eclipse
-"$GRADLE_PATH" idea
+"$GRADLE_PATH" setupDecompWorkspace idea
 echo "****************************"
-echo "Forge eclipse and idea workspaces setup successfully!"
+echo "Forge idea workspaces setup complete!"
 echo "****************************"
 echo "Press any key to continue..."
 read -n 1 c

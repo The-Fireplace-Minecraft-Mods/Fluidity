@@ -18,11 +18,7 @@ public class ItemBaseMetalKnife extends ItemKnife {
 	public ItemBaseMetalKnife(MetalMaterial material) {
 		super(Materials.getToolMaterialFor(material));
 		this.metal = material;
-		if(material == Materials.starsteel){
-			regenerates = true;
-		}else{
-			regenerates = false;
-		}
+		regenerates = material == Materials.starsteel;
 	}
 	@Override
 	public boolean hitEntity(final ItemStack item, final EntityLivingBase target, final EntityLivingBase attacker) {

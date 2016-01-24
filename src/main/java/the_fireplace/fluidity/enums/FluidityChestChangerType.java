@@ -1,19 +1,5 @@
 package the_fireplace.fluidity.enums;
 
-import static the_fireplace.fluidity.enums.FluidityIronChestType.ADAMANTINE;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.AQUARIUM;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.BRASS;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.BRONZE;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.COLDIRON;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.ELECTRUM;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.INVAR;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.LEAD;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.MITHRIL;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.NICKEL;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.STARSTEEL;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.STEEL;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.TIN;
-
 import cpw.mods.ironchest.client.ModelHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -22,6 +8,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.items.FluidityItemChestChanger;
+
+import static the_fireplace.fluidity.enums.FluidityIronChestType.*;
 
 public enum FluidityChestChangerType {
 	BRONZEINVAR(BRONZE, INVAR, "bronzeInvarUpgrade", "mmm", "msm", "mmm"),
@@ -65,7 +53,7 @@ public enum FluidityChestChangerType {
 	public FluidityItemChestChanger item;
 	private String[] recipe;
 
-	private FluidityChestChangerType(FluidityIronChestType source, FluidityIronChestType target, String itemName, String... recipe)
+	FluidityChestChangerType(FluidityIronChestType source, FluidityIronChestType target, String itemName, String... recipe)
 	{
 		this.source = source;
 		this.target = target;

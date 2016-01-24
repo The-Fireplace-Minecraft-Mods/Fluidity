@@ -1,9 +1,6 @@
 package the_fireplace.fluidity;
 
-import java.util.ArrayList;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.Loader;
@@ -14,21 +11,18 @@ import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
-import the_fireplace.fluidity.compat.AdobeBlocksUnLogicII;
-import the_fireplace.fluidity.compat.BaseMetalsCannibalism;
-import the_fireplace.fluidity.compat.BaseMetalsCarbonPaper;
-import the_fireplace.fluidity.compat.CannibalismRealStoneTools;
-import the_fireplace.fluidity.compat.FluidityIronChests;
-import the_fireplace.fluidity.compat.IModCompat;
+import the_fireplace.fluidity.compat.*;
+
+import java.util.ArrayList;
 
 /**
  * @author The_Fireplace
  */
-@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, version=Fluidity.VERSION)
+@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME)
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
-	public static final String VERSION = "2.0.0.6";
+	public static String VERSION;
 	public final ArrayList<String> supportedMods = Lists.newArrayList();
 	@Instance(MODID)
 	public static Fluidity instance;

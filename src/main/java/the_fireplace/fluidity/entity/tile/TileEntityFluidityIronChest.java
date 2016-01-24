@@ -1,9 +1,5 @@
 package the_fireplace.fluidity.entity.tile;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,16 +11,20 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.util.Constants;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.container.ContainerFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 
-public class TileEntityFluidityIronChest extends TileEntityLockable implements IUpdatePlayerListBox, IInventory
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
+public class TileEntityFluidityIronChest extends TileEntityLockable implements ITickable, IInventory
 {
 	private int ticksSinceSync = -1;
 	public float prevLidAngle;
@@ -518,7 +518,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int par1)
+	public ItemStack removeStackFromSlot(int par1)
 	{
 		if (this.chestContents[par1] != null)
 		{

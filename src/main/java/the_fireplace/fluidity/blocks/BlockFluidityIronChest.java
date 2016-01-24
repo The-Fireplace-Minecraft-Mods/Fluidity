@@ -1,14 +1,8 @@
 package the_fireplace.fluidity.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import com.google.common.collect.Lists;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -34,6 +28,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockFluidityIronChest extends BlockContainer
 {
@@ -121,7 +119,7 @@ public class BlockFluidityIronChest extends BlockContainer
 	@Override
 	protected BlockState createBlockState()
 	{
-		return new BlockState(this, new IProperty[] { VARIANT_PROP });
+		return new BlockState(this, VARIANT_PROP);
 	}
 
 	@Override

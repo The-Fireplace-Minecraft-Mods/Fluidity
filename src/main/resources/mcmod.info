@@ -3,16 +3,16 @@
   "modid": "fluidity",
   "name": "Fluidity",
   "description": "Adds all kinds of content that should only exist when certain mods are loaded together.",
-  "version": "2.0.0.6",
-  "mcversion": "1.8",
+  "version": "4.0.0.1",
+  "mcversion": "1.8.9",
   "url": "",
   "updateUrl": "",
   "authorList": ["The_Fireplace"],
   "credits": "The_Fireplace for the idea of and making the mod",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": [*],
-  "requiredMods": ["Forge@[11.14.1.*,)"],
+  "dependencies": [],
+  "requiredMods": ["Forge@[11.15.0.1673,)"],
   "useDependencyInformation": true
 }
 ]

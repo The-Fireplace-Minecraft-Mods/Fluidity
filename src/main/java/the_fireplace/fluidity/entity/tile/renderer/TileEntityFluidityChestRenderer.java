@@ -28,7 +28,7 @@ public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer
 	private static Map<FluidityIronChestType, ResourceLocation> locations;
 
 	static {
-		Builder<FluidityIronChestType, ResourceLocation> builder = ImmutableMap.<FluidityIronChestType,ResourceLocation>builder();
+		Builder<FluidityIronChestType, ResourceLocation> builder = ImmutableMap.builder();
 		for (FluidityIronChestType typ : FluidityIronChestType.values()) {
 			builder.put(typ, new ResourceLocation(Fluidity.MODID,"textures/model/"+typ.getModelTexture()));
 		}

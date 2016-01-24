@@ -69,7 +69,7 @@ public class VersionChecker {
 		event.getModMetadata().name=MODNAME;
 		event.getModMetadata().version=VERSION;
 		event.getModMetadata().credits="The_Fireplace(Making the embeddable Version Checker)";
-		event.getModMetadata().authorList=Arrays.asList(new String[]{"The_Fireplace"});
+		event.getModMetadata().authorList=Arrays.asList("The_Fireplace");
 		event.getModMetadata().parent=HostMODID;
 	}
 	@EventHandler

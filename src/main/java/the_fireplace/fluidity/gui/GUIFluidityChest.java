@@ -20,7 +20,7 @@ public class GUIFluidityChest extends GuiContainer {
 		DIAMOND(new ResourceLocation("ironchest", "textures/gui/diamondcontainer.png")),
 		ADAMANTINE(new ResourceLocation(Fluidity.MODID, "textures/gui/adamantinecontainer.png"));
 		public final ResourceLocation location;
-		private ResourceList(ResourceLocation loc) {
+		ResourceList(ResourceLocation loc) {
 			this.location = loc;
 		}
 	}
@@ -43,7 +43,7 @@ public class GUIFluidityChest extends GuiContainer {
 		private ResourceList guiResourceList;
 		private FluidityIronChestType mainType;
 
-		private GUI(int xSize, int ySize, ResourceList guiResourceList, FluidityIronChestType mainType)
+		GUI(int xSize, int ySize, ResourceList guiResourceList, FluidityIronChestType mainType)
 		{
 			this.xSize = xSize;
 			this.ySize = ySize;
