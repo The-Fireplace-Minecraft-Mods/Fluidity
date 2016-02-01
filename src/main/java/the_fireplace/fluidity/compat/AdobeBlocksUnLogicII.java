@@ -1,12 +1,10 @@
 package the_fireplace.fluidity.compat;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.adobeblocks.AdobeBlocks;
 import the_fireplace.fluidity.Fluidity;
+import the_fireplace.fluidity.tools.Registry;
 import the_fireplace.unlogicii.items.internal.ItemPaxel;
 
 public class AdobeBlocksUnLogicII implements IModCompat {
@@ -15,7 +13,7 @@ public class AdobeBlocksUnLogicII implements IModCompat {
 
 	@Override
 	public void preInit() {
-		GameRegistry.registerItem(adobe_paxel, "adobe_paxel");
+		Registry.register(adobe_paxel);
 	}
 
 	@Override
@@ -23,12 +21,12 @@ public class AdobeBlocksUnLogicII implements IModCompat {
 		ItemStack adobePaxelStack = new ItemStack(adobe_paxel);
 		ItemStack adobeStack = new ItemStack(AdobeBlocks.adobe_brick);
 		ItemStack stoneStickStack = new ItemStack(AdobeBlocks.stone_stick);
-		GameRegistry.addRecipe(adobePaxelStack, "aaa", " a ", " s ", 'a', adobeStack, 's', stoneStickStack);
+		Registry.addRecipe(adobePaxelStack, "aaa", " a ", " s ", 'a', adobeStack, 's', stoneStickStack);
 	}
 
 	@Override
 	public void registerInvRenderers() {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(adobe_paxel, 0, new ModelResourceLocation(Fluidity.MODID+":adobe_paxel", "inventory"));
+		Registry.registerRender(adobe_paxel);
 	}
 
 }

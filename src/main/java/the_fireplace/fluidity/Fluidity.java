@@ -32,6 +32,7 @@ public class Fluidity {
 	private void addSupported(){
 		supportedMods.add("adobeblocks");
 		supportedMods.add("basemetals");
+		supportedMods.add("Baubles");
 		supportedMods.add("cannibalism");
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");

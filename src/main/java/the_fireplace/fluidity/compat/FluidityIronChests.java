@@ -12,7 +12,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
 import the_fireplace.fluidity.entity.tile.renderer.TileEntityFluidityChestRenderer;
@@ -23,6 +22,7 @@ import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
 import the_fireplace.fluidity.events.IronChestsForgeEvents;
 import the_fireplace.fluidity.handler.IronChestsGuiHandler;
 import the_fireplace.fluidity.items.ItemFluidityIronChest;
+import the_fireplace.fluidity.tools.Registry;
 
 public class FluidityIronChests implements IModCompat {
 
@@ -71,18 +71,18 @@ public class FluidityIronChests implements IModCompat {
 		ItemStack nickelChestStack = new ItemStack(fluidityChest, 1, 7);
 		ItemStack coldironChestStack = new ItemStack(fluidityChest, 1, 8);
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(ironChestStack, "igi", "gcg", "igi", 'i', "ingotIron", 'c', tinChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(ironChestStack, "igi", "gcg", "igi", 'i', "ingotIron", 'c', brassChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(silverChestStack, "igi", "gcg", "igi", 'i', "ingotSilver", 'c', bronzeChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(silverChestStack, "iii", "ici", "iii", 'i', "ingotSilver", 'c', tinChestStack));
-		GameRegistry.addRecipe(new ShapedOreRecipe(silverChestStack, "iii", "ici", "iii", 'i', "ingotSilver", 'c', brassChestStack));
-		GameRegistry.addRecipe(new ShapedOreRecipe(goldChestStack, "iii", "ici", "iii", 'i', "ingotGold", 'c', bronzeChestStack));
-		GameRegistry.addRecipe(new ShapedOreRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', leadChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', coldironChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', nickelChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', steelChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(diamondChestStack, "ggg", "ici", "ggg", 'i', "gemDiamond", 'c', invarChestStack, 'g', "blockGlass"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(diamondChestStack, "ggg", "ici", "ggg", 'i', "gemDiamond", 'c', electrumChestStack, 'g', "blockGlass"));
+		Registry.addRecipe(ironChestStack, "igi", "gcg", "igi", 'i', "ingotIron", 'c', tinChestStack, 'g', "blockGlass");
+		Registry.addRecipe(ironChestStack, "igi", "gcg", "igi", 'i', "ingotIron", 'c', brassChestStack, 'g', "blockGlass");
+		Registry.addRecipe(silverChestStack, "igi", "gcg", "igi", 'i', "ingotSilver", 'c', bronzeChestStack, 'g', "blockGlass");
+		Registry.addRecipe(silverChestStack, "iii", "ici", "iii", 'i', "ingotSilver", 'c', tinChestStack);
+		Registry.addRecipe(silverChestStack, "iii", "ici", "iii", 'i', "ingotSilver", 'c', brassChestStack);
+		Registry.addRecipe(goldChestStack, "iii", "ici", "iii", 'i', "ingotGold", 'c', bronzeChestStack);
+		Registry.addRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', leadChestStack, 'g', "blockGlass");
+		Registry.addRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', coldironChestStack, 'g', "blockGlass");
+		Registry.addRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', nickelChestStack, 'g', "blockGlass");
+		Registry.addRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', steelChestStack, 'g', "blockGlass");
+		Registry.addRecipe(diamondChestStack, "ggg", "ici", "ggg", 'i', "gemDiamond", 'c', invarChestStack, 'g', "blockGlass");
+		Registry.addRecipe(diamondChestStack, "ggg", "ici", "ggg", 'i', "gemDiamond", 'c', electrumChestStack, 'g', "blockGlass");
 	}
 
 	private boolean classExists(String classpath){
