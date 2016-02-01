@@ -13,12 +13,7 @@ public class FluidityIronChestOcelotSit extends EntityAIOcelotSit {
 	}
 
 	@Override
-	protected boolean shouldMoveTo(World world, BlockPos pos)
-	{
-		if (world.getBlockState(pos).getBlock() == FluidityIronChests.fluidityChest)
-		{
-			return true;
-		}
-		return super.shouldMoveTo(world, pos);
+	protected boolean shouldMoveTo(World world, BlockPos pos) {
+		return world.getBlockState(pos).getBlock() == FluidityIronChests.fluidityChest || super.shouldMoveTo(world, pos);
 	}
 }

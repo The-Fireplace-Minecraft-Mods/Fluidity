@@ -1,9 +1,5 @@
 package the_fireplace.fluidity.enums;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import cpw.mods.ironchest.IronChest;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -14,34 +10,26 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
 import the_fireplace.fluidity.container.ValidatingIronChestSlot;
-import the_fireplace.fluidity.entity.tile.TileEntityAdamantineChest;
-import the_fireplace.fluidity.entity.tile.TileEntityAquariumChest;
-import the_fireplace.fluidity.entity.tile.TileEntityBrassChest;
-import the_fireplace.fluidity.entity.tile.TileEntityColdIronChest;
-import the_fireplace.fluidity.entity.tile.TileEntityElectrumChest;
-import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
-import the_fireplace.fluidity.entity.tile.TileEntityInvarChest;
-import the_fireplace.fluidity.entity.tile.TileEntityLeadChest;
-import the_fireplace.fluidity.entity.tile.TileEntityMithrilChest;
-import the_fireplace.fluidity.entity.tile.TileEntityNickelChest;
-import the_fireplace.fluidity.entity.tile.TileEntityStarSteelChest;
-import the_fireplace.fluidity.entity.tile.TileEntitySteelChest;
-import the_fireplace.fluidity.entity.tile.TileEntityTinChest;
+import the_fireplace.fluidity.entity.tile.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public enum FluidityIronChestType implements IStringSerializable {
-	BRONZE(54, 9, "Bronze Chest", "bronzechest.png", 0, Arrays.asList("ingotBronze"), TileEntityFluidityIronChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
-	INVAR(81, 9, "Invar Chest", "invarchest.png", 1, Arrays.asList("ingotInvar"), TileEntityInvarChest.class, "mmmm0mmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
-	ELECTRUM(81, 9, "Electrum Chest", "electrumchest.png", 2, Arrays.asList("ingotElectrum"), TileEntityElectrumChest.class, "mmmm0mmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
-	TIN(45, 9, "Tin Chest", "tinchest.png", 3, Arrays.asList("ingotTin"), TileEntityTinChest.class, "mmmmCmmmm"),
-	BRASS(45, 9, "Brass Chest", "brasschest.png", 4, Arrays.asList("ingotBrass"), TileEntityBrassChest.class, "mmmmCmmmm"),
-	LEAD(72, 9, "Lead Chest", "leadchest.png", 5, Arrays.asList("ingotLead"), TileEntityLeadChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	STEEL(72, 9, "Steel Chest", "steelchest.png", 6, Arrays.asList("ingotSteel"), TileEntitySteelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	NICKEL(72, 9, "Nickel Chest", "nickelchest.png", 7, Arrays.asList("ingotNickel"), TileEntityNickelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	COLDIRON(72, 9, "Cold-Iron Chest", "coldironchest.png", 8, Arrays.asList("ingotColdiron"), TileEntityColdIronChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	ADAMANTINE(117, 13, "Adamantine Chest", "adamantinechest.png", 9, Arrays.asList("ingotAdamantine"), TileEntityAdamantineChest.class, "mmmmDmmmm", "mmmmammmm", "mmmmbmmmm"),
-	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Arrays.asList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
-	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Arrays.asList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
-	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Arrays.asList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
+	BRONZE(54, 9, "Bronze Chest", "bronzechest.png", 0, Collections.singletonList("ingotBronze"), TileEntityFluidityIronChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
+	INVAR(81, 9, "Invar Chest", "invarchest.png", 1, Collections.singletonList("ingotInvar"), TileEntityInvarChest.class, "mmmm0mmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
+	ELECTRUM(81, 9, "Electrum Chest", "electrumchest.png", 2, Collections.singletonList("ingotElectrum"), TileEntityElectrumChest.class, "mmmm0mmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
+	TIN(45, 9, "Tin Chest", "tinchest.png", 3, Collections.singletonList("ingotTin"), TileEntityTinChest.class, "mmmmCmmmm"),
+	BRASS(45, 9, "Brass Chest", "brasschest.png", 4, Collections.singletonList("ingotBrass"), TileEntityBrassChest.class, "mmmmCmmmm"),
+	LEAD(72, 9, "Lead Chest", "leadchest.png", 5, Collections.singletonList("ingotLead"), TileEntityLeadChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
+	STEEL(72, 9, "Steel Chest", "steelchest.png", 6, Collections.singletonList("ingotSteel"), TileEntitySteelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
+	NICKEL(72, 9, "Nickel Chest", "nickelchest.png", 7, Collections.singletonList("ingotNickel"), TileEntityNickelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
+	COLDIRON(72, 9, "Cold-Iron Chest", "coldironchest.png", 8, Collections.singletonList("ingotColdiron"), TileEntityColdIronChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
+	ADAMANTINE(117, 13, "Adamantine Chest", "adamantinechest.png", 9, Collections.singletonList("ingotAdamantine"), TileEntityAdamantineChest.class, "mmmmDmmmm", "mmmmammmm", "mmmmbmmmm"),
+	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Collections.singletonList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
+	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Collections.singletonList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
+	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Collections.singletonList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
 
 	public int size;
 	private int rowLength;

@@ -156,13 +156,10 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			}
 		});
 		int p = 0;
-		for (int i = 0; i < tempCopy.length; i++)
-		{
-			if (tempCopy[i] != null && tempCopy[i].stackSize > 0)
-			{
-				topStacks[p++] = tempCopy[i];
-				if (p == topStacks.length)
-				{
+		for (ItemStack aTempCopy : tempCopy) {
+			if (aTempCopy != null && aTempCopy.stackSize > 0) {
+				topStacks[p++] = aTempCopy;
+				if (p == topStacks.length) {
 					break;
 				}
 			}
@@ -288,17 +285,11 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
-	{
-		if (worldObj == null)
-		{
+	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+		if (worldObj == null) {
 			return true;
 		}
-		if (worldObj.getTileEntity(pos) != this)
-		{
-			return false;
-		}
-		return entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64D;
+		return worldObj.getTileEntity(pos) == this && entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64D;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -103,7 +104,7 @@ public class FluidityIronChests implements IModCompat {
 		{
 			Item chestItem = Item.getItemFromBlock(fluidityChest);
 			mesher.register(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID+":chest_" + chestType.getName().toLowerCase(), "inventory"));
-			ModelBakery.addVariantName(chestItem, Fluidity.MODID+":chest_" + chestType.getName().toLowerCase());
+			ModelBakery.registerItemVariants(chestItem, new ResourceLocation(Fluidity.MODID+":chest_" + chestType.getName().toLowerCase()));
 		}
 	}
 

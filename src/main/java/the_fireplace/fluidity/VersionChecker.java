@@ -241,7 +241,7 @@ public class VersionChecker {
 			if(con != null){
 				final BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 				String input;
-				StringBuffer buf = new StringBuffer();
+				StringBuilder buf = new StringBuilder();
 				while((input=br.readLine()) != null){
 					buf.append(input);
 				}
