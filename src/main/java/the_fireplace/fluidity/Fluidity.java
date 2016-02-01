@@ -37,6 +37,7 @@ public class Fluidity {
 		supportedMods.add("IronChest");
 		supportedMods.add("realstonetools");
 		supportedMods.add("samscarbonpaper");
+		supportedMods.add("Thaumcraft");
 		supportedMods.add("unlogicii");
 	}
 
@@ -52,8 +53,16 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 		}
+		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
+			compat = new CannibalismThaumcraft();
+			compat.preInit();
+		}
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
+			compat.preInit();
+		}
+		if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("unlogicii")){
+			compat = new ThaumcraftUnLogicII();
 			compat.preInit();
 		}
 		overrideDescription(event);
@@ -81,8 +90,20 @@ public class Fluidity {
 			compat = new CannibalismRealStoneTools();
 			compat.init();
 		}
+		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
+			compat = new CannibalismThaumcraft();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
+		}
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
+		}
+		if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("unlogicii")){
+			compat = new ThaumcraftUnLogicII();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
