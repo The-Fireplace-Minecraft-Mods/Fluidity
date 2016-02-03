@@ -58,6 +58,10 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 		}
+		if(Loader.isModLoaded("Baubles") && Loader.isModLoaded("unlogicii")){
+			compat = new BaublesUnLogicII();
+			compat.preInit();
+		}
 		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
@@ -90,6 +94,12 @@ public class Fluidity {
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("samscarbonpaper")){
 			compat = new BaseMetalsCarbonPaper();
 			compat.init();
+		}
+		if(Loader.isModLoaded("Baubles") && Loader.isModLoaded("unlogicii")){
+			compat = new BaublesUnLogicII();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}
 		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
 			compat = new CannibalismRealStoneTools();
