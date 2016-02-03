@@ -29,6 +29,8 @@ public class Fluidity {
 
 	public static final CreativeTabs tabFluidity = new TabFluidity();
 
+	public boolean isClient=false;
+
 	private void addSupported(){
 		supportedMods.add("adobeblocks");
 		supportedMods.add("basemetals");
@@ -44,6 +46,8 @@ public class Fluidity {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
+		if(event.getSide().isClient())
+			isClient=true;
 		addSupported();
 		IModCompat compat;
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("unlogicii")){
