@@ -9,7 +9,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import the_fireplace.fluidity.entity.ai.FluidityIronChestOcelotSit;
 
-public class IronChestsForgeEvents {
+public class IronChestsCommonEvents {
 	@SubscribeEvent
 	public void changeSittingTaskForOcelots(LivingEvent.LivingUpdateEvent evt)
 	{

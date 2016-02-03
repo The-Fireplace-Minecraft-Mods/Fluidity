@@ -20,7 +20,7 @@ import the_fireplace.fluidity.enums.FluidityChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
-import the_fireplace.fluidity.events.IronChestsForgeEvents;
+import the_fireplace.fluidity.events.IronChestsCommonEvents;
 import the_fireplace.fluidity.handler.IronChestsGuiHandler;
 import the_fireplace.fluidity.items.ItemFluidityIronChest;
 import the_fireplace.fluidity.tools.Registry;
@@ -53,7 +53,7 @@ public class FluidityIronChests implements IModCompat {
 		IronFluidityChestChangerType.generateRecipes();
 		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new IronChestsGuiHandler());
 		addRecipes();
-		MinecraftForge.EVENT_BUS.register(new IronChestsForgeEvents());
+		MinecraftForge.EVENT_BUS.register(new IronChestsCommonEvents());
 	}
 
 	private void addRecipes() {

@@ -22,7 +22,6 @@ public class CannibalismThaumcraft implements IModCompat {
 
 	@Override
 	public void init() {
-		Registry.register(thaumium_knife);
 		Registry.addRecipe(new ItemStack(thaumium_knife), " r", "s ", 'r', ItemsTC.ingots, 's', "stickWood");
 	}
 
