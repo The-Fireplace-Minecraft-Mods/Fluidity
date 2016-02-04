@@ -1,5 +1,6 @@
 package the_fireplace.fluidity.events;
 
+import baubles.api.BaublesApi;
 import com.google.common.collect.Maps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import the_fireplace.fluidity.items.ItemCrystalAmulet;
 import the_fireplace.unlogicii.entity.living.ExtendedLivingBase;
 
 import java.util.List;
@@ -34,6 +36,9 @@ public class BaublesUnLogicIIClientEvents {
 		if(mc != null)
 			if(mc.thePlayer != null)
 				if(mc.thePlayer.worldObj != null)
+					if(BaublesApi.getBaubles(mc.thePlayer) != null)
+						if(BaublesApi.getBaubles(mc.thePlayer).getStackInSlot(0) != null)
+							if(BaublesApi.getBaubles(mc.thePlayer).getStackInSlot(0).getItem() instanceof ItemCrystalAmulet)
 		if(i < 40){
 			i++;
 		}else{
