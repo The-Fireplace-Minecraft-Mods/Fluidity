@@ -28,8 +28,8 @@ dependencies {
 	deobfCompile group: "com.teambr.bookshelf", name: "Bookshelf", version: "1.8.9-2.2.7-B10"
 	deobfCompile group: "com.dyonovan.neotech", name: "NeoTech", version: "1.8.9-2.3.2-B38"
 	deobfCompile group: "mezz.jei", name: "jei_1.8.9", version: "2.19.0.93"
-	deobfCompile group: "RebornCore", name: "RebornCore-1.8.9", version: "1.4.1.15"
-	deobfCompile group: "TechReborn", name: "TechReborn-1.8.9", version: "0.7.9.49"
+	compile 'RebornCore:RebornCore-1.8.9:1.4.1.+:dev'
+	compile 'TechReborn:TechReborn-1.8.9:0.7.9.+:dev'
 }
 
 repositories{
