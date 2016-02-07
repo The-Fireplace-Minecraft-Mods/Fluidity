@@ -5,14 +5,13 @@ This is the repository for the Fluidity Minecraft mod. The goal of this mod is t
 ### What is this repository for? ###
 
 * This is a repository for the Fluidity Minecraft mod
-* Fluidity is currently being developed for Minecraft 1.8 running [Forge 11.14.3.1486](http://adfoc.us/serve/sitelinks/?id=271228&url=http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8-11.14.3.1486/forge-1.8-11.14.3.1486-src.zip)
+* Fluidity is currently being developed for Minecraft 1.8.9 running [Forge 11.15.1.1732](http://adfoc.us/serve/sitelinks/?id=271228&url=http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8.9-11.15.1.1732/forge-1.8.9-11.15.1.1732-mdk.zip)
 
 ### How do I get set up? ###
 
 * First, clone the repo
-* Second, copy the eclipse folder from the forge 11.14.3.1486 src zip to the repo folder
-* Third, you should just be able to run setupforge.bat or setupforge.sh, it sets it up for use with Eclipse
-* Fourth, as usual, point Eclipse to the eclipse folder
+* Second, you should just be able to run setupforge.bat or setupforge.sh, it sets it up for use with IntelliJ Idea
+* Third, open Fluidity.ipr in Idea
 
 ### Contribution guidelines ###
 
