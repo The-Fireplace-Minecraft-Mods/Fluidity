@@ -54,3 +54,5 @@ fluidity.gold=Gold
 fluidity.diamond=Diamond
 fluidity.upgrade=%s to %s Chest Upgrade
 itemGroup.fluidity=Fluidity
+fluidity.desc.line1=Adds all kinds of content that should only exist when certain mods are loaded together.
+fluidity.desc.line2=Loaded mods that Fluidity can improve upon:

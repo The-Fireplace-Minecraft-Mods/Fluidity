@@ -3,6 +3,7 @@ package the_fireplace.fluidity;
 import com.google.common.collect.Lists;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -136,8 +137,8 @@ public class Fluidity {
 						mods += "\n"+mod.getName();
 		if(mods.equals(""))
 			mods = mods.concat("\n"+EnumChatFormatting.RED+"none");
-		event.getModMetadata().description = "Adds all kinds of content that should only exist when certain mods are loaded together.\n"
-				+ "Loaded mods that Fluidity can improve upon:"
+		event.getModMetadata().description = StatCollector.translateToLocal("fluidity.desc.line1")+"\n"
+				+ StatCollector.translateToLocal("fluidity.desc.line2")
 				+ mods;
 	}
 	public static final String LATEST = "https://dl.dropboxusercontent.com/s/532e9ihhlbnmr2j/latest.version?dl=0";
