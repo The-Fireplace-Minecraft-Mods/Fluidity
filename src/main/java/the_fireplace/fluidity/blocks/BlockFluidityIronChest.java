@@ -67,19 +67,13 @@ public class BlockFluidityIronChest extends BlockContainer
 		TileEntity te = world.getTileEntity(pos);
 
 		if (te == null || !(te instanceof TileEntityFluidityIronChest))
-		{
 			return true;
-		}
 
 		if (world.isSideSolid(pos.add(0, 1, 0), EnumFacing.DOWN))
-		{
 			return true;
-		}
 
 		if (world.isRemote)
-		{
 			return true;
-		}
 
 		player.openGui(Fluidity.instance, ((TileEntityFluidityIronChest) te).getType().ordinal(), world, pos.getX(), pos.getY(), pos.getZ());
 		return true;
@@ -96,12 +90,8 @@ public class BlockFluidityIronChest extends BlockContainer
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
 	{
 		for (FluidityIronChestType type : FluidityIronChestType.values())
-		{
 			if (type.isValidForCreativeMode())
-			{
 				list.add(new ItemStack(itemIn, 1, type.ordinal()));
-			}
-		}
 	}
 
 	@Override
@@ -144,21 +134,13 @@ public class BlockFluidityIronChest extends BlockContainer
 		byte chestFacing = 0;
 		int facing = MathHelper.floor_double((entityliving.rotationYaw * 4F) / 360F + 0.5D) & 3;
 		if (facing == 0)
-		{
 			chestFacing = 2;
-		}
 		if (facing == 1)
-		{
 			chestFacing = 5;
-		}
 		if (facing == 2)
-		{
 			chestFacing = 3;
-		}
 		if (facing == 3)
-		{
 			chestFacing = 4;
-		}
 		TileEntity te = world.getTileEntity(pos);
 		if (te != null && te instanceof TileEntityFluidityIronChest)
 		{
@@ -195,9 +177,7 @@ public class BlockFluidityIronChest extends BlockContainer
 		{
 			ItemStack itemstack = chest.getStackInSlot(l);
 			if (itemstack == null)
-			{
 				continue;
-			}
 			float f = random.nextFloat() * 0.8F + 0.1F;
 			float f1 = random.nextFloat() * 0.8F + 0.1F;
 			float f2 = random.nextFloat() * 0.8F + 0.1F;
@@ -205,9 +185,7 @@ public class BlockFluidityIronChest extends BlockContainer
 			{
 				int i1 = random.nextInt(21) + 10;
 				if (i1 > itemstack.stackSize)
-				{
 					i1 = itemstack.stackSize;
-				}
 				itemstack.stackSize -= i1;
 				EntityItem entityitem = new EntityItem(world, pos.getX() + f, (float) pos.getY() + (newSize > 0 ? 1 : 0) + f1, pos.getZ() + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getMetadata()));
 				float f3 = 0.05F;
@@ -215,9 +193,7 @@ public class BlockFluidityIronChest extends BlockContainer
 				entityitem.motionY = (float) random.nextGaussian() * f3 + 0.2F;
 				entityitem.motionZ = (float) random.nextGaussian() * f3;
 				if (itemstack.hasTagCompound())
-				{
 					entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
-				}
 				world.spawnEntityInWorld(entityitem);
 			}
 		}
@@ -231,9 +207,7 @@ public class BlockFluidityIronChest extends BlockContainer
 		{
 			TileEntityFluidityIronChest teic = (TileEntityFluidityIronChest) te;
 			if (teic.getType().isExplosionResistant())
-			{
 				return 10000F;
-			}
 		}
 		return super.getExplosionResistance(world, pos, exploder, explosion);
 	}
@@ -249,9 +223,7 @@ public class BlockFluidityIronChest extends BlockContainer
 	{
 		TileEntity te = world.getTileEntity(pos);
 		if (te instanceof IInventory)
-		{
 			return Container.calcRedstoneFromInventory((IInventory) te);
-		}
 		return 0;
 	}
 
@@ -267,9 +239,7 @@ public class BlockFluidityIronChest extends BlockContainer
 	public boolean rotateBlock(World worldObj, BlockPos pos, EnumFacing axis)
 	{
 		if (worldObj.isRemote)
-		{
 			return false;
-		}
 		if (axis == EnumFacing.UP || axis == EnumFacing.DOWN)
 		{
 			TileEntity tileEntity = worldObj.getTileEntity(pos);

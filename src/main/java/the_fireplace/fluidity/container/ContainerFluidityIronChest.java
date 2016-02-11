@@ -42,9 +42,7 @@ public class ContainerFluidityIronChest extends Container {
 			if (i < type.size)
 			{
 				if (!mergeItemStack(itemstack1, type.size, inventorySlots.size(), true))
-				{
 					return null;
-				}
 			}
 			else if (!type.acceptsStack(itemstack1))
 			{
@@ -59,9 +57,7 @@ public class ContainerFluidityIronChest extends Container {
 				slot.putStack(null);
 			}
 			else
-			{
 				slot.onSlotChanged();
-			}
 		}
 		return itemstack;
 	}
@@ -77,13 +73,8 @@ public class ContainerFluidityIronChest extends Container {
 	{
 
 		for (int chestRow = 0; chestRow < type.getRowCount(); chestRow++)
-		{
 			for (int chestCol = 0; chestCol < type.getRowLength(); chestCol++)
-			{
 				addSlotToContainer(type.makeSlot(chestInventory, chestCol + chestRow * type.getRowLength(), 12 + chestCol * 18, 8 + chestRow * 18));
-			}
-		}
-
 
 		int leftCol = (xSize - 162) / 2 + 1;
 		for (int playerInvRow = 0; playerInvRow < 3; playerInvRow++)
