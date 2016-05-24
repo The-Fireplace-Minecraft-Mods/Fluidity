@@ -3,6 +3,8 @@ package the_fireplace.fluidity.compat;
 import cyano.basemetals.init.Materials;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.items.ItemBaseMetalKnife;
 import the_fireplace.fluidity.tools.Registry;
@@ -79,6 +81,7 @@ public class BaseMetalsCannibalism implements IModCompat {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 		Registry.registerRender(copper_knife);
 		Registry.registerRender(silver_knife);

@@ -2,6 +2,8 @@ package the_fireplace.fluidity.compat;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import sorazodia.cannibalism.items.manager.ItemList;
 import the_fireplace.fluidity.tools.Registry;
 
@@ -19,6 +21,7 @@ public class CannibalismRealStoneTools implements IModCompat {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 
 	}

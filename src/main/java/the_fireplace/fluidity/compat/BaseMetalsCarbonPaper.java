@@ -4,6 +4,8 @@ import com.lothrazar.samscarbonpaper.ModCarbon;
 
 import cyano.basemetals.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.tools.Registry;
 
 public class BaseMetalsCarbonPaper implements IModCompat {
@@ -22,6 +24,7 @@ public class BaseMetalsCarbonPaper implements IModCompat {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 
 	}

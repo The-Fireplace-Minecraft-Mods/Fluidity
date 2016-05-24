@@ -2,6 +2,8 @@ package the_fireplace.fluidity.compat;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.ThaumcraftMaterials;
 import thaumcraft.api.items.ItemsTC;
 import the_fireplace.fluidity.Fluidity;
@@ -28,6 +30,7 @@ public class ThaumcraftUnLogicII implements IModCompat {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 		Registry.registerRender(thaumium_paxel);
 	}

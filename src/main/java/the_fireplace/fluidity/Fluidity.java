@@ -9,10 +9,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.compat.*;
+import the_fireplace.fluidity.proxy.CommonProxy;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,9 @@ public class Fluidity {
 	public final ArrayList<String> supportedMods = Lists.newArrayList();
 	@Instance(MODID)
 	public static Fluidity instance;
+
+	@SidedProxy(clientSide = "the_fireplace.fluidity.proxy.ClientProxy", serverSide = "the_fireplace.fluidity.proxy.CommonProxy")
+	public static CommonProxy proxy;
 
 	public static final CreativeTabs tabFluidity = new TabFluidity();
 

@@ -6,6 +6,8 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import sorazodia.cannibalism.items.ItemKnife;
 import sorazodia.cannibalism.items.manager.ItemList;
 import thaumcraft.api.ThaumcraftApi;
@@ -37,6 +39,7 @@ public class CannibalismThaumcraft implements IModCompat {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 		Registry.registerRender(thaumium_knife);
 		ModelBakery.registerItemVariants(human_nugget, new ModelResourceLocation("fluidity:chunk_human", "inventory"), new ModelResourceLocation("fluidity:chunk_villager", "inventory"));

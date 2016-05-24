@@ -10,12 +10,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
-import the_fireplace.fluidity.entity.tile.renderer.TileEntityFluidityChestRenderer;
 import the_fireplace.fluidity.enums.FluidityChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
@@ -40,13 +38,7 @@ public class FluidityIronChests implements IModCompat {
 		FluidityIronChestChangerType.buildItems();
 		IronFluidityChestChangerType.buildItems();
 		GameRegistry.registerBlock(fluidityChest, ItemFluidityIronChest.class, "fluidity_iron_chest");
-		for (FluidityIronChestType typ : FluidityIronChestType.values())
-		{
-			GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "Fluidity." + typ.name(), typ.name());
-			if(classExists("net.minecraft.client.Minecraft")){
-				ClientRegistry.bindTileEntitySpecialRenderer(typ.clazz, new TileEntityFluidityChestRenderer());
-			}
-		}
+		Fluidity.proxy.getFICProxy().register();
 		FluidityIronChestType.registerBlocksAndRecipes((BlockFluidityIronChest) fluidityChest);
 		FluidityChestChangerType.generateRecipes();
 		FluidityIronChestChangerType.generateRecipes();

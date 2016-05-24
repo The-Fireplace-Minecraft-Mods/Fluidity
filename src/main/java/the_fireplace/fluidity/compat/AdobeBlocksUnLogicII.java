@@ -2,6 +2,8 @@ package the_fireplace.fluidity.compat;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.adobeblocks.AdobeBlocks;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.tools.Registry;
@@ -25,6 +27,7 @@ public class AdobeBlocksUnLogicII implements IModCompat {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 		Registry.registerRender(adobe_paxel);
 	}

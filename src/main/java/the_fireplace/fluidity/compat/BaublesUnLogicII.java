@@ -4,6 +4,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.events.BaublesUnLogicIIClientEvents;
 import the_fireplace.fluidity.items.ItemCrystalAmulet;
@@ -30,6 +32,7 @@ public class BaublesUnLogicII implements IModCompat {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 		Registry.registerRender(crystal_amulet);
 	}
