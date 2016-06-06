@@ -70,7 +70,7 @@ public class Fluidity {
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
 		}*/
-		if(Loader.isModLoaded("IronChest") && canIronChest()){
+		if(Loader.isModLoaded("IronChest") && hasCommonMetals()){
 			compat = new FluidityIronChests();
 			compat.preInit();
 		}
@@ -105,7 +105,7 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
-		if(Loader.isModLoaded("IronChest") && canIronChest()){
+		if(Loader.isModLoaded("IronChest") && hasCommonMetals()){
 			compat = new FluidityIronChests();
 			compat.init();
 			if(event.getSide().isClient())
@@ -130,8 +130,13 @@ public class Fluidity {
 			compat.postInit();
 		}
 	}
-	private boolean canIronChest(){
-		return !OreDictionary.getOres("ingotBronze").isEmpty() || !OreDictionary.getOres("ingotInvar").isEmpty() || !OreDictionary.getOres("ingotElectrum").isEmpty() || !OreDictionary.getOres("ingotTin").isEmpty() || !OreDictionary.getOres("ingotBrass").isEmpty() || !OreDictionary.getOres("ingotLead").isEmpty() || !OreDictionary.getOres("ingotSteel").isEmpty() || !OreDictionary.getOres("ingotNickel").isEmpty();
+	private final String[] metalArray = new String[]{"ingotBronze", "ingotInvar", "ingotElectrum", "ingotTin", "ingotBrass", "ingotLead", "ingotSteel", "ingotNickel"};
+	private boolean hasCommonMetals(){
+		for(String s:metalArray){
+			if(!OreDictionary.getOres(s).isEmpty())
+				return true;
+		}
+		return false;
 	}
 	private void overrideDescription(FMLPreInitializationEvent event){
 		String mods = "";
