@@ -3,25 +3,24 @@ package the_fireplace.fluidity.entity.tile;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.container.ContainerFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 public class TileEntityFluidityIronChest extends TileEntityLockable implements ITickable, IInventory
@@ -33,7 +32,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	private FluidityIronChestType type;
 	public ItemStack[] chestContents;
 	private ItemStack[] topStacks;
-	private byte facing;
+	private EnumFacing facing;
 	private boolean inventoryTouched;
 	private boolean hadStuff;
 	private String customName;
@@ -75,7 +74,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		return type.size;
 	}
 
-	public int getFacing()
+	public EnumFacing getFacing()
 	{
 		return this.facing;
 	}
@@ -90,88 +89,6 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	{
 		inventoryTouched = true;
 		return chestContents[i];
-	}
-
-	@Override
-	public void markDirty()
-	{
-		super.markDirty();
-		sortTopStacks();
-	}
-
-	protected void sortTopStacks()
-	{
-		if (!type.isTransparent() || (worldObj != null && worldObj.isRemote))
-		{
-			return;
-		}
-		ItemStack[] tempCopy = new ItemStack[getSizeInventory()];
-		boolean hasStuff = false;
-		int compressedIdx = 0;
-		mainLoop: for (int i = 0; i < getSizeInventory(); i++)
-		{
-			if (chestContents[i] != null)
-			{
-				for (int j = 0; j < compressedIdx; j++)
-				{
-					if (tempCopy[j].isItemEqual(chestContents[i]))
-					{
-						tempCopy[j].stackSize += chestContents[i].stackSize;
-						continue mainLoop;
-					}
-				}
-				tempCopy[compressedIdx++] = chestContents[i].copy();
-				hasStuff = true;
-			}
-		}
-		if (!hasStuff && hadStuff)
-		{
-			hadStuff = false;
-			for (int i = 0; i < topStacks.length; i++)
-			{
-				topStacks[i] = null;
-			}
-			if (worldObj != null)
-			{
-				worldObj.markBlockForUpdate(pos);
-			}
-			return;
-		}
-		hadStuff = true;
-		Arrays.sort(tempCopy, new Comparator<ItemStack>()
-		{
-			@Override
-			public int compare(ItemStack o1, ItemStack o2)
-			{
-				if (o1 == null)
-				{
-					return 1;
-				} else if (o2 == null)
-				{
-					return -1;
-				} else
-				{
-					return o2.stackSize - o1.stackSize;
-				}
-			}
-		});
-		int p = 0;
-		for (ItemStack aTempCopy : tempCopy) {
-			if (aTempCopy != null && aTempCopy.stackSize > 0) {
-				topStacks[p++] = aTempCopy;
-				if (p == topStacks.length) {
-					break;
-				}
-			}
-		}
-		for (int i = p; i < topStacks.length; i++)
-		{
-			topStacks[i] = null;
-		}
-		if (worldObj != null)
-		{
-			worldObj.markBlockForUpdate(pos);
-		}
 	}
 
 	@Override
@@ -249,12 +166,11 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 				chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
-		facing = nbttagcompound.getByte("facing");
-		sortTopStacks();
+		facing = EnumFacing.VALUES[nbttagcompound.getByte("facing")];
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbttagcompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeToNBT(nbttagcompound);
 		NBTTagList nbttaglist = new NBTTagList();
@@ -270,12 +186,13 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		}
 
 		nbttagcompound.setTag("Items", nbttaglist);
-		nbttagcompound.setByte("facing", facing);
+		nbttagcompound.setByte("facing", (byte)this.facing.ordinal());
 
 		if (this.hasCustomName())
 		{
 			nbttagcompound.setString("CustomName", this.customName);
 		}
+		return nbttagcompound;
 	}
 
 	@Override
@@ -314,12 +231,11 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 
 		if (worldObj != null && !worldObj.isRemote && ticksSinceSync < 0)
 		{
-			worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 3, ((numUsingPlayers << 3) & 0xF8) | (facing & 0x7));
+			worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 3, this.numUsingPlayers << 3 & 248 | this.facing.ordinal() & 7);
 		}
 		if (!worldObj.isRemote && inventoryTouched)
 		{
 			inventoryTouched = false;
-			sortTopStacks();
 		}
 
 		this.ticksSinceSync++;
@@ -329,7 +245,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		{
 			double d = pos.getX() + 0.5D;
 			double d1 = pos.getZ() + 0.5D;
-			worldObj.playSoundEffect(d, pos.getY() + 0.5D, d1, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+			worldObj.playSound(null, d, pos.getY() + 0.5D, d1, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 		}
 		if (numUsingPlayers == 0 && lidAngle > 0.0F || numUsingPlayers > 0 && lidAngle < 1.0F)
 		{
@@ -350,7 +266,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			{
 				double d2 = pos.getX() + 0.5D;
 				double d3 = pos.getZ() + 0.5D;
-				worldObj.playSoundEffect(d2, pos.getY() + 0.5D, d3, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+				worldObj.playSound(null, d2, pos.getY() + 0.5D, d3, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 			}
 			if (lidAngle < 0.0F)
 			{
@@ -367,11 +283,11 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			numUsingPlayers = j;
 		} else if (i == 2)
 		{
-			facing = (byte) j;
+			facing = EnumFacing.VALUES[j];
 		} else if (i == 3)
 		{
-			facing = (byte) (j & 0x7);
-			numUsingPlayers = (j & 0xF8) >> 3;
+			facing = EnumFacing.VALUES[j & 7];
+			numUsingPlayers = (j & 248) >> 3;
 		}
 		return true;
 	}
@@ -398,7 +314,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 1, numUsingPlayers);
 	}
 
-	public void setFacing(byte facing2)
+	public void setFacing(EnumFacing facing2)
 	{
 		this.facing = facing2;
 	}
@@ -421,40 +337,21 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		return this;
 	}
 
-	@Override
-	public Packet getDescriptionPacket()
-	{
+	public SPacketUpdateTileEntity getUpdatePacket() {
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setInteger("type", getType().ordinal());
-		nbt.setByte("facing", facing);
-		ItemStack[] stacks = buildItemStackDataList();
-		if (stacks != null)
-		{
-			NBTTagList nbttaglist = new NBTTagList();
-			for (int i = 0; i < stacks.length; i++)
-			{
-				if (stacks[i] != null)
-				{
-					NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-					nbttagcompound1.setByte("Slot", (byte) i);
-					stacks[i].writeToNBT(nbttagcompound1);
-					nbttaglist.appendTag(nbttagcompound1);
-				}
-			}
-			nbt.setTag("stacks", nbttaglist);
-		}
+		nbt.setByte("facing", (byte)this.facing.ordinal());
 
-		return new S35PacketUpdateTileEntity(pos, 0, nbt);
+		return new SPacketUpdateTileEntity(this.pos, 0, nbt);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
 	{
 		if (pkt.getTileEntityType() == 0)
 		{
 			NBTTagCompound nbt = pkt.getNbtCompound();
 			type = FluidityIronChestType.values()[nbt.getInteger("type")];
-			facing = nbt.getByte("facing");
+			facing = EnumFacing.VALUES[nbt.getByte("facing")];
 
 			NBTTagList tagList = nbt.getTagList("stacks", Constants.NBT.TAG_COMPOUND);
 			ItemStack[] stacks = new ItemStack[topStacks.length];
@@ -468,44 +365,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 					stacks[j] = ItemStack.loadItemStackFromNBT(nbt1);
 				}
 			}
-
-			if (type.isTransparent() && stacks != null)
-			{
-				int pos = 0;
-				for (int i = 0; i < topStacks.length; i++)
-				{
-					if (stacks[pos] != null)
-					{
-						topStacks[i] = stacks[pos];
-					} else
-					{
-						topStacks[i] = null;
-					}
-					pos++;
-				}
-			}
 		}
-	}
-
-	public ItemStack[] buildItemStackDataList()
-	{
-		if (type.isTransparent())
-		{
-			ItemStack[] sortList = new ItemStack[topStacks.length];
-			int pos = 0;
-			for (ItemStack is : topStacks)
-			{
-				if (is != null)
-				{
-					sortList[pos++] = is;
-				} else
-				{
-					sortList[pos++] = null;
-				}
-			}
-			return sortList;
-		}
-		return null;
 	}
 
 	@Override
@@ -530,13 +390,8 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 
 	public void rotateAround()
 	{
-		facing++;
-		if (facing > EnumFacing.EAST.ordinal())
-		{
-			facing = (byte) EnumFacing.NORTH.ordinal();
-		}
-		setFacing(facing);
-		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 2, facing);
+		this.setFacing(this.facing.rotateY());
+		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 2, facing.ordinal());
 	}
 
 	public void wasPlaced(EntityLivingBase entityliving, ItemStack itemStack)

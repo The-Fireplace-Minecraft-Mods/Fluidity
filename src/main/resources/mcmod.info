@@ -3,16 +3,16 @@
   "modid": "fluidity",
   "name": "Fluidity",
   "description": "Adds all kinds of content that should only exist when certain mods are loaded together.",
-  "version": "4.0.0.5",
-  "mcversion": "1.8.9",
+  "version": "6.0.0.1",
+  "mcversion": "1.9.4",
   "url": "",
   "updateUrl": "",
   "authorList": ["The_Fireplace"],
   "credits": "The_Fireplace for the idea of and making the mod",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": [ "adobeblocks", "basemetals", "Baubles", "cannibalism", "invtweaks", "IronChest", "realstonetools", "samscarbonpaper", "Thaumcraft", "unlogicii"],
-  "requiredMods": ["Forge@[11.15.0.1673,)"],
+  "dependencies": [ "adobeblocks", "basemetals", "cookingforblockheads", "frt", "invtweaks", "IronChest", "realstonetools"],
+  "requiredMods": ["Forge@[12.17.0.1909,)"],
   "useDependencyInformation": true
 }
 ]

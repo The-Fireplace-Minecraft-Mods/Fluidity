@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.compat;
+/*package the_fireplace.fluidity.compat;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,8 +12,8 @@ import the_fireplace.unlogicii.items.internal.ItemPaxel;
 
 /**
  * @author The_Fireplace
- */
-public class ThaumcraftUnLogicII implements IModCompat {
+ *//*
+public class ThaumcraftFRT implements IModCompat {
 
 	public static final Item thaumium_paxel = new ItemPaxel(ThaumcraftMaterials.TOOLMAT_THAUMIUM).setUnlocalizedName("thaumium_paxel").setCreativeTab(Fluidity.tabFluidity);
 
@@ -35,3 +35,4 @@ public class ThaumcraftUnLogicII implements IModCompat {
 		Registry.registerRender(thaumium_paxel);
 	}
 }
+*/

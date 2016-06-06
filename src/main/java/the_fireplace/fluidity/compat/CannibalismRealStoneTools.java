@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.compat;
+/*package the_fireplace.fluidity.compat;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -27,3 +27,4 @@ public class CannibalismRealStoneTools implements IModCompat {
 	}
 
 }
+*/

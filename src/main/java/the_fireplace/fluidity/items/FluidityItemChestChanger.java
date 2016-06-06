@@ -4,14 +4,17 @@ import cpw.mods.ironchest.IronChest;
 import cpw.mods.ironchest.IronChestType;
 import cpw.mods.ironchest.TileEntityIronChest;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.compat.FluidityIronChests;
@@ -64,18 +67,18 @@ public class FluidityItemChestChanger extends Item
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
-		return String.format(StatCollector.translateToLocal("fluidity.upgrade"), StatCollector.translateToLocal("fluidity."+this.getSourceName().toLowerCase()), StatCollector.translateToLocal("fluidity."+this.getTargetName().toLowerCase()));
+		return String.format(I18n.translateToLocal("fluidity.upgrade"), I18n.translateToLocal("fluidity."+this.getSourceName().toLowerCase()), I18n.translateToLocal("fluidity."+this.getTargetName().toLowerCase()));
 	}
 
 	@Override
-	public boolean onItemUseFirst (ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse (ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (world.isRemote)
-			return false;
+			return EnumActionResult.PASS;
 		switch(useType){
 		case 0:{
 			if(world.getBlockState(pos) != FluidityIronChests.fluidityChest.getStateFromMeta(FluidityIronChestType.valueOf(type.sourcename.toUpperCase()).ordinal())){
-				return false;
+				return EnumActionResult.PASS;
 			}
 			TileEntity te = world.getTileEntity(pos);
 			TileEntityFluidityIronChest newchest = new TileEntityFluidityIronChest();
@@ -87,7 +90,7 @@ public class FluidityItemChestChanger extends Item
 					chestContents = ((TileEntityFluidityIronChest) te).chestContents;
 					newchest = FluidityIronChestType.makeEntity(this.getTargetChestOrdinal(this.type.ordinal()));
 					if (newchest == null)
-						return false;
+						return EnumActionResult.PASS;
 				}
 			}
 
@@ -99,9 +102,10 @@ public class FluidityItemChestChanger extends Item
 			world.setBlockToAir(pos);
 
 			world.setTileEntity(pos, newchest);
-			world.setBlockState(pos, FluidityIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal()), 3);
+			IBlockState state = FluidityIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal());
+			world.setBlockState(pos, state, 3);
 
-			world.markBlockForUpdate(pos);
+			world.notifyBlockUpdate(pos, state, state, 3);
 
 			TileEntity te2 = world.getTileEntity(pos);
 			if (te2 instanceof TileEntityFluidityIronChest)
@@ -110,10 +114,10 @@ public class FluidityItemChestChanger extends Item
 			}
 
 			stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
-			return true;}
+			return EnumActionResult.SUCCESS;}
 		case 1:{
 			if(world.getBlockState(pos) != FluidityIronChests.fluidityChest.getStateFromMeta(FluidityIronChestType.valueOf(type2.sourcename.toUpperCase()).ordinal())){
-				return false;
+				return EnumActionResult.PASS;
 			}
 			TileEntity te = world.getTileEntity(pos);
 			TileEntityIronChest newchest = new TileEntityIronChest();
@@ -123,9 +127,9 @@ public class FluidityItemChestChanger extends Item
 				if (te instanceof TileEntityFluidityIronChest)
 				{
 					chestContents = ((TileEntityFluidityIronChest) te).chestContents;
-					newchest = IronChestType.makeEntity(this.getTargetChestOrdinal(this.type2.ordinal()));
+					newchest = IronChestType.VALUES[getTargetChestOrdinal(this.type2.ordinal())].makeEntity();
 					if (newchest == null)
-						return false;
+						return EnumActionResult.PASS;
 				}
 			}
 
@@ -137,9 +141,10 @@ public class FluidityItemChestChanger extends Item
 			world.setBlockToAir(pos);
 
 			world.setTileEntity(pos, newchest);
-			world.setBlockState(pos, IronChest.ironChestBlock.getStateFromMeta(newchest.getType().ordinal()), 3);
+			IBlockState state = IronChest.ironChestBlock.getStateFromMeta(newchest.getType().ordinal());
+			world.setBlockState(pos, state, 3);
 
-			world.markBlockForUpdate(pos);
+			world.notifyBlockUpdate(pos, state, state, 3);
 
 			TileEntity te2 = world.getTileEntity(pos);
 			if (te2 instanceof TileEntityIronChest)
@@ -148,15 +153,15 @@ public class FluidityItemChestChanger extends Item
 			}
 
 			stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
-			return true;}
+			return EnumActionResult.SUCCESS;}
 		case 2:{
 			if(type3.getSource() == IronChestType.WOOD){
 				if(!(world.getBlockState(pos).getBlock() instanceof BlockChest)){
-					return false;
+					return EnumActionResult.PASS;
 				}
 			}else{
 				if(world.getBlockState(pos) != IronChest.ironChestBlock.getStateFromMeta(IronChestType.valueOf(type3.sourcename.toUpperCase()).ordinal())){
-					return false;
+					return EnumActionResult.PASS;
 				}
 			}
 			TileEntity te = world.getTileEntity(pos);
@@ -169,12 +174,12 @@ public class FluidityItemChestChanger extends Item
 					chestContents = ((TileEntityIronChest) te).chestContents;
 					newchest = FluidityIronChestType.makeEntity(this.getTargetChestOrdinal(this.type3.ordinal()));
 					if (newchest == null)
-						return false;
+						return EnumActionResult.PASS;
 				}else if (te instanceof TileEntityChest){
 					if (((TileEntityChest) te).numPlayersUsing > 0)
-						return false;
+						return EnumActionResult.PASS;
 					if (!type3.canUpgrade(IronChestType.WOOD))
-						return false;
+						return EnumActionResult.PASS;
 					chestContents = new ItemStack[((TileEntityChest) te).getSizeInventory()];
 					for (int i = 0; i < chestContents.length; i++)
 						chestContents[i] = ((TileEntityChest) te).getStackInSlot(i);
@@ -190,9 +195,10 @@ public class FluidityItemChestChanger extends Item
 			world.setBlockToAir(pos);
 
 			world.setTileEntity(pos, newchest);
-			world.setBlockState(pos, FluidityIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal()), 3);
+			IBlockState state = FluidityIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal());
+			world.setBlockState(pos, state, 3);
 
-			world.markBlockForUpdate(pos);
+			world.notifyBlockUpdate(pos, state, state, 3);
 
 			TileEntity te2 = world.getTileEntity(pos);
 			if (te2 instanceof TileEntityFluidityIronChest)
@@ -201,9 +207,9 @@ public class FluidityItemChestChanger extends Item
 			}
 
 			stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
-			return true;}
+			return EnumActionResult.SUCCESS;}
 		}
-		return false;
+		return EnumActionResult.FAIL;
 	}
 
 	public int getTargetChestOrdinal(int sourceOrdinal)

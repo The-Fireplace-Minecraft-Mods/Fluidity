@@ -1,28 +1,13 @@
 package the_fireplace.fluidity.enums;
 
-import static cpw.mods.ironchest.IronChestType.DIAMOND;
-import static cpw.mods.ironchest.IronChestType.GOLD;
-import static cpw.mods.ironchest.IronChestType.IRON;
-import static cpw.mods.ironchest.IronChestType.SILVER;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.BRASS;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.BRONZE;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.COLDIRON;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.ELECTRUM;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.INVAR;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.LEAD;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.NICKEL;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.STEEL;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.TIN;
-
 import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.client.ModelHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.items.FluidityItemChestChanger;
+
+import static cpw.mods.ironchest.IronChestType.*;
+import static the_fireplace.fluidity.enums.FluidityIronChestType.*;
 
 public enum FluidityIronChestChangerType {
 	BRONZEGOLD(BRONZE, GOLD, "bronzeGoldUpgrade", "mmm", "msm", "mmm"),
@@ -69,9 +54,10 @@ public enum FluidityIronChestChangerType {
 	public FluidityItemChestChanger buildItem()
 	{
 		item = new FluidityItemChestChanger(this);
-		GameRegistry.registerItem(item, itemName);
-		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-			ModelHelper.registerItem(item, Fluidity.MODID+":" + itemName);
+		item.setRegistryName(itemName);
+		GameRegistry.register(item);
+		//if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+		//	ModelHelper.registerItem(item, Fluidity.MODID+":" + itemName);
 		return item;
 	}
 
@@ -79,11 +65,11 @@ public enum FluidityIronChestChangerType {
 	{
 		for (String sourceMat : source.getMatList())
 		{
-			for (String targetMat : target.getMatList())
+			for (String targetMat : target.matList)
 			{
 				Object targetMaterial = FluidityIronChestType.translateOreName(targetMat);
 				Object sourceMaterial = FluidityIronChestType.translateOreName(sourceMat);
-				FluidityIronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', Blocks.glass, 'O', Blocks.obsidian);
+				FluidityIronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', Blocks.GLASS, 'O', Blocks.OBSIDIAN);
 			}
 		}
 	}

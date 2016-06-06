@@ -4,12 +4,11 @@ import cpw.mods.ironchest.IronChest;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.fluidity.Fluidity;
@@ -18,7 +17,6 @@ import the_fireplace.fluidity.enums.FluidityChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
-import the_fireplace.fluidity.events.IronChestsCommonEvents;
 import the_fireplace.fluidity.handler.IronChestsGuiHandler;
 import the_fireplace.fluidity.items.ItemFluidityIronChest;
 import the_fireplace.fluidity.tools.Registry;
@@ -45,7 +43,7 @@ public class FluidityIronChests implements IModCompat {
 		IronFluidityChestChangerType.generateRecipes();
 		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new IronChestsGuiHandler());
 		addRecipes();
-		MinecraftForge.EVENT_BUS.register(new IronChestsCommonEvents());
+		//MinecraftForge.EVENT_BUS.register(new IronChestsCommonEvents());
 	}
 
 	private void addRecipes() {
@@ -76,15 +74,6 @@ public class FluidityIronChests implements IModCompat {
 		Registry.addRecipe(goldChestStack, "igi", "gcg", "igi", 'i', "ingotGold", 'c', steelChestStack, 'g', "blockGlass");
 		Registry.addRecipe(diamondChestStack, "ggg", "ici", "ggg", 'i', "gemDiamond", 'c', invarChestStack, 'g', "blockGlass");
 		Registry.addRecipe(diamondChestStack, "ggg", "ici", "ggg", 'i', "gemDiamond", 'c', electrumChestStack, 'g', "blockGlass");
-	}
-
-	private boolean classExists(String classpath){
-		try{
-			Class.forName(classpath);
-			return true;
-		}catch(final ClassNotFoundException e){
-			return false;
-		}
 	}
 
 	@Override

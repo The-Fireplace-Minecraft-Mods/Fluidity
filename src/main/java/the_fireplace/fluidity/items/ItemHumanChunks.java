@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.items;
+/*package the_fireplace.fluidity.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -47,3 +47,4 @@ public class ItemHumanChunks extends ItemFood implements IVariantItems {
 		return null;
 	}
 }
+*/

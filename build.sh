@@ -1,6 +1,6 @@
 #!/bin/bash
 GRADLE_PATH="./gradlew"
-echo "The_Fireplace's Forge Tools - Build v1.1"
+echo "The_Fireplace's Forge Tools - Build v1.2"
 
 which gradle && GRADLE_PATH="$(which gradle)"
 

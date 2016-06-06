@@ -6,6 +6,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
@@ -31,10 +32,10 @@ public enum FluidityIronChestType implements IStringSerializable {
 	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Collections.singletonList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
 	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Collections.singletonList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
 
-	public int size;
-	private int rowLength;
+	public final int size;
+	public final int rowLength;
 	public String friendlyName;
-	private String modelTexture;
+	public final ResourceLocation modelTexture;
 	private int textureRow;
 	public Class<? extends TileEntityFluidityIronChest> clazz;
 	private String[] recipes;
@@ -52,7 +53,7 @@ public enum FluidityIronChestType implements IStringSerializable {
 		this.size = size;
 		this.rowLength = rowLength;
 		this.friendlyName = friendlyName;
-		this.modelTexture = modelTexture;
+		this.modelTexture = new ResourceLocation("fluidity", "textures/model/" + modelTexture);
 		this.textureRow = textureRow;
 		this.clazz = clazz;
 		this.itemFilter = itemFilter;
@@ -67,7 +68,7 @@ public enum FluidityIronChestType implements IStringSerializable {
 		return name().toLowerCase();
 	}
 
-	public String getModelTexture()
+	public ResourceLocation getModelTexture()
 	{
 		return modelTexture;
 	}

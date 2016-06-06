@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.items;
+/*package the_fireplace.fluidity.items;
 
 import java.util.List;
 
@@ -32,3 +32,4 @@ public class ItemBaseMetalKnife extends ItemKnife {
 		MetalToolEffects.addToolSpecialPropertiesToolTip(metal,list);
 	}
 }
+*/

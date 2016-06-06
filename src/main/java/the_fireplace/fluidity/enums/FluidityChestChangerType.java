@@ -1,12 +1,8 @@
 package the_fireplace.fluidity.enums;
 
-import cpw.mods.ironchest.client.ModelHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.items.FluidityItemChestChanger;
 
 import static the_fireplace.fluidity.enums.FluidityIronChestType.*;
@@ -76,9 +72,10 @@ public enum FluidityChestChangerType {
 	public FluidityItemChestChanger buildItem()
 	{
 		item = new FluidityItemChestChanger(this);
-		GameRegistry.registerItem(item, itemName);
-		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-			ModelHelper.registerItem(item, Fluidity.MODID+":" + itemName);
+		item.setRegistryName(itemName);
+		GameRegistry.register(item);
+		//if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+		//	ModelHelper.registerItem(item, Fluidity.MODID+":" + itemName);
 		return item;
 	}
 
@@ -90,7 +87,7 @@ public enum FluidityChestChangerType {
 			{
 				Object targetMaterial = FluidityIronChestType.translateOreName(targetMat);
 				Object sourceMaterial = FluidityIronChestType.translateOreName(sourceMat);
-				FluidityIronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', Blocks.glass, 'O', Blocks.obsidian);
+				FluidityIronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', Blocks.GLASS, 'O', Blocks.OBSIDIAN);
 			}
 		}
 	}

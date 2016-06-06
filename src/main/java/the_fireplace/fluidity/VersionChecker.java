@@ -3,12 +3,11 @@ package the_fireplace.fluidity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.event.ClickEvent;
-import net.minecraft.event.ClickEvent.Action;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
@@ -95,10 +94,10 @@ public class VersionChecker {
 
 	private void tryNotifyClient(EntityPlayer player){
 		if(!Loader.isModLoaded("VersionChecker") && isHigherVersion() && canNotify()){
-			player.addChatMessage(new ChatComponentText("A new version of "+HostMODNAME+" is available!"));
-			player.addChatMessage(new ChatComponentText("=========="+latest+"=========="));
-			player.addChatMessage(new ChatComponentText("Get it at the following link:"));
-			player.addChatMessage(new ChatComponentText(downloadURL).setChatStyle(new ChatStyle().setItalic(true).setUnderlined(true).setColor(EnumChatFormatting.BLUE).setChatClickEvent(new ClickEvent(Action.OPEN_URL, downloadURL))));
+			player.addChatMessage(new TextComponentString("A new version of "+HostMODNAME+" is available!"));
+			player.addChatMessage(new TextComponentString("=========="+latest+"=========="));
+			player.addChatMessage(new TextComponentString("Get it at the following link:"));
+			player.addChatMessage(new TextComponentString(downloadURL).setStyle(new Style().setItalic(true).setUnderlined(true).setColor(TextFormatting.BLUE).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, downloadURL))));
 			setChecked();
 		}
 	}
@@ -162,7 +161,7 @@ public class VersionChecker {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void configChanged(ConfigChangedEvent.OnConfigChangedEvent event){
-		if(event.modID.equals(MODID))
+		if(event.getModID().equals(MODID))
 			syncConfig();
 	}
 

@@ -2,8 +2,8 @@ package the_fireplace.fluidity;
 
 import com.google.common.collect.Lists;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -40,14 +40,14 @@ public class Fluidity {
 	private void addSupported(){
 		supportedMods.add("adobeblocks");
 		supportedMods.add("basemetals");
-		supportedMods.add("Baubles");
-		supportedMods.add("cannibalism");
+		//supportedMods.add("Baubles");
+		//supportedMods.add("cannibalism");
+		supportedMods.add("cookingforblockheads");
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");
 		supportedMods.add("realstonetools");
-		supportedMods.add("samscarbonpaper");
-		supportedMods.add("Thaumcraft");
-		supportedMods.add("unlogicii");
+		//supportedMods.add("Thaumcraft");
+		supportedMods.add("frt");
 	}
 
 	@EventHandler
@@ -56,79 +56,70 @@ public class Fluidity {
 			isClient=true;
 		addSupported();
 		IModCompat compat;
-		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("unlogicii")){
-			compat = new AdobeBlocksUnLogicII();
+
+		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
+			compat = new AdobeBlocksFRT();
 			compat.preInit();
 		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
+		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
-		}
-		if(Loader.isModLoaded("Baubles") && Loader.isModLoaded("unlogicii")){
-			compat = new BaublesUnLogicII();
-			compat.preInit();
-		}
-		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
+		}*/
+		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
-		}
+		}*/
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
 			compat.preInit();
 		}
-		if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("unlogicii")){
-			compat = new ThaumcraftUnLogicII();
+		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
+			compat = new ThaumcraftFRT();
 			compat.preInit();
-		}
+		}*/
 		overrideDescription(event);
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent event){
 		IModCompat compat;
-		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("unlogicii")){
-			compat = new AdobeBlocksUnLogicII();
+		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("cookingforblockheads")){
+			compat = new AdobeBlocksCookingForBlockheads();
+			compat.init();
+		}
+		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
+			compat = new AdobeBlocksFRT();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
+		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
-		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("samscarbonpaper")){
-			compat = new BaseMetalsCarbonPaper();
-			compat.init();
-		}
-		if(Loader.isModLoaded("Baubles") && Loader.isModLoaded("unlogicii")){
-			compat = new BaublesUnLogicII();
-			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
-		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
+		}*/
+		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
 			compat = new CannibalismRealStoneTools();
 			compat.init();
-		}
-		if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
+		}*/
+		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
-		}
+		}*/
 		if(Loader.isModLoaded("IronChest") && canIronChest()){
 			compat = new FluidityIronChests();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("unlogicii")){
-			compat = new ThaumcraftUnLogicII();
+		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
+			compat = new ThaumcraftFRT();
 			compat.init();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
-		}
+		}*/
 	}
 	private boolean canIronChest(){
 		return !OreDictionary.getOres("ingotBronze").isEmpty() || !OreDictionary.getOres("ingotInvar").isEmpty() || !OreDictionary.getOres("ingotElectrum").isEmpty() || !OreDictionary.getOres("ingotTin").isEmpty() || !OreDictionary.getOres("ingotBrass").isEmpty() || !OreDictionary.getOres("ingotLead").isEmpty() || !OreDictionary.getOres("ingotSteel").isEmpty() || !OreDictionary.getOres("ingotNickel").isEmpty();
@@ -141,9 +132,9 @@ public class Fluidity {
 					if(mid.equals(mod.getModId()))
 						mods += "\n"+mod.getName();
 		if(mods.equals(""))
-			mods = mods.concat("\n"+EnumChatFormatting.RED+"none");
-		event.getModMetadata().description = StatCollector.translateToLocal("fluidity.desc.line1")+"\n"
-				+ StatCollector.translateToLocal("fluidity.desc.line2")
+			mods = mods.concat("\n"+ TextFormatting.RED+"none");
+		event.getModMetadata().description = I18n.translateToLocal("fluidity.desc.line1")+"\n"
+				+ I18n.translateToLocal("fluidity.desc.line2")
 				+ mods;
 	}
 	public static final String LATEST = "https://dl.dropboxusercontent.com/s/532e9ihhlbnmr2j/latest.version?dl=0";

@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.compat;
+/*package the_fireplace.fluidity.compat;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelBakery;
@@ -19,7 +19,7 @@ import the_fireplace.fluidity.tools.Registry;
 
 /**
  * @author The_Fireplace
- */
+ *//*
 public class CannibalismThaumcraft implements IModCompat {
 
 	public static Item thaumium_knife = new ItemKnife(ThaumcraftMaterials.TOOLMAT_THAUMIUM).setUnlocalizedName("thaumium_knife").setCreativeTab(Fluidity.tabFluidity);
@@ -55,3 +55,4 @@ public class CannibalismThaumcraft implements IModCompat {
 		return item;
 	}
 }
+*/

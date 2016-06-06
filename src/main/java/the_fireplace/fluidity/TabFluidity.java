@@ -12,7 +12,7 @@ public class TabFluidity extends CreativeTabs {
 
 	@Override
 	public Item getTabIconItem() {
-		return Items.water_bucket;
+		return Items.WATER_BUCKET;
 	}
 
 }

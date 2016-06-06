@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -17,9 +17,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -35,34 +36,38 @@ import java.util.Random;
 
 public class BlockFluidityIronChest extends BlockContainer
 {
-	public static final PropertyEnum VARIANT_PROP = PropertyEnum.create("variant", FluidityIronChestType.class);
+	public static final PropertyEnum<FluidityIronChestType> VARIANT_PROP = PropertyEnum.create("variant", FluidityIronChestType.class);
 
 	public BlockFluidityIronChest()
 	{
-		super(Material.iron);
+		super(Material.IRON);
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT_PROP, FluidityIronChestType.BRONZE));
 
-		this.setBlockBounds(0.0625F, 0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 		this.setHardness(3.0F);
 		this.setUnlocalizedName("iron_chest");
 		this.setCreativeTab(Fluidity.tabFluidity);
 	}
 
 	@Override
-	public boolean isOpaqueCube()
+	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube()
+	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState blockState, EntityPlayer player, EnumFacing direction, float p_180639_6_, float p_180639_7_, float p_180639_8_)
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+	}
+
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState blockState, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing direction, float p_180639_6_, float p_180639_7_, float p_180639_8_)
 	{
 		TileEntity te = world.getTileEntity(pos);
 
@@ -107,9 +112,9 @@ public class BlockFluidityIronChest extends BlockContainer
 	}
 
 	@Override
-	protected BlockState createBlockState()
+	protected BlockStateContainer createBlockState()
 	{
-		return new BlockState(this, VARIANT_PROP);
+		return new BlockStateContainer(this, VARIANT_PROP);
 	}
 
 	@Override
@@ -125,29 +130,18 @@ public class BlockFluidityIronChest extends BlockContainer
 	public void onBlockAdded(World world, BlockPos pos, IBlockState blockState)
 	{
 		super.onBlockAdded(world, pos, blockState);
-		world.markBlockForUpdate(pos);
+		world.notifyBlockUpdate(pos, blockState, blockState, 3);
 	}
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState blockState, EntityLivingBase entityliving, ItemStack itemStack)
 	{
-		byte chestFacing = 0;
-		int facing = MathHelper.floor_double((entityliving.rotationYaw * 4F) / 360F + 0.5D) & 3;
-		if (facing == 0)
-			chestFacing = 2;
-		if (facing == 1)
-			chestFacing = 5;
-		if (facing == 2)
-			chestFacing = 3;
-		if (facing == 3)
-			chestFacing = 4;
 		TileEntity te = world.getTileEntity(pos);
-		if (te != null && te instanceof TileEntityFluidityIronChest)
-		{
-			TileEntityFluidityIronChest teic = (TileEntityFluidityIronChest) te;
+		if(te != null && te instanceof TileEntityFluidityIronChest) {
+			TileEntityFluidityIronChest teic = (TileEntityFluidityIronChest)te;
 			teic.wasPlaced(entityliving, itemStack);
-			teic.setFacing(chestFacing);
-			world.markBlockForUpdate(pos);
+			teic.setFacing(entityliving.getHorizontalFacing().getOpposite());
+			world.notifyBlockUpdate(pos, blockState, blockState, 3);
 		}
 	}
 
@@ -213,13 +207,13 @@ public class BlockFluidityIronChest extends BlockContainer
 	}
 
 	@Override
-	public boolean hasComparatorInputOverride()
+	public boolean hasComparatorInputOverride(IBlockState state)
 	{
 		return true;
 	}
 
 	@Override
-	public int getComparatorInputOverride(World world, BlockPos pos)
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
 	{
 		TileEntity te = world.getTileEntity(pos);
 		if (te instanceof IInventory)

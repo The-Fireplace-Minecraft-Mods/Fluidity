@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.compat;
+/*package the_fireplace.fluidity.compat;
 
 import cyano.basemetals.init.Materials;
 import net.minecraft.item.Item;
@@ -100,3 +100,4 @@ public class BaseMetalsCannibalism implements IModCompat {
 		Registry.registerRender(aquarium_knife);
 	}
 }
+*/
