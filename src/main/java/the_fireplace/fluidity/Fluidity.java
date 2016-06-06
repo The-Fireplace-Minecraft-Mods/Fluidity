@@ -125,6 +125,10 @@ public class Fluidity {
 			compat = new AdobeBlocksCookingForBlockheads();
 			compat.postInit();
 		}
+		if(Loader.isModLoaded("cookingforblockheads") && Loader.isModLoaded("frt")){
+			compat = new CookingForBlockheadsFRT();
+			compat.postInit();
+		}
 	}
 	private boolean canIronChest(){
 		return !OreDictionary.getOres("ingotBronze").isEmpty() || !OreDictionary.getOres("ingotInvar").isEmpty() || !OreDictionary.getOres("ingotElectrum").isEmpty() || !OreDictionary.getOres("ingotTin").isEmpty() || !OreDictionary.getOres("ingotBrass").isEmpty() || !OreDictionary.getOres("ingotLead").isEmpty() || !OreDictionary.getOres("ingotSteel").isEmpty() || !OreDictionary.getOres("ingotNickel").isEmpty();
