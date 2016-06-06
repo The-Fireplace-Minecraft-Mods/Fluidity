@@ -6,6 +6,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public interface IModCompat {
 	void preInit();
 	void init();
+	void postInit();
 	@SideOnly(Side.CLIENT)
 	void registerInvRenderers();
 }

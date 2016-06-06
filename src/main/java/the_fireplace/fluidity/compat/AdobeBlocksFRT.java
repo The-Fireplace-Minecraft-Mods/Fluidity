@@ -27,6 +27,11 @@ public class AdobeBlocksFRT implements IModCompat {
 	}
 
 	@Override
+	public void postInit() {
+
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerInvRenderers() {
 		Registry.registerRender(adobe_paxel);

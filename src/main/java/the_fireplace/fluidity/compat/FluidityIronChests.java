@@ -31,6 +31,11 @@ public class FluidityIronChests implements IModCompat {
 	}
 
 	@Override
+	public void postInit() {
+
+	}
+
+	@Override
 	public void init() {
 		FluidityChestChangerType.buildItems();
 		FluidityIronChestChangerType.buildItems();

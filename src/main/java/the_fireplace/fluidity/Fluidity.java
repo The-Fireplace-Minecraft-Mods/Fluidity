@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.compat.*;
@@ -82,10 +83,6 @@ public class Fluidity {
 	@EventHandler
 	public void init(FMLInitializationEvent event){
 		IModCompat compat;
-		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("cookingforblockheads")){
-			compat = new AdobeBlocksCookingForBlockheads();
-			compat.init();
-		}
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
 			compat = new AdobeBlocksFRT();
 			compat.init();
@@ -120,6 +117,14 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
+	}
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event){
+		IModCompat compat;
+		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("cookingforblockheads")){
+			compat = new AdobeBlocksCookingForBlockheads();
+			compat.postInit();
+		}
 	}
 	private boolean canIronChest(){
 		return !OreDictionary.getOres("ingotBronze").isEmpty() || !OreDictionary.getOres("ingotInvar").isEmpty() || !OreDictionary.getOres("ingotElectrum").isEmpty() || !OreDictionary.getOres("ingotTin").isEmpty() || !OreDictionary.getOres("ingotBrass").isEmpty() || !OreDictionary.getOres("ingotLead").isEmpty() || !OreDictionary.getOres("ingotSteel").isEmpty() || !OreDictionary.getOres("ingotNickel").isEmpty();

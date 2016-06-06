@@ -1,7 +1,9 @@
 package the_fireplace.fluidity.compat;
 
-import net.minecraftforge.common.MinecraftForge;
-import the_fireplace.fluidity.events.AdobeBlocksCookingForBlockheadsCommonEvents;
+import net.blay09.mods.cookingforblockheads.api.CookingForBlockheadsAPI;
+import net.blay09.mods.cookingforblockheads.api.SinkHandler;
+import net.minecraft.item.ItemStack;
+import the_fireplace.adobeblocks.AdobeBlocks;
 
 /**
  * @author The_Fireplace
@@ -14,7 +16,18 @@ public class AdobeBlocksCookingForBlockheads implements IModCompat {
 
     @Override
     public void init() {
-        MinecraftForge.EVENT_BUS.register(new AdobeBlocksCookingForBlockheadsCommonEvents());
+
+    }
+
+    SinkHandler capsuleHandler = new SinkHandler(){
+        public ItemStack getSinkOutput(ItemStack input){
+            return new ItemStack(AdobeBlocks.filled_adobe_capsule);
+        }
+    };
+
+    @Override
+    public void postInit() {
+        CookingForBlockheadsAPI.addSinkHandler(new ItemStack(AdobeBlocks.adobe_capsule), capsuleHandler);
     }
 
     @Override
