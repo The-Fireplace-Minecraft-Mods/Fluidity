@@ -18,6 +18,7 @@ public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<T
 	public TileEntityFluidityChestRenderer() {
 	}
 
+	@Override
 	public void renderTileEntityAt(TileEntityFluidityIronChest tile, double x, double y, double z, float partialTick, int breakStage) {
 		if(tile != null && !tile.isInvalid()) {
 			EnumFacing facing = EnumFacing.SOUTH;
@@ -66,9 +67,6 @@ public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<T
 			float var23 = tile.prevLidAngle + (tile.lidAngle - tile.prevLidAngle) * partialTick;
 			var23 = 1.0F - var23;
 			var23 = 1.0F - var23 * var23 * var23;
-			if(type.isTransparent()) {
-				GlStateManager.scale(1.0F, 0.99F, 1.0F);
-			}
 
 			this.model.chestLid.rotateAngleX = -var23 * halfPI;
 			this.model.renderAll();

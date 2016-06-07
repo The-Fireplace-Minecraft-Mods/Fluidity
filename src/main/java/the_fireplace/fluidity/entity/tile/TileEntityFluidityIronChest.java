@@ -31,10 +31,8 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	private int numUsingPlayers;
 	private FluidityIronChestType type;
 	public ItemStack[] chestContents;
-	private ItemStack[] topStacks;
 	private EnumFacing facing;
 	private boolean inventoryTouched;
-	private boolean hadStuff;
 	private String customName;
 
 	public TileEntityFluidityIronChest()
@@ -47,13 +45,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		this.ticksSinceSync = -1;
 		this.type = type;
 		this.chestContents = new ItemStack[getSizeInventory()];
-		this.topStacks = new ItemStack[8];
 		this.facing = EnumFacing.NORTH;
-	}
-
-	public ItemStack[] getContents()
-	{
-		return chestContents;
 	}
 
 	public void setContents(ItemStack[] contents)
@@ -138,11 +130,6 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	public boolean hasCustomName()
 	{
 		return this.customName != null && this.customName.length() > 0;
-	}
-
-	public void setCustomName(String name)
-	{
-		this.customName = name;
 	}
 
 	@Override
@@ -318,24 +305,6 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	public void setFacing(EnumFacing facing2)
 	{
 		this.facing = facing2;
-	}
-
-	public ItemStack[] getTopItemStacks()
-	{
-		return topStacks;
-	}
-
-	public TileEntityFluidityIronChest updateFromMetadata(int l)
-	{
-		if (worldObj != null && worldObj.isRemote)
-		{
-			if (l != type.ordinal())
-			{
-				worldObj.setTileEntity(pos, FluidityIronChestType.makeEntity(l));
-				return (TileEntityFluidityIronChest) worldObj.getTileEntity(pos);
-			}
-		}
-		return this;
 	}
 
 	@Override

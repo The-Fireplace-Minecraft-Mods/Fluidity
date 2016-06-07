@@ -170,11 +170,6 @@ public enum FluidityIronChestType implements IStringSerializable {
 		return rowLength;
 	}
 
-	public boolean isTransparent()
-	{
-		return false;
-	}
-
 	public List<String> getMatList()
 	{
 		return matList;

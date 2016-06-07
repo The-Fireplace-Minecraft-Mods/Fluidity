@@ -116,7 +116,7 @@ public class BlockFluidityIronChest extends BlockContainer
 	@Override
 	public int getMetaFromState(IBlockState blockState)
 	{
-		return ((FluidityIronChestType) blockState.getValue(VARIANT_PROP)).ordinal();
+		return blockState.getValue(VARIANT_PROP).ordinal();
 	}
 
 	@Override
