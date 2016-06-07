@@ -11,7 +11,7 @@
   "credits": "The_Fireplace for the idea of and making the mod",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": [ "adobeblocks", "basemetals", "cookingforblockheads", "frt", "invtweaks", "IronChest", "realstonetools"],
+  "dependencies": [ "adobeblocks", "basemetals", "cookingforblockheads", "frt", "invtweaks", "IronChest", "moreanvils", "realstonetools"],
   "requiredMods": ["Forge@[12.17.0.1909,)"],
   "useDependencyInformation": true
 }

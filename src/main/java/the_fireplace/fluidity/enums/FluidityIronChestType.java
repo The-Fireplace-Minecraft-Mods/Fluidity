@@ -19,18 +19,20 @@ import java.util.List;
 
 public enum FluidityIronChestType implements IStringSerializable {
 	BRONZE(54, 9, "Bronze Chest", "bronzechest.png", 0, Collections.singletonList("ingotBronze"), TileEntityFluidityIronChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
-	INVAR(81, 9, "Invar Chest", "invarchest.png", 1, Collections.singletonList("ingotInvar"), TileEntityInvarChest.class, "mmmm0mmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
-	ELECTRUM(81, 9, "Electrum Chest", "electrumchest.png", 2, Collections.singletonList("ingotElectrum"), TileEntityElectrumChest.class, "mmmm0mmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
+	INVAR(81, 9, "Invar Chest", "invarchest.png", 1, Collections.singletonList("ingotInvar"), TileEntityInvarChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
+	ELECTRUM(81, 9, "Electrum Chest", "electrumchest.png", 2, Collections.singletonList("ingotElectrum"), TileEntityElectrumChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
 	TIN(45, 9, "Tin Chest", "tinchest.png", 3, Collections.singletonList("ingotTin"), TileEntityTinChest.class, "mmmmCmmmm"),
 	BRASS(45, 9, "Brass Chest", "brasschest.png", 4, Collections.singletonList("ingotBrass"), TileEntityBrassChest.class, "mmmmCmmmm"),
-	LEAD(72, 9, "Lead Chest", "leadchest.png", 5, Collections.singletonList("ingotLead"), TileEntityLeadChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	STEEL(72, 9, "Steel Chest", "steelchest.png", 6, Collections.singletonList("ingotSteel"), TileEntitySteelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	NICKEL(72, 9, "Nickel Chest", "nickelchest.png", 7, Collections.singletonList("ingotNickel"), TileEntityNickelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
-	COLDIRON(72, 9, "Cold-Iron Chest", "coldironchest.png", 8, Collections.singletonList("ingotColdiron"), TileEntityColdIronChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGIGmGm"),
+	LEAD(72, 9, "Lead Chest", "leadchest.png", 5, Collections.singletonList("ingotLead"), TileEntityLeadChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGdGmGm", "mGmGIGmGm"),
+	STEEL(72, 9, "Steel Chest", "steelchest.png", 6, Collections.singletonList("ingotSteel"), TileEntitySteelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGdGmGm", "mGmGIGmGm"),
+	NICKEL(72, 9, "Nickel Chest", "nickelchest.png", 7, Collections.singletonList("ingotNickel"), TileEntityNickelChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGdGmGm", "mGmGIGmGm"),
+	COLDIRON(72, 9, "Cold-Iron Chest", "coldironchest.png", 8, Collections.singletonList("ingotColdiron"), TileEntityColdIronChest.class, "mmmmBmmmm", "mmmm3mmmm", "mmmm4mmmm", "mGmG0GmGm", "mGmGdGmGm", "mGmGIGmGm"),
 	ADAMANTINE(117, 13, "Adamantine Chest", "adamantinechest.png", 9, Collections.singletonList("ingotAdamantine"), TileEntityAdamantineChest.class, "mmmmDmmmm", "mmmmammmm", "mmmmbmmmm"),
-	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Collections.singletonList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
-	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Collections.singletonList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
-	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Collections.singletonList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
+	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Collections.singletonList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm", "mmmmemmmm"),
+	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Collections.singletonList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm", "mmmmemmmm"),
+	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Collections.singletonList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm"),
+	CUPRONICKEL(54, 14, "Cupronickel Chest", "cupronickelchest.png", 13, Collections.singletonList("ingotCupronickel"), TileEntityCupronickelChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
+	PLATINUM(81, 15, "Platinum Chest", "platinumchest.png", 14, Collections.singletonList("ingotPlatinum"), TileEntityPlatinumChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm");
 
 	public static final FluidityIronChestType[] VALUES;
 	public final int size;
@@ -115,7 +117,7 @@ public enum FluidityIronChestType implements IStringSerializable {
 		for (String recipe : type.recipes)
 		{
 			String[] recipeSplit = new String[] { recipe.substring(0, 3), recipe.substring(3, 6), recipe.substring(6, 9) };
-			Object mainMaterial = null;
+			Object mainMaterial;
 			for (String mat : type.matList)
 			{
 				mainMaterial = translateOreName(mat);
@@ -135,6 +137,8 @@ public enum FluidityIronChestType implements IStringSerializable {
 						'a', new ItemStack(blockResult, 1, 10),/* Aquarium Chest */
 						'b', new ItemStack(blockResult, 1, 11),/* Mithril Chest */
 						'c', new ItemStack(blockResult, 1, 12), /* Star-Steel Chest */
+						'd', new ItemStack(blockResult, 1, 13), /* Cupronickel Chest */
+						'e', new ItemStack(blockResult, 1, 14), /* Platinum Chest */
 						'I', new ItemStack(IronChest.ironChestBlock, 1, 0), /* Iron Chest */
 						'g', new ItemStack(IronChest.ironChestBlock, 1, 1), /* Gold Chest */
 						'D', new ItemStack(IronChest.ironChestBlock, 1, 2), /* Diamond Chest */

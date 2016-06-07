@@ -15,6 +15,8 @@ import static the_fireplace.fluidity.enums.FluidityIronChestType.*;
 public enum FluidityIronChestChangerType {
 	BRONZEGOLD(BRONZE, GOLD, "bronzeGoldUpgrade", "mmm", "msm", "mmm"),
 	BRONZESILVER(BRONZE, SILVER, "bronzeSilverUpgrade", "mGm", "GsG", "mGm"),
+	CUPRONICKELGOLD(CUPRONICKEL, GOLD, "cupronickelGoldUpgrade", "mmm", "msm", "mmm"),
+	CUPRONICKELSILVER(CUPRONICKEL, SILVER, "cupronickelSilverUpgrade", "mGm", "GsG", "mGm"),
 	TINSILVER(TIN, SILVER, "tinSilverUpgrade", "mmm", "msm", "mmm"),
 	TINIRON(TIN, IRON, "tinIronUpgrade", "mGm", "GsG", "mGm"),
 	BRASSSILVER(BRASS, SILVER, "brassSilverUpgrade", "mmm", "msm", "mmm"),
@@ -24,7 +26,8 @@ public enum FluidityIronChestChangerType {
 	NICKELGOLD(NICKEL, GOLD, "nickelGoldUpgrade", "mGm", "GsG", "mGm"),
 	COLDIRONGOLD(COLDIRON, GOLD, "coldironGoldUpgrade", "mGm", "GsG", "mGm"),
 	INVARDIAMOND(INVAR, DIAMOND, "invarDiamondUpgrade", "GGG", "msm", "GGG"),
-	ELECTRUMDIAMOND(ELECTRUM, DIAMOND, "electrumDiamondUpgrade", "GGG", "msm", "GGG");
+	ELECTRUMDIAMOND(ELECTRUM, DIAMOND, "electrumDiamondUpgrade", "GGG", "msm", "GGG"),
+	PLATINUMDIAMOND(PLATINUM, DIAMOND, "platinumDiamondUpgrade", "GGG", "msm", "GGG");
 
 	private FluidityIronChestType source;
 	private IronChestType target;

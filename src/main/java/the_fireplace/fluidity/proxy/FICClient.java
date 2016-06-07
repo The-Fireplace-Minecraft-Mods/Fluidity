@@ -17,12 +17,12 @@ import the_fireplace.fluidity.enums.FluidityIronChestType;
 public class FICClient implements FICProxy {
     public void register(){
         Item chestItem = Item.getItemFromBlock(FluidityIronChests.fluidityChest);
-        FluidityIronChestType[] var2 = FluidityIronChestType.values();
-        int var3 = var2.length;
+        FluidityIronChestType[] chestTypes = FluidityIronChestType.values();
+        int chestCount = chestTypes.length;
 
-        int var4;
-        for(var4 = 0; var4 < var3; ++var4) {
-            FluidityIronChestType type = var2[var4];
+        int i;
+        for(i = 0; i < chestCount; ++i) {
+            FluidityIronChestType type = chestTypes[i];
             ModelLoader.setCustomModelResourceLocation(chestItem, type.ordinal(), new ModelResourceLocation(chestItem.getRegistryName(), "variant=" + type.getName()));
 
             ClientRegistry.bindTileEntitySpecialRenderer(type.clazz, new TileEntityFluidityChestRenderer());

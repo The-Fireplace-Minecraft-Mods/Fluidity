@@ -1,32 +1,18 @@
 package the_fireplace.fluidity.entity.tile.renderer;
 
-import com.google.common.primitives.SignedBytes;
-import cpw.mods.ironchest.IronChest;
-import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 
-import java.util.Random;
-
 public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<TileEntityFluidityIronChest> {
-	private Random random = new Random();
-	private RenderEntityItem itemRenderer;
 	private ModelChest model = new ModelChest();
 	private static float[][] shifts = new float[][]{{0.3F, 0.45F, 0.3F}, {0.7F, 0.45F, 0.3F}, {0.3F, 0.45F, 0.7F}, {0.7F, 0.45F, 0.7F}, {0.3F, 0.1F, 0.3F}, {0.7F, 0.1F, 0.3F}, {0.3F, 0.1F, 0.7F}, {0.7F, 0.1F, 0.7F}, {0.5F, 0.32F, 0.5F}};
-	private static EntityItem customitem = new EntityItem((World)null);
 	private static float halfPI = 1.5707964F;
 
 	public TileEntityFluidityChestRenderer() {
