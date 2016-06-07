@@ -64,4 +64,4 @@ fluidity.anvil.slightly_damaged=Slightly Damaged %s Anvil
 fluidity.anvil.very_damaged=Very Damaged %s Anvil
 itemGroup.fluidity=Fluidity
 fluidity.desc.line1=Adds all kinds of content that should only exist when certain mods are loaded together.
-fluidity.desc.line2=Loaded mods that Fluidity can improve upon:
+fluidity.desc.line2=Loaded mods that Fluidity improves upon:

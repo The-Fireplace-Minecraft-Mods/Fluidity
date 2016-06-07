@@ -4,12 +4,9 @@ import com.google.common.collect.Lists;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -44,12 +41,12 @@ public class Fluidity {
 		//supportedMods.add("Baubles");
 		//supportedMods.add("cannibalism");
 		supportedMods.add("cookingforblockheads");
+		supportedMods.add("frt");
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");
 		supportedMods.add("moreanvils");
 		supportedMods.add("realstonetools");
 		//supportedMods.add("Thaumcraft");
-		supportedMods.add("frt");
 	}
 
 	@EventHandler
@@ -83,7 +80,7 @@ public class Fluidity {
 			compat = new ThaumcraftFRT();
 			compat.preInit();
 		}*/
-		overrideDescription(event);
+		overrideDescription(event.getModMetadata());
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent event){
@@ -149,7 +146,7 @@ public class Fluidity {
 		}
 		return false;
 	}
-	private void overrideDescription(FMLPreInitializationEvent event){
+	private void overrideDescription(ModMetadata meta){
 		String mods = "";
 		for(String mid:supportedMods)
 			if(Loader.isModLoaded(mid))
@@ -158,8 +155,8 @@ public class Fluidity {
 						mods += "\n"+mod.getName();
 		if(mods.equals(""))
 			mods = mods.concat("\n"+ TextFormatting.RED+"none");
-		event.getModMetadata().description = I18n.translateToLocal("fluidity.desc.line1")+"\n"
-				+ I18n.translateToLocal("fluidity.desc.line2")
+		meta.description = I18n.translateToLocal("fluidity.desc.line1")+"\n"
+				+ TextFormatting.GREEN + I18n.translateToLocal("fluidity.desc.line2") + TextFormatting.WHITE
 				+ mods;
 	}
 	public static final String LATEST = "https://dl.dropboxusercontent.com/s/532e9ihhlbnmr2j/latest.version?dl=0";
