@@ -5,7 +5,7 @@ This is the repository for the Fluidity Minecraft mod. The goal of this mod is t
 ### What is this repository for? ###
 
 * This is a repository for the Fluidity Minecraft mod
-* Fluidity is currently being developed for Minecraft 1.8.9 running [Forge 11.15.1.1732](http://adfoc.us/serve/sitelinks/?id=271228&url=http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.8.9-11.15.1.1732/forge-1.8.9-11.15.1.1732-mdk.zip)
+* Fluidity is currently being developed for Minecraft 1.9.4 running [Forge 11.17.0.1954](http://adfoc.us/serve/sitelinks/?id=271228&url=http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.9.4-12.17.0.1954/forge-1.9.4-12.17.0.1954-mdk.zip)
 
 ### How do I get set up? ###
 
@@ -22,7 +22,7 @@ This is the repository for the Fluidity Minecraft mod. The goal of this mod is t
 
 ### Who do I talk to? ###
 
-* [The_Fireplace](http://www.minecraftforum.net/members/The_Fireplace)
+* [The_Fireplace](http://minecraft.curseforge.com/members/The_Fireplace)
 
 ### Contributors: ###
 * The_Fireplace
