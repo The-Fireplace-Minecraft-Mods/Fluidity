@@ -44,10 +44,11 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 
 	protected TileEntityFluidityIronChest(FluidityIronChestType type)
 	{
-		super();
+		this.ticksSinceSync = -1;
 		this.type = type;
 		this.chestContents = new ItemStack[getSizeInventory()];
 		this.topStacks = new ItemStack[8];
+		this.facing = EnumFacing.NORTH;
 	}
 
 	public ItemStack[] getContents()
@@ -337,6 +338,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		return this;
 	}
 
+	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setByte("facing", (byte)this.facing.ordinal());
@@ -352,19 +354,6 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			NBTTagCompound nbt = pkt.getNbtCompound();
 			type = FluidityIronChestType.values()[nbt.getInteger("type")];
 			facing = EnumFacing.VALUES[nbt.getByte("facing")];
-
-			NBTTagList tagList = nbt.getTagList("stacks", Constants.NBT.TAG_COMPOUND);
-			ItemStack[] stacks = new ItemStack[topStacks.length];
-
-			for (int i = 0; i < stacks.length; i++)
-			{
-				NBTTagCompound nbt1 = tagList.getCompoundTagAt(i);
-				int j = nbt1.getByte("Slot") & 0xff;
-				if (j >= 0 && j < stacks.length)
-				{
-					stacks[j] = ItemStack.loadItemStackFromNBT(nbt1);
-				}
-			}
 		}
 	}
 

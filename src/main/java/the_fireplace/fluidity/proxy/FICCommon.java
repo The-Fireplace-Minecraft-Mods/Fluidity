@@ -8,9 +8,6 @@ import the_fireplace.fluidity.enums.FluidityIronChestType;
  */
 public class FICCommon implements FICProxy {
     public void register(){
-        for (FluidityIronChestType typ : FluidityIronChestType.values())
-        {
-            GameRegistry.registerTileEntityWithAlternatives(typ.clazz, "Fluidity." + typ.name(), typ.name());
-        }
+
     }
 }

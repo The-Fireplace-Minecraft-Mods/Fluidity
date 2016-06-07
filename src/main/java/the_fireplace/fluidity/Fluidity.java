@@ -46,6 +46,7 @@ public class Fluidity {
 		supportedMods.add("cookingforblockheads");
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");
+		supportedMods.add("moreanvils");
 		supportedMods.add("realstonetools");
 		//supportedMods.add("Thaumcraft");
 		supportedMods.add("frt");
@@ -66,6 +67,10 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 		}*/
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
+			compat = new BaseMetalsMoreAnvils();
+			compat.preInit();
+		}
 		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
@@ -95,6 +100,12 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
+			compat = new BaseMetalsMoreAnvils();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
+		}
 		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
 			compat = new CannibalismRealStoneTools();
 			compat.init();

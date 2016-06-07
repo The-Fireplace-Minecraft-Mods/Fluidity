@@ -42,6 +42,11 @@ public class Registry {
 	}
 
 	@SideOnly(Side.CLIENT)
+	public static void registerRender(Item item, String name){
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Fluidity.MODID+":"+name, "inventory"));
+	}
+
+	@SideOnly(Side.CLIENT)
 	public static void registerRender(Block block){
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Fluidity.MODID+":"+block.getUnlocalizedName().substring(5), "inventory"));
 	}

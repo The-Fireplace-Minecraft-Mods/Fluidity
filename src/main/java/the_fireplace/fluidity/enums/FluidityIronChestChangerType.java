@@ -3,8 +3,11 @@ package the_fireplace.fluidity.enums;
 import cpw.mods.ironchest.IronChestType;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import the_fireplace.fluidity.items.FluidityItemChestChanger;
+import the_fireplace.fluidity.tools.Registry;
 
 import static cpw.mods.ironchest.IronChestType.*;
 import static the_fireplace.fluidity.enums.FluidityIronChestType.*;
@@ -56,8 +59,8 @@ public enum FluidityIronChestChangerType {
 		item = new FluidityItemChestChanger(this);
 		item.setRegistryName(itemName);
 		GameRegistry.register(item);
-		//if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-		//	ModelHelper.registerItem(item, Fluidity.MODID+":" + itemName);
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			Registry.registerRender(item, itemName);
 		return item;
 	}
 

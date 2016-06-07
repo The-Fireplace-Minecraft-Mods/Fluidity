@@ -20,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
@@ -37,6 +38,7 @@ import java.util.Random;
 public class BlockFluidityIronChest extends BlockContainer
 {
 	public static final PropertyEnum<FluidityIronChestType> VARIANT_PROP = PropertyEnum.create("variant", FluidityIronChestType.class);
+	protected static final AxisAlignedBB IRON_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
 	public BlockFluidityIronChest()
 	{
@@ -47,6 +49,12 @@ public class BlockFluidityIronChest extends BlockContainer
 		this.setHardness(3.0F);
 		this.setUnlocalizedName("iron_chest");
 		this.setCreativeTab(Fluidity.tabFluidity);
+		this.setRegistryName("fluidity_iron_chest");
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return IRON_CHEST_AABB;
 	}
 
 	@Override
@@ -148,7 +156,7 @@ public class BlockFluidityIronChest extends BlockContainer
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return FluidityIronChestType.validateMeta(((FluidityIronChestType) state.getValue(VARIANT_PROP)).ordinal());
+		return state.getValue(VARIANT_PROP).ordinal();
 	}
 
 	@Override

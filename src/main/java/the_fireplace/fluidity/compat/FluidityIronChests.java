@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.fluidity.Fluidity;
@@ -17,6 +18,7 @@ import the_fireplace.fluidity.enums.FluidityChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
+import the_fireplace.fluidity.events.IronChestsClientEvents;
 import the_fireplace.fluidity.handler.IronChestsGuiHandler;
 import the_fireplace.fluidity.items.ItemFluidityIronChest;
 import the_fireplace.fluidity.tools.Registry;
@@ -40,15 +42,27 @@ public class FluidityIronChests implements IModCompat {
 		FluidityChestChangerType.buildItems();
 		FluidityIronChestChangerType.buildItems();
 		IronFluidityChestChangerType.buildItems();
-		GameRegistry.registerBlock(fluidityChest, ItemFluidityIronChest.class, "fluidity_iron_chest");
+		GameRegistry.register(fluidityChest);
+		GameRegistry.register(new ItemFluidityIronChest(fluidityChest));
 		Fluidity.proxy.getFICProxy().register();
 		FluidityIronChestType.registerBlocksAndRecipes((BlockFluidityIronChest) fluidityChest);
 		FluidityChestChangerType.generateRecipes();
 		FluidityIronChestChangerType.generateRecipes();
 		IronFluidityChestChangerType.generateRecipes();
+
+		FluidityIronChestType[] chests = FluidityIronChestType.VALUES;
+		int chestCount = chests.length;
+
+		for(int i = 0; i < chestCount; ++i) {
+			FluidityIronChestType chestType = chests[i];
+			GameRegistry.registerTileEntity(chestType.clazz, "Fluidity." + chestType.name());
+		}
+
 		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new IronChestsGuiHandler());
 		addRecipes();
 		//MinecraftForge.EVENT_BUS.register(new IronChestsCommonEvents());
+		if(Fluidity.instance.isClient)
+			MinecraftForge.EVENT_BUS.register(new IronChestsClientEvents());
 	}
 
 	private void addRecipes() {

@@ -1,0 +1,8 @@
+{
+  "parent": "block/anvil",
+  "textures": {
+    "particle": "fluidity:blocks/tin_anvil_base",
+    "body": "fluidity:blocks/tin_anvil_base",
+    "top": "fluidity:blocks/tin_anvil_top_damaged_2"
+  }
+}

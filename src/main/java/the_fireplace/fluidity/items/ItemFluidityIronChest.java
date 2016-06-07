@@ -12,6 +12,7 @@ public class ItemFluidityIronChest extends ItemBlock {
 
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
+		this.setRegistryName("fluidity_iron_chest");
 	}
 
 	@Override

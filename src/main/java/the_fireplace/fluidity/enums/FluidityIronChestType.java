@@ -32,10 +32,12 @@ public enum FluidityIronChestType implements IStringSerializable {
 	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Collections.singletonList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm"),
 	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Collections.singletonList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm");
 
+	public static final FluidityIronChestType[] VALUES;
 	public final int size;
 	public final int rowLength;
 	public String friendlyName;
 	public final ResourceLocation modelTexture;
+	private String breakTexture;
 	private int textureRow;
 	public Class<? extends TileEntityFluidityIronChest> clazz;
 	private String[] recipes;
@@ -207,5 +209,17 @@ public enum FluidityIronChestType implements IStringSerializable {
 	}
 	public boolean isExplosionResistant() {
 		return this == ADAMANTINE;
+	}
+
+	public String getBreakTexture() {
+		if(this.breakTexture == null) {
+			this.breakTexture = "basemetals:blocks/" + this.getName() + "_block";
+		}
+
+		return this.breakTexture;
+	}
+
+	static{
+		VALUES = values();
 	}
 }

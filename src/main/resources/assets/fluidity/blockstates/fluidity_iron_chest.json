@@ -1,0 +1,101 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "ironchest:chest",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "variant": {
+      "adamantine": {
+        "textures": {
+          "particle": "basemetals:blocks/adamantine_block",
+          "texture": "fluidity:model/adamantinechest"
+        }
+      },
+      "aquarium": {
+        "textures": {
+          "particle": "basemetals:blocks/aquarium_block",
+          "texture": "fluidity:model/aquariumchest"
+        }
+      },
+      "brass": {
+        "textures": {
+          "particle": "basemetals:blocks/brass_block",
+          "texture": "fluidity:model/brasschest"
+        }
+      },
+      "bronze": {
+        "textures": {
+          "particle": "basemetals:blocks/bronze_block",
+          "texture": "fluidity:model/bronzechest"
+        }
+      },
+      "coldiron": {
+        "textures": {
+          "particle": "basemetals:blocks/coldiron_block",
+          "texture": "fluidity:model/coldironchest"
+        }
+      },
+      "electrum": {
+        "textures": {
+          "particle": "basemetals:blocks/electrum_block",
+          "texture": "fluidity:model/electrumchest"
+        }
+      },
+      "invar": {
+        "textures": {
+          "particle": "basemetals:blocks/invar_block",
+          "texture": "fluidity:model/invarchest"
+        }
+      },
+      "lead": {
+        "textures": {
+          "particle": "basemetals:blocks/lead_block",
+          "texture": "fluidity:model/leadchest"
+        }
+      },
+      "mithril": {
+        "textures": {
+          "particle": "basemetals:blocks/mithril_block",
+          "texture": "fluidity:model/mithrilchest"
+        }
+      },
+      "nickel": {
+        "textures": {
+          "particle": "basemetals:blocks/nickel_block",
+          "texture": "fluidity:model/nickelchest"
+        }
+      },
+      "starsteel": {
+        "textures": {
+          "particle": "basemetals:blocks/starsteel_block",
+          "texture": "fluidity:model/starsteelchest"
+        }
+      },
+      "steel": {
+        "textures": {
+          "particle": "basemetals:blocks/steel_block",
+          "texture": "fluidity:model/steelchest"
+        }
+      },
+      "tin": {
+        "textures": {
+          "particle": "basemetals:blocks/tin_block",
+          "texture": "fluidity:model/tinchest"
+        }
+      },
+      "cupronickel": {
+        "textures": {
+          "particle": "basemetals:blocks/cupronickel_block",
+          "texture": "fluidity:model/cupronickelchest"
+        }
+      },
+      "platinum": {
+        "textures": {
+          "particle": "basemetals:blocks/platinum_block",
+          "texture": "fluidity:model/platinumchest"
+        }
+      }
+    }
+  }
+}
