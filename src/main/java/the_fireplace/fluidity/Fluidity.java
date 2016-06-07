@@ -46,6 +46,7 @@ public class Fluidity {
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");
 		supportedMods.add("moreanvils");
+		supportedMods.add("randomthings");
 		//supportedMods.add("realstonetools");
 		supportedMods.add("xreliquary");
 		//supportedMods.add("Thaumcraft");
@@ -58,6 +59,10 @@ public class Fluidity {
 		addSupported();
 		IModCompat compat;
 
+		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("randomthings")){
+			compat = new ActuallyAdditionsRandomThings();
+			compat.preInit();
+		}
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
 			compat = new AdobeBlocksFRT();
 			compat.preInit();
@@ -90,6 +95,12 @@ public class Fluidity {
 		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("basemetals")){
 			compat = new ActuallyAdditionsBaseMetals();
 			compat.init();
+		}
+		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("randomthings")){
+			compat = new ActuallyAdditionsRandomThings();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}
 		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("xreliquary")){
 			compat = new ActuallyAdditionsReliquary();

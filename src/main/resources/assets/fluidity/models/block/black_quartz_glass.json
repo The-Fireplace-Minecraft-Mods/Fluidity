@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "fluidity:blocks/black_quartz_glass"
+    }
+}
