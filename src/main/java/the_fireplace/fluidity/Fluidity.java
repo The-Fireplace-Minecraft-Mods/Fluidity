@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * @author The_Fireplace
  */
-@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME)
+@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, updateJSON = "http://caterpillar.bitnamiapp.com/jsons/fluidity.json")
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
@@ -180,6 +180,4 @@ public class Fluidity {
 				+ TextFormatting.GREEN + I18n.translateToLocal("fluidity.desc.line2") + TextFormatting.WHITE
 				+ mods;
 	}
-	public static final String LATEST = "https://dl.dropboxusercontent.com/s/532e9ihhlbnmr2j/latest.version?dl=0";
-	public static final String DOWNLOADURL = "https://dl.dropboxusercontent.com/s/6jxiwwls1967f3b/url.txt?dl=0";
 }
