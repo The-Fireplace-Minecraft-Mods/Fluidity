@@ -36,6 +36,7 @@ public class Fluidity {
 	public boolean isClient=false;
 
 	private void addSupported(){
+		supportedMods.add("actuallyadditions");
 		supportedMods.add("adobeblocks");
 		supportedMods.add("basemetals");
 		//supportedMods.add("Baubles");
@@ -45,7 +46,8 @@ public class Fluidity {
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");
 		supportedMods.add("moreanvils");
-		supportedMods.add("realstonetools");
+		//supportedMods.add("realstonetools");
+		supportedMods.add("xreliquary");
 		//supportedMods.add("Thaumcraft");
 	}
 
@@ -85,6 +87,10 @@ public class Fluidity {
 	@EventHandler
 	public void init(FMLInitializationEvent event){
 		IModCompat compat;
+		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("xreliquary")){
+			compat = new ActuallyAdditionsReliquary();
+			compat.init();
+		}
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
 			compat = new AdobeBlocksFRT();
 			compat.init();
