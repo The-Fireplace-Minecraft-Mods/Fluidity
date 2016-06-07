@@ -17,14 +17,13 @@ group= "the_fireplace.fluidity"
 archivesBaseName = "Fluidity"
 
 minecraft {
-    version = "1.9.4-12.17.0.1921-1.9.4"
+    version = "1.9.4-12.17.0.1954"
     runDir = "run"
     mappings = "snapshot_20160518"
     useDepAts = true
 }
 
 dependencies {
-	compile "mcp.mobius.waila:Waila:1.6.0-B3_1.8.8:dev"
 	deobfCompile group: "mezz.jei", name: "jei_1.9.4", version: "3.4.0.204"
 }
 
