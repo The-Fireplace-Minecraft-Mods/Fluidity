@@ -87,6 +87,10 @@ public class Fluidity {
 	@EventHandler
 	public void init(FMLInitializationEvent event){
 		IModCompat compat;
+		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("basemetals")){
+			compat = new ActuallyAdditionsBaseMetals();
+			compat.init();
+		}
 		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("xreliquary")){
 			compat = new ActuallyAdditionsReliquary();
 			compat.init();
