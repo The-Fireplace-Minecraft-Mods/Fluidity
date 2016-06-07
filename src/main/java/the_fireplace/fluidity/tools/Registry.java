@@ -21,11 +21,11 @@ import java.util.ArrayList;
  */
 public class Registry {
 	public static void register(Item i){
-		GameRegistry.registerItem(i, i.getUnlocalizedName().substring(5));
+		GameRegistry.register(i.setRegistryName(i.getUnlocalizedName().substring(5)));
 	}
 
 	public static void register(Block b){
-		GameRegistry.registerItem(Item.getItemFromBlock(b), b.getUnlocalizedName().substring(5));
+		GameRegistry.register(b.setRegistryName(b.getUnlocalizedName().substring(5)));
 	}
 
 	public static void addRecipe(ItemStack stack, Object... args){
