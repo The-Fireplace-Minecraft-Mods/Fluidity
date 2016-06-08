@@ -79,7 +79,7 @@ public class Fluidity {
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
 		}*/
-		if(Loader.isModLoaded("IronChest") && hasCommonMetals()){
+		if(Loader.isModLoaded("IronChest") && hasCommonMetal()){
 			compat = new FluidityIronChests();
 			compat.preInit();
 		}
@@ -134,7 +134,7 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
-		if(Loader.isModLoaded("IronChest") && hasCommonMetals()){
+		if(Loader.isModLoaded("IronChest") && hasCommonMetal()){
 			compat = new FluidityIronChests();
 			compat.init();
 			if(event.getSide().isClient())
@@ -160,7 +160,7 @@ public class Fluidity {
 		}
 	}
 	private final String[] metalArray = new String[]{"ingotBronze", "ingotInvar", "ingotElectrum", "ingotTin", "ingotBrass", "ingotLead", "ingotSteel", "ingotNickel"};
-	private boolean hasCommonMetals(){
+	private boolean hasCommonMetal(){
 		for(String s:metalArray){
 			if(!OreDictionary.getOres(s).isEmpty())
 				return true;
