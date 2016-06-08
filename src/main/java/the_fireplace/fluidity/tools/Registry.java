@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -26,6 +27,7 @@ public class Registry {
 
 	public static void register(Block b){
 		GameRegistry.register(b.setRegistryName(b.getUnlocalizedName().substring(5)));
+		GameRegistry.register(new ItemBlock(b).setRegistryName(b.getRegistryName()));
 	}
 
 	public static void addRecipe(ItemStack stack, Object... args){
