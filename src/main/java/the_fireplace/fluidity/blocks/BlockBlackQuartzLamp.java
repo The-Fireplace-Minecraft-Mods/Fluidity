@@ -9,6 +9,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import the_fireplace.fluidity.Fluidity;
 
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class BlockBlackQuartzLamp extends Block {
         this.setSoundType(SoundType.GLASS);
         this.setHardness(0.3F);
         setUnlocalizedName("black_quartz_lamp");
+        setCreativeTab(Fluidity.tabFluidity);
     }
 
     @Override

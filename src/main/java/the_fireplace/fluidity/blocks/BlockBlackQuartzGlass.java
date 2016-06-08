@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import the_fireplace.fluidity.Fluidity;
 
 /**
  * @author The_Fireplace
@@ -20,6 +21,7 @@ public class BlockBlackQuartzGlass extends Block {
         this.setSoundType(SoundType.GLASS);
         this.setHardness(0.3F);
         this.setUnlocalizedName("black_quartz_glass");
+        setCreativeTab(Fluidity.tabFluidity);
     }
 
     @SideOnly(Side.CLIENT)
