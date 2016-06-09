@@ -42,6 +42,7 @@ public class Fluidity {
 		//supportedMods.add("Baubles");
 		//supportedMods.add("cannibalism");
 		supportedMods.add("cookingforblockheads");
+		supportedMods.add("electricadvantage");
 		supportedMods.add("EnderIO");
 		supportedMods.add("frt");
 		supportedMods.add("invtweaks");
@@ -148,6 +149,10 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
+		if(Loader.isModLoaded("electricadvantage") && Loader.isModLoaded("EnderIO")){
+			compat = new ElectricAdvantageEnderIO();
+			compat.init();
+		}
 		if(Loader.isModLoaded("EnderIO") && Loader.isModLoaded("frt")){
 			compat = new EnderIOFRT();
 			compat.init();
