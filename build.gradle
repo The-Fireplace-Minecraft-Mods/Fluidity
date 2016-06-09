@@ -25,24 +25,25 @@ minecraft {
 
 dependencies {
 	deobfCompile group: "mezz.jei", name: "jei_1.9.4", version: "3.4.0.204"
+	compile "com.enderio.core:EnderCore:1.9.4-0.4.0.23-alpha:dev"
+	compile "com.enderio:EnderIO:1.9.4-3.0.0.38_alpha:dev"
 }
 
 repositories{
-	maven{//NeoTech+Bookshelf
-		name "neotech"
+	maven{ //NeoTech+Bookshelf
 		url "http://teambrmodding.com/maven2/"
 	}
 	maven { //Waila
-        name "Mobius Repo"
         url "http://mobiusstrip.eu/maven"
     }
     maven { //JEI
-        name 'DVS1 Maven FS'
         url "http://dvs1.progwml6.com/files/maven"
     }
-    maven {//TechReborn+RebornCore
-		name "modmuss50 repo"
+    maven { //TechReborn+RebornCore
 		url "http://maven.modmuss50.me/"
+	}
+	maven { //EnderIO+EnderCore+EnderZoo
+		url = "http://maven.tterrag.com"
 	}
 }
 

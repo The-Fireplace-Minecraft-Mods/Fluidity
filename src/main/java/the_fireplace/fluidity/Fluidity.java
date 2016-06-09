@@ -42,6 +42,7 @@ public class Fluidity {
 		//supportedMods.add("Baubles");
 		//supportedMods.add("cannibalism");
 		supportedMods.add("cookingforblockheads");
+		supportedMods.add("EnderIO");
 		supportedMods.add("frt");
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");
@@ -96,6 +97,10 @@ public class Fluidity {
 			compat = new ActuallyAdditionsBaseMetals();
 			compat.init();
 		}
+		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("EnderIO")){
+			compat = new ActuallyAdditionsEnderIO();
+			compat.init();
+		}
 		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("randomthings")){
 			compat = new ActuallyAdditionsRandomThings();
 			compat.init();
@@ -118,6 +123,10 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("EnderIO")){
+			compat = new BaseMetalsEnderIO();
+			compat.init();
+		}
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.init();
@@ -134,6 +143,10 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
+		if(Loader.isModLoaded("EnderIO") && Loader.isModLoaded("frt")){
+			compat = new EnderIOFRT();
+			compat.init();
+		}
 		if(Loader.isModLoaded("IronChest") && hasCommonMetal()){
 			compat = new FluidityIronChests();
 			compat.init();
