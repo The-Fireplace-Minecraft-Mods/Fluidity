@@ -11,7 +11,7 @@
   "credits": "The_Fireplace for the idea of and making the mod",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": [ "actuallyadditions", "adobeblocks", "basemetals", "cookingforblockheads", "EnderIO", "frt", "invtweaks", "IronChest", "moreanvils", "randomthings", "xreliquary"],
+  "dependencies": [ "actuallyadditions", "adobeblocks", "basemetals", "cookingforblockheads", "electricadvantage", "EnderIO", "frt", "invtweaks", "IronChest", "moreanvils", "randomthings", "xreliquary"],
   "requiredMods": ["Forge@[12.17.0.1909,)"],
   "useDependencyInformation": true
 }
