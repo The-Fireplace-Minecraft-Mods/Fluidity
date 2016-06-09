@@ -89,6 +89,11 @@ public class Fluidity {
 			compat.preInit();
 		}*/
 		overrideDescription(event.getModMetadata());
+
+		if(Loader.isModLoaded("actuallyadditions")){
+			compat = new FluidityActuallyAdditions();
+			compat.preInit();
+		}
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent event){
