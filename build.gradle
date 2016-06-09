@@ -25,7 +25,7 @@ minecraft {
 
 dependencies {
 	deobfCompile group: "mezz.jei", name: "jei_1.9.4", version: "3.4.0.204"
-	compile "com.enderio.core:EnderCore:1.9.4-0.4.0.23-alpha:dev"
+	compile "com.enderio.core:EnderCore:1.9.4-0.4.0.23-alpha:api"
 	compile "com.enderio:EnderIO:1.9.4-3.0.0.38_alpha:dev"
 }
 
