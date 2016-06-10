@@ -31,8 +31,8 @@ public enum BaseMetalsIronChestType implements IStringSerializable {
 	AQUARIUM(108, 12, "Aquarium Chest", "aquariumchest.png", 10, Collections.singletonList("ingotAquarium"), TileEntityAquariumChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm", "mmmmemmmm"),
 	MITHRIL(108, 12, "Mithril Chest", "mithrilchest.png", 11, Collections.singletonList("ingotMithril"), TileEntityMithrilChest.class, "mmmmgmmmm", "mmmm1mmmm", "mmmm2mmmm", "mmmmemmmm"),
 	STARSTEEL(117, 13, "Star-Steel Chest", "starsteelchest.png", 12, Collections.singletonList("plateStarsteel"), TileEntityStarSteelChest.class, "mmmGDGmmm", "mmmGaGmmm", "mmmGbGmmm"),
-	CUPRONICKEL(54, 14, "Cupronickel Chest", "cupronickelchest.png", 13, Collections.singletonList("ingotCupronickel"), TileEntityCupronickelChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
-	PLATINUM(81, 15, "Platinum Chest", "platinumchest.png", 14, Collections.singletonList("ingotPlatinum"), TileEntityPlatinumChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm");
+	CUPRONICKEL(54, 9, "Cupronickel Chest", "cupronickelchest.png", 13, Collections.singletonList("ingotCupronickel"), TileEntityCupronickelChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
+	PLATINUM(81, 9, "Platinum Chest", "platinumchest.png", 14, Collections.singletonList("ingotPlatinum"), TileEntityPlatinumChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm");
 
 	public static final BaseMetalsIronChestType[] VALUES;
 	public final int size;
