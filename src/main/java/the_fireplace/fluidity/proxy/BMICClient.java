@@ -3,12 +3,14 @@ package the_fireplace.fluidity.proxy;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.compat.BaseMetalsIronChests;
 import the_fireplace.fluidity.entity.tile.renderer.TileEntityFluidityChestRenderer;
 import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.events.BaseMetalsIronChestsClientEvents;
 
 /**
  * @author The_Fireplace
@@ -27,5 +29,6 @@ public class BMICClient implements BMICProxy {
 
             ClientRegistry.bindTileEntitySpecialRenderer(type.clazz, new TileEntityFluidityChestRenderer());
         }
+        MinecraftForge.EVENT_BUS.register(new BaseMetalsIronChestsClientEvents());
     }
 }

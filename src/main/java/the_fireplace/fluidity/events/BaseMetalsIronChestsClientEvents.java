@@ -16,11 +16,11 @@ public class BaseMetalsIronChestsClientEvents {
     @SideOnly(Side.CLIENT)
     public void onPreTextureStiching(TextureStitchEvent.Pre event) {
         if(event.getMap() == FMLClientHandler.instance().getClient().getTextureMapBlocks()) {
-            BaseMetalsIronChestType[] var2 = BaseMetalsIronChestType.VALUES;
-            int var3 = var2.length;
+            BaseMetalsIronChestType[] chestTypes = BaseMetalsIronChestType.VALUES;
+            int chestTypeCount = chestTypes.length;
 
-            for(int var4 = 0; var4 < var3; ++var4) {
-                BaseMetalsIronChestType t = var2[var4];
+            for(int i = 0; i < chestTypeCount; ++i) {
+                BaseMetalsIronChestType t = chestTypes[i];
                 event.getMap().registerSprite(new ResourceLocation(t.getBreakTexture()));
             }
         }

@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,6 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,6 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.particle.ParticleIronChest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -253,5 +256,78 @@ public class BlockFluidityIronChest extends BlockContainer
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, ParticleManager manager)
+	{
+		BlockPos pos = target.getBlockPos();
+		Random rand = new Random();
+		EnumFacing side = target.sideHit;
+		int i = pos.getX();
+		int j = pos.getY();
+		int k = pos.getZ();
+		float f = 0.1F;
+		AxisAlignedBB axisalignedbb = state.getBoundingBox(worldObj, pos);
+		double d0 = (double)i + rand.nextDouble() * (axisalignedbb.maxX - axisalignedbb.minX - (double)(f * 2.0F)) + (double)f + axisalignedbb.minX;
+		double d1 = (double)j + rand.nextDouble() * (axisalignedbb.maxY - axisalignedbb.minY - (double)(f * 2.0F)) + (double)f + axisalignedbb.minY;
+		double d2 = (double)k + rand.nextDouble() * (axisalignedbb.maxZ - axisalignedbb.minZ - (double)(f * 2.0F)) + (double)f + axisalignedbb.minZ;
+
+		if (side == EnumFacing.DOWN)
+		{
+			d1 = (double)j + axisalignedbb.minY - (double)f;
+		}
+
+		if (side == EnumFacing.UP)
+		{
+			d1 = (double)j + axisalignedbb.maxY + (double)f;
+		}
+
+		if (side == EnumFacing.NORTH)
+		{
+			d2 = (double)k + axisalignedbb.minZ - (double)f;
+		}
+
+		if (side == EnumFacing.SOUTH)
+		{
+			d2 = (double)k + axisalignedbb.maxZ + (double)f;
+		}
+
+		if (side == EnumFacing.WEST)
+		{
+			d0 = (double)i + axisalignedbb.minX - (double)f;
+		}
+
+		if (side == EnumFacing.EAST)
+		{
+			d0 = (double)i + axisalignedbb.maxX + (double)f;
+		}
+
+		manager.addEffect((new ParticleIronChest(worldObj, d0, d1, d2, 0.0D, 0.0D, 0.0D, state)).setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+		return true;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager)
+	{
+		IBlockState state = world.getBlockState(pos).getActualState(world, pos);
+		int i = 4;
+
+		for (int j = 0; j < i; ++j)
+		{
+			for (int k = 0; k < i; ++k)
+			{
+				for (int l = 0; l < i; ++l)
+				{
+					double d0 = (double)pos.getX() + ((double)j + 0.5D) / (double)i;
+					double d1 = (double)pos.getY() + ((double)k + 0.5D) / (double)i;
+					double d2 = (double)pos.getZ() + ((double)l + 0.5D) / (double)i;
+					manager.addEffect((new ParticleIronChest(world, d0, d1, d2, d0 - (double)pos.getX() - 0.5D, d1 - (double)pos.getY() - 0.5D, d2 - (double)pos.getZ() - 0.5D, state)).setBlockPos(pos));
+				}
+			}
+		}
+		return true;
 	}
 }
