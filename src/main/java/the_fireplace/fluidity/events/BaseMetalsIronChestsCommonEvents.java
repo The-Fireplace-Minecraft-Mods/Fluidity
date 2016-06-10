@@ -3,7 +3,7 @@ package the_fireplace.fluidity.events;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class IronChestsCommonEvents {
+public class BaseMetalsIronChestsCommonEvents {
 	@SubscribeEvent
 	public void changeSittingTaskForOcelots(LivingEvent.LivingUpdateEvent evt)
 	{
@@ -14,8 +14,8 @@ public class IronChestsCommonEvents {
 			Set<EntityAITasks.EntityAITaskEntry> tasks = ocelot.tasks.taskEntries;
 
 			for (EntityAITasks.EntityAITaskEntry task : tasks) {
-				if (task.priority == 6 && (task.action instanceof EntityAIOcelotSit) && !(task.action instanceof FluidityIronChestOcelotSit)) {
-					task.action = new FluidityIronChestOcelotSit(ocelot, 0.4F);
+				if (task.priority == 6 && (task.action instanceof EntityAIOcelotSit) && !(task.action instanceof BaseMetalsIronChestOcelotSit)) {
+					task.action = new BaseMetalsIronChestOcelotSit(ocelot, 0.4F);
 				}
 			}
 		}*/

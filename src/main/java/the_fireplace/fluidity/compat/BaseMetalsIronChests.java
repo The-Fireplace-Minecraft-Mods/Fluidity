@@ -14,16 +14,16 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
-import the_fireplace.fluidity.enums.FluidityChestChangerType;
-import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
-import the_fireplace.fluidity.enums.FluidityIronChestType;
-import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
-import the_fireplace.fluidity.events.IronChestsClientEvents;
-import the_fireplace.fluidity.handler.IronChestsGuiHandler;
-import the_fireplace.fluidity.items.ItemFluidityIronChest;
+import the_fireplace.fluidity.enums.BaseMetalsChestChangerType;
+import the_fireplace.fluidity.enums.BaseMetalsIronChestChangerType;
+import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.IronBaseMetalsChestChangerType;
+import the_fireplace.fluidity.events.BaseMetalsIronChestsClientEvents;
+import the_fireplace.fluidity.handler.BaseMetalsIronChestsGuiHandler;
+import the_fireplace.fluidity.items.ItemBaseMetalsIronChest;
 import the_fireplace.fluidity.tools.Registry;
 
-public class FluidityIronChests implements IModCompat {
+public class BaseMetalsIronChests implements IModCompat {
 
 	public static Block fluidityChest;
 
@@ -39,30 +39,30 @@ public class FluidityIronChests implements IModCompat {
 
 	@Override
 	public void init() {
-		FluidityChestChangerType.buildItems();
-		FluidityIronChestChangerType.buildItems();
-		IronFluidityChestChangerType.buildItems();
+		BaseMetalsChestChangerType.buildItems();
+		BaseMetalsIronChestChangerType.buildItems();
+		IronBaseMetalsChestChangerType.buildItems();
 		GameRegistry.register(fluidityChest);
-		GameRegistry.register(new ItemFluidityIronChest(fluidityChest));
-		Fluidity.proxy.getFICProxy().register();
-		FluidityIronChestType.registerBlocksAndRecipes((BlockFluidityIronChest) fluidityChest);
-		FluidityChestChangerType.generateRecipes();
-		FluidityIronChestChangerType.generateRecipes();
-		IronFluidityChestChangerType.generateRecipes();
+		GameRegistry.register(new ItemBaseMetalsIronChest(fluidityChest));
+		Fluidity.proxy.getBMICProxy().register();
+		BaseMetalsIronChestType.registerBlocksAndRecipes((BlockFluidityIronChest) fluidityChest);
+		BaseMetalsChestChangerType.generateRecipes();
+		BaseMetalsIronChestChangerType.generateRecipes();
+		IronBaseMetalsChestChangerType.generateRecipes();
 
-		FluidityIronChestType[] chests = FluidityIronChestType.VALUES;
+		BaseMetalsIronChestType[] chests = BaseMetalsIronChestType.VALUES;
 		int chestCount = chests.length;
 
 		for(int i = 0; i < chestCount; ++i) {
-			FluidityIronChestType chestType = chests[i];
+			BaseMetalsIronChestType chestType = chests[i];
 			GameRegistry.registerTileEntity(chestType.clazz, "Fluidity." + chestType.name());
 		}
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new IronChestsGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new BaseMetalsIronChestsGuiHandler());
 		addRecipes();
-		//MinecraftForge.EVENT_BUS.register(new IronChestsCommonEvents());
+		//MinecraftForge.EVENT_BUS.register(new BaseMetalsIronChestsCommonEvents());
 		if(Fluidity.instance.isClient)
-			MinecraftForge.EVENT_BUS.register(new IronChestsClientEvents());
+			MinecraftForge.EVENT_BUS.register(new BaseMetalsIronChestsClientEvents());
 	}
 
 	private void addRecipes() {
@@ -100,7 +100,7 @@ public class FluidityIronChests implements IModCompat {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBuiltInBlocks(fluidityChest);
 
 		ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-		for (FluidityIronChestType chestType : FluidityIronChestType.values())
+		for (BaseMetalsIronChestType chestType : BaseMetalsIronChestType.values())
 		{
 			Item chestItem = Item.getItemFromBlock(fluidityChest);
 			mesher.register(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID+":chest_" + chestType.getName().toLowerCase(), "inventory"));

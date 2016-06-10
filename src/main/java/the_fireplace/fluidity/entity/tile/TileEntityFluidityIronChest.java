@@ -17,9 +17,9 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
-import the_fireplace.fluidity.compat.FluidityIronChests;
-import the_fireplace.fluidity.container.ContainerFluidityIronChest;
-import the_fireplace.fluidity.enums.FluidityIronChestType;
+import the_fireplace.fluidity.compat.BaseMetalsIronChests;
+import the_fireplace.fluidity.container.ContainerBaseMetalIronChest;
+import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	public float prevLidAngle;
 	public float lidAngle;
 	private int numUsingPlayers;
-	private FluidityIronChestType type;
+	private BaseMetalsIronChestType type;
 	public ItemStack[] chestContents;
 	private EnumFacing facing;
 	private boolean inventoryTouched;
@@ -37,10 +37,10 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 
 	public TileEntityFluidityIronChest()
 	{
-		this(FluidityIronChestType.BRONZE);
+		this(BaseMetalsIronChestType.BRONZE);
 	}
 
-	protected TileEntityFluidityIronChest(FluidityIronChestType type)
+	protected TileEntityFluidityIronChest(BaseMetalsIronChestType type)
 	{
 		this.ticksSinceSync = -1;
 		this.type = type;
@@ -72,7 +72,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		return this.facing;
 	}
 
-	public FluidityIronChestType getType()
+	public BaseMetalsIronChestType getType()
 	{
 		return type;
 	}
@@ -210,7 +210,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 
 			for (EntityPlayer var4 : var2)
 			{
-				if (var4.openContainer instanceof ContainerFluidityIronChest)
+				if (var4.openContainer instanceof ContainerBaseMetalIronChest)
 				{
 					++this.numUsingPlayers;
 				}
@@ -219,7 +219,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 
 		if (worldObj != null && !worldObj.isRemote && ticksSinceSync < 0)
 		{
-			worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 3, this.numUsingPlayers << 3 & 248 | this.facing.ordinal() & 7);
+			worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 3, this.numUsingPlayers << 3 & 248 | this.facing.ordinal() & 7);
 		}
 		if (!worldObj.isRemote && inventoryTouched)
 		{
@@ -288,7 +288,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			return;
 		}
 		numUsingPlayers++;
-		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 1, numUsingPlayers);
+		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 1, numUsingPlayers);
 	}
 
 	@Override
@@ -299,7 +299,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			return;
 		}
 		numUsingPlayers--;
-		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 1, numUsingPlayers);
+		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 1, numUsingPlayers);
 	}
 
 	public void setFacing(EnumFacing facing2)
@@ -321,7 +321,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		if (pkt.getTileEntityType() == 0)
 		{
 			NBTTagCompound nbt = pkt.getNbtCompound();
-			type = FluidityIronChestType.values()[nbt.getInteger("type")];
+			type = BaseMetalsIronChestType.values()[nbt.getInteger("type")];
 			facing = EnumFacing.VALUES[nbt.getByte("facing")];
 		}
 	}
@@ -349,7 +349,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	public void rotateAround()
 	{
 		this.setFacing(this.facing.rotateY());
-		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, 2, facing.ordinal());
+		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 2, facing.ordinal());
 	}
 
 	public void wasPlaced(EntityLivingBase entityliving, ItemStack itemStack)

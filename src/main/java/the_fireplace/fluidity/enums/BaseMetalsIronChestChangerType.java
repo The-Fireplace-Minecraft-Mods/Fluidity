@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import the_fireplace.fluidity.items.FluidityItemChestChanger;
+import the_fireplace.fluidity.items.BaseMetalsItemChestChanger;
 import the_fireplace.fluidity.tools.Registry;
 
 import static cpw.mods.ironchest.IronChestType.*;
-import static the_fireplace.fluidity.enums.FluidityIronChestType.*;
+import static the_fireplace.fluidity.enums.BaseMetalsIronChestType.*;
 
-public enum FluidityIronChestChangerType {
+public enum BaseMetalsIronChestChangerType {
 	BRONZEGOLD(BRONZE, GOLD, "bronzeGoldUpgrade", "mmm", "msm", "mmm"),
 	BRONZESILVER(BRONZE, SILVER, "bronzeSilverUpgrade", "mGm", "GsG", "mGm"),
 	CUPRONICKELGOLD(CUPRONICKEL, GOLD, "cupronickelGoldUpgrade", "mmm", "msm", "mmm"),
@@ -29,15 +29,15 @@ public enum FluidityIronChestChangerType {
 	ELECTRUMDIAMOND(ELECTRUM, DIAMOND, "electrumDiamondUpgrade", "GGG", "msm", "GGG"),
 	PLATINUMDIAMOND(PLATINUM, DIAMOND, "platinumDiamondUpgrade", "GGG", "msm", "GGG");
 
-	private FluidityIronChestType source;
+	private BaseMetalsIronChestType source;
 	private IronChestType target;
 	public String sourcename;
 	public String targetname;
 	public String itemName;
-	public FluidityItemChestChanger item;
+	public BaseMetalsItemChestChanger item;
 	private String[] recipe;
 
-	FluidityIronChestChangerType(FluidityIronChestType source, IronChestType target, String itemName, String... recipe)
+	BaseMetalsIronChestChangerType(BaseMetalsIronChestType source, IronChestType target, String itemName, String... recipe)
 	{
 		this.source = source;
 		this.target = target;
@@ -47,7 +47,7 @@ public enum FluidityIronChestChangerType {
 		this.recipe = recipe;
 	}
 
-	public boolean canUpgrade(FluidityIronChestType from)
+	public boolean canUpgrade(BaseMetalsIronChestType from)
 	{
 		return from == this.source;
 	}
@@ -57,9 +57,9 @@ public enum FluidityIronChestChangerType {
 		return this.target.ordinal();
 	}
 
-	public FluidityItemChestChanger buildItem()
+	public BaseMetalsItemChestChanger buildItem()
 	{
-		item = new FluidityItemChestChanger(this);
+		item = new BaseMetalsItemChestChanger(this);
 		item.setRegistryName(itemName);
 		GameRegistry.register(item);
 		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
@@ -73,16 +73,16 @@ public enum FluidityIronChestChangerType {
 		{
 			for (String targetMat : target.matList)
 			{
-				Object targetMaterial = FluidityIronChestType.translateOreName(targetMat);
-				Object sourceMaterial = FluidityIronChestType.translateOreName(sourceMat);
-				FluidityIronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', Blocks.GLASS, 'O', Blocks.OBSIDIAN);
+				Object targetMaterial = BaseMetalsIronChestType.translateOreName(targetMat);
+				Object sourceMaterial = BaseMetalsIronChestType.translateOreName(sourceMat);
+				BaseMetalsIronChestType.addRecipe(new ItemStack(item), recipe, 'm', targetMaterial, 's', sourceMaterial, 'G', Blocks.GLASS, 'O', Blocks.OBSIDIAN);
 			}
 		}
 	}
 
 	public static void buildItems()
 	{
-		for (FluidityIronChestChangerType type : values())
+		for (BaseMetalsIronChestChangerType type : values())
 		{
 			type.buildItem();
 		}
@@ -90,7 +90,7 @@ public enum FluidityIronChestChangerType {
 
 	public static void generateRecipes()
 	{
-		for (FluidityIronChestChangerType item : values())
+		for (BaseMetalsIronChestChangerType item : values())
 		{
 			item.addRecipes();
 		}

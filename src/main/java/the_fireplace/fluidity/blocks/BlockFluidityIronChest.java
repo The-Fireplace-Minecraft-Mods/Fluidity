@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
-import the_fireplace.fluidity.enums.FluidityIronChestType;
+import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +37,14 @@ import java.util.Random;
 
 public class BlockFluidityIronChest extends BlockContainer
 {
-	public static final PropertyEnum<FluidityIronChestType> VARIANT_PROP = PropertyEnum.create("variant", FluidityIronChestType.class);
+	public static final PropertyEnum<BaseMetalsIronChestType> VARIANT_PROP = PropertyEnum.create("variant", BaseMetalsIronChestType.class);
 	protected static final AxisAlignedBB IRON_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
 	public BlockFluidityIronChest()
 	{
 		super(Material.IRON);
 
-		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT_PROP, FluidityIronChestType.BRONZE));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT_PROP, BaseMetalsIronChestType.BRONZE));
 
 		this.setHardness(3.0F);
 		this.setUnlocalizedName("iron_chest");
@@ -95,14 +95,14 @@ public class BlockFluidityIronChest extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata)
 	{
-		return FluidityIronChestType.makeEntity(metadata);
+		return BaseMetalsIronChestType.makeEntity(metadata);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
 	{
-		for (FluidityIronChestType type : FluidityIronChestType.values())
+		for (BaseMetalsIronChestType type : BaseMetalsIronChestType.values())
 			if (type.isValidForCreativeMode())
 				list.add(new ItemStack(itemIn, 1, type.ordinal()));
 	}
@@ -110,7 +110,7 @@ public class BlockFluidityIronChest extends BlockContainer
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(VARIANT_PROP, FluidityIronChestType.values()[meta]);
+		return this.getDefaultState().withProperty(VARIANT_PROP, BaseMetalsIronChestType.values()[meta]);
 	}
 
 	@Override

@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.compat.*;
 import the_fireplace.fluidity.proxy.CommonProxy;
 
@@ -73,6 +72,10 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 		}*/
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("IronChest")){
+			compat = new BaseMetalsIronChests();
+			compat.preInit();
+		}
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.preInit();
@@ -81,10 +84,6 @@ public class Fluidity {
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
 		}*/
-		if(Loader.isModLoaded("IronChest") && hasCommonMetal()){
-			compat = new FluidityIronChests();
-			compat.preInit();
-		}
 		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
 			compat = new ThaumcraftFRT();
 			compat.preInit();
@@ -133,6 +132,12 @@ public class Fluidity {
 			compat = new BaseMetalsEnderIO();
 			compat.init();
 		}
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("IronChest")){
+			compat = new BaseMetalsIronChests();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
+		}
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.init();
@@ -157,12 +162,6 @@ public class Fluidity {
 			compat = new EnderIOFRT();
 			compat.init();
 		}
-		if(Loader.isModLoaded("IronChest") && hasCommonMetal()){
-			compat = new FluidityIronChests();
-			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
 		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
 			compat = new ThaumcraftFRT();
 			compat.init();
@@ -181,14 +180,6 @@ public class Fluidity {
 			compat = new CookingForBlockheadsFRT();
 			compat.postInit();
 		}
-	}
-	private final String[] metalArray = new String[]{"ingotBronze", "ingotInvar", "ingotElectrum", "ingotTin", "ingotBrass", "ingotLead", "ingotSteel", "ingotNickel"};
-	private boolean hasCommonMetal(){
-		for(String s:metalArray){
-			if(!OreDictionary.getOres(s).isEmpty())
-				return true;
-		}
-		return false;
 	}
 	private void overrideDescription(ModMetadata meta){
 		String mods = "";

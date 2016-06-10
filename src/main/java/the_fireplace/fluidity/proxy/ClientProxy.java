@@ -5,7 +5,7 @@ package the_fireplace.fluidity.proxy;
  */
 public class ClientProxy extends CommonProxy {
     @Override
-    public FICProxy getFICProxy(){
-        return new FICClient();
+    public BMICProxy getBMICProxy(){
+        return new BMICClient();
     }
 }

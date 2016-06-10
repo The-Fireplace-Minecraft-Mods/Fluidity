@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
-import the_fireplace.fluidity.compat.FluidityIronChests;
+import the_fireplace.fluidity.compat.BaseMetalsIronChests;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
-import the_fireplace.fluidity.enums.FluidityIronChestType;
+import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
 
 public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<TileEntityFluidityIronChest> {
 	private ModelChest model = new ModelChest();
@@ -22,8 +22,8 @@ public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<T
 	public void renderTileEntityAt(TileEntityFluidityIronChest tile, double x, double y, double z, float partialTick, int breakStage) {
 		if(tile != null && !tile.isInvalid()) {
 			EnumFacing facing = EnumFacing.SOUTH;
-			FluidityIronChestType type = tile.getType();
-			if(tile.hasWorldObj() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == FluidityIronChests.fluidityChest) {
+			BaseMetalsIronChestType type = tile.getType();
+			if(tile.hasWorldObj() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == BaseMetalsIronChests.fluidityChest) {
 				facing = tile.getFacing();
 				IBlockState lidangle = tile.getWorld().getBlockState(tile.getPos());
 				type = lidangle.getValue(BlockFluidityIronChest.VARIANT_PROP);
