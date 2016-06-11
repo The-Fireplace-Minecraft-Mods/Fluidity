@@ -96,11 +96,10 @@ public class BaseMetalsIronChests implements IModCompat {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBuiltInBlocks(fluidityChest);
 
 		ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-		for (BaseMetalsIronChestType chestType : BaseMetalsIronChestType.values())
-		{
+		for (BaseMetalsIronChestType chestType : BaseMetalsIronChestType.values()) {
 			Item chestItem = Item.getItemFromBlock(fluidityChest);
-			mesher.register(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID+":chest_" + chestType.getName().toLowerCase(), "inventory"));
-			ModelBakery.registerItemVariants(chestItem, new ResourceLocation(Fluidity.MODID+":chest_" + chestType.getName().toLowerCase()));
+			mesher.register(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase(), "inventory"));
+			ModelBakery.registerItemVariants(chestItem, new ResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase()));
 		}
 	}
 

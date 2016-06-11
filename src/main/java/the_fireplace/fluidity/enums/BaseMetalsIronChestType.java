@@ -192,11 +192,6 @@ public enum BaseMetalsIronChestType implements IStringSerializable {
 		return validateMeta(ordinal()) == ordinal();
 	}
 
-	public boolean canFall()
-	{
-		return this == LEAD;
-	}
-
 	public Slot makeSlot(IInventory chestInventory, int index, int x, int y)
 	{
 		return new ValidatingIronChestSlot(chestInventory, index, x, y, this);

@@ -19,7 +19,6 @@ public class BMICClient implements BMICProxy {
         Item chestItem = Item.getItemFromBlock(BaseMetalsIronChests.fluidityChest);
 
         for(BaseMetalsIronChestType type : BaseMetalsIronChestType.values()) {
-
             ModelLoader.setCustomModelResourceLocation(chestItem, type.ordinal(), new ModelResourceLocation(chestItem.getRegistryName(), "variant=" + type.getName()));
 
             ClientRegistry.bindTileEntitySpecialRenderer(type.clazz, new TileEntityFluidityChestRenderer());
