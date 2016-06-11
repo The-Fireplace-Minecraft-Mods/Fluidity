@@ -15,7 +15,6 @@ import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
 @SideOnly(Side.CLIENT)
 public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<TileEntityFluidityIronChest> {
 	private ModelChest model = new ModelChest();
-	private static float[][] shifts = new float[][]{{0.3F, 0.45F, 0.3F}, {0.7F, 0.45F, 0.3F}, {0.3F, 0.45F, 0.7F}, {0.7F, 0.45F, 0.7F}, {0.3F, 0.1F, 0.3F}, {0.7F, 0.1F, 0.3F}, {0.3F, 0.1F, 0.7F}, {0.7F, 0.1F, 0.7F}, {0.5F, 0.32F, 0.5F}};
 	private static float halfPI = 1.5707964F;
 
 	public TileEntityFluidityChestRenderer() {
