@@ -5,11 +5,14 @@ import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
 import the_fireplace.fluidity.compat.BaseMetalsIronChests;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
 
+@SideOnly(Side.CLIENT)
 public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<TileEntityFluidityIronChest> {
 	private ModelChest model = new ModelChest();
 	private static float[][] shifts = new float[][]{{0.3F, 0.45F, 0.3F}, {0.7F, 0.45F, 0.3F}, {0.3F, 0.45F, 0.7F}, {0.7F, 0.45F, 0.7F}, {0.3F, 0.1F, 0.3F}, {0.7F, 0.1F, 0.3F}, {0.3F, 0.1F, 0.7F}, {0.7F, 0.1F, 0.7F}, {0.5F, 0.32F, 0.5F}};
@@ -25,8 +28,8 @@ public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<T
 			BaseMetalsIronChestType type = tile.getType();
 			if(tile.hasWorldObj() && tile.getWorld().getBlockState(tile.getPos()).getBlock() == BaseMetalsIronChests.fluidityChest) {
 				facing = tile.getFacing();
-				IBlockState lidangle = tile.getWorld().getBlockState(tile.getPos());
-				type = lidangle.getValue(BlockFluidityIronChest.VARIANT_PROP);
+				IBlockState chest = tile.getWorld().getBlockState(tile.getPos());
+				type = chest.getValue(BlockFluidityIronChest.VARIANT_PROP);
 			}
 
 			if(breakStage >= 0) {
@@ -46,17 +49,17 @@ public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<T
 			GlStateManager.translate((float)x, (float)y + 1.0F, (float)z + 1.0F);
 			GlStateManager.scale(1.0F, -1.0F, -1.0F);
 			GlStateManager.translate(0.5F, 0.5F, 0.5F);
-			switch(facing.ordinal()) {
-				case 1:
+			switch(facing) {
+				case NORTH:
 					GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 					break;
-				case 2:
+				case SOUTH:
 					GlStateManager.rotate(0.0F, 0.0F, 1.0F, 0.0F);
 					break;
-				case 3:
+				case WEST:
 					GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
 					break;
-				case 4:
+				case EAST:
 					GlStateManager.rotate(270.0F, 0.0F, 1.0F, 0.0F);
 					break;
 				default:
