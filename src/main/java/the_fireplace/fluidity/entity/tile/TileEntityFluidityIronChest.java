@@ -308,22 +308,28 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	}
 
 	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() {
-		NBTTagCompound nbt = new NBTTagCompound();
+	public NBTTagCompound getUpdateTag(){
+		/*NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setByte("facing", (byte)this.facing.ordinal());
+		return nbt;*/
+		return writeToNBT(new NBTTagCompound());
+	}
 
-		return new SPacketUpdateTileEntity(this.pos, 0, nbt);
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(this.pos, type.ordinal(), getUpdateTag());
 	}
 
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
 	{
-		if (pkt.getTileEntityType() == 0)
+		/*if (pkt.getTileEntityType() == 0)
 		{
 			NBTTagCompound nbt = pkt.getNbtCompound();
 			type = BaseMetalsIronChestType.values()[nbt.getInteger("type")];
 			facing = EnumFacing.VALUES[nbt.getByte("facing")];
-		}
+		}*/
+		readFromNBT(pkt.getNbtCompound());
 	}
 
 	@Override
