@@ -35,6 +35,9 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	private boolean inventoryTouched;
 	private String customName;
 
+	public static final int UPDATE_PLAYERNUMBERS = 1;
+	public static final int UPDATE_FACING = 2;
+
 	public TileEntityFluidityIronChest()
 	{
 		this(BaseMetalsIronChestType.BRONZE);
@@ -219,7 +222,8 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 
 		if (worldObj != null && !worldObj.isRemote && ticksSinceSync < 0)
 		{
-			worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 3, this.numUsingPlayers << 3 & 248 | this.facing.ordinal() & 7);
+			worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, UPDATE_PLAYERNUMBERS, numUsingPlayers);
+			worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, UPDATE_FACING, facing.ordinal());
 		}
 		if (!worldObj.isRemote && inventoryTouched)
 		{
@@ -264,18 +268,12 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	}
 
 	@Override
-	public boolean receiveClientEvent(int i, int j)
+	public boolean receiveClientEvent(int eventId, int eventArgs)
 	{
-		if (i == 1)
-		{
-			numUsingPlayers = j;
-		} else if (i == 2)
-		{
-			facing = EnumFacing.VALUES[j];
-		} else if (i == 3)
-		{
-			facing = EnumFacing.VALUES[j & 7];
-			numUsingPlayers = (j & 248) >> 3;
+		if (eventId == UPDATE_PLAYERNUMBERS){
+			numUsingPlayers = eventArgs;
+		} else if (eventId == UPDATE_FACING){
+			facing = EnumFacing.VALUES[eventArgs];
 		}
 		return true;
 	}
@@ -288,7 +286,7 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			return;
 		}
 		numUsingPlayers++;
-		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 1, numUsingPlayers);
+		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, UPDATE_PLAYERNUMBERS, numUsingPlayers);
 	}
 
 	@Override
@@ -299,12 +297,13 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 			return;
 		}
 		numUsingPlayers--;
-		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 1, numUsingPlayers);
+		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, UPDATE_PLAYERNUMBERS, numUsingPlayers);
 	}
 
-	public void setFacing(EnumFacing facing2)
+	public void setFacing(EnumFacing newFacing)
 	{
-		this.facing = facing2;
+		this.facing = newFacing;
+		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, UPDATE_FACING, facing.ordinal());
 	}
 
 	@Override
@@ -355,7 +354,6 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	public void rotateAround()
 	{
 		this.setFacing(this.facing.rotateY());
-		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, 2, facing.ordinal());
 	}
 
 	public void wasPlaced(EntityLivingBase entityliving, ItemStack itemStack)
