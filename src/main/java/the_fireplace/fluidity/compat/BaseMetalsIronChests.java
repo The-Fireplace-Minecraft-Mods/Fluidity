@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.fluidity.Fluidity;
@@ -17,6 +18,7 @@ import the_fireplace.fluidity.enums.BaseMetalsChestChangerType;
 import the_fireplace.fluidity.enums.BaseMetalsIronChestChangerType;
 import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
 import the_fireplace.fluidity.enums.IronBaseMetalsChestChangerType;
+import the_fireplace.fluidity.events.BaseMetalsIronChestsCommonEvents;
 import the_fireplace.fluidity.handler.BaseMetalsIronChestsGuiHandler;
 import the_fireplace.fluidity.items.ItemBaseMetalsIronChest;
 import the_fireplace.fluidity.tools.Registry;
@@ -58,7 +60,7 @@ public class BaseMetalsIronChests implements IModCompat {
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new BaseMetalsIronChestsGuiHandler());
 		addRecipes();
-		//MinecraftForge.EVENT_BUS.register(new BaseMetalsIronChestsCommonEvents());
+		MinecraftForge.EVENT_BUS.register(new BaseMetalsIronChestsCommonEvents());
 	}
 
 	private void addRecipes() {

@@ -1,12 +1,12 @@
 package the_fireplace.fluidity.entity.ai;
 
-import net.minecraft.entity.ai.EntityAIOcelotSit;
+import cpw.mods.ironchest.IronChestAIOcelotSit;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import the_fireplace.fluidity.compat.BaseMetalsIronChests;
 
-public class BaseMetalsIronChestOcelotSit extends EntityAIOcelotSit {
+public class BaseMetalsIronChestOcelotSit extends IronChestAIOcelotSit {
 	public BaseMetalsIronChestOcelotSit(EntityOcelot par1EntityOcelot, float par2)
 	{
 		super(par1EntityOcelot, par2);
