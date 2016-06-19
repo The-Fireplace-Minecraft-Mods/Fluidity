@@ -1,8 +1,6 @@
 package the_fireplace.fluidity.items;
 
-import cpw.mods.ironchest.IronChest;
-import cpw.mods.ironchest.IronChestType;
-import cpw.mods.ironchest.TileEntityIronChest;
+import cpw.mods.ironchest.*;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,13 +28,13 @@ public class BaseMetalsItemChestChanger extends Item
 	 * The changer type to use. 0 is Fluidity to Fluidity, 1 is Fluidity to Iron, 2 is Iron to Fluidity
 	 */
 	private byte useType;
-	private BaseMetalsChestChangerType type;
+	private BaseMetalsChestChangerType type1;
 	private BaseMetalsIronChestChangerType type2;
 	private IronBaseMetalsChestChangerType type3;
 
 	public BaseMetalsItemChestChanger(BaseMetalsChestChangerType type)
 	{
-		this.type = type;
+		this.type1 = type;
 		this.useType = 0;
 
 		this.setMaxStackSize(1);
@@ -77,7 +75,7 @@ public class BaseMetalsItemChestChanger extends Item
 			return EnumActionResult.PASS;
 		switch(useType){
 		case 0:{
-			if(world.getBlockState(pos) != BaseMetalsIronChests.fluidityChest.getStateFromMeta(BaseMetalsIronChestType.valueOf(type.sourcename.toUpperCase()).ordinal())){
+			if(world.getBlockState(pos) != BaseMetalsIronChests.fluidityChest.getStateFromMeta(BaseMetalsIronChestType.valueOf(type1.sourcename.toUpperCase()).ordinal())){
 				return EnumActionResult.PASS;
 			}
 			TileEntity te = world.getTileEntity(pos);
@@ -88,15 +86,13 @@ public class BaseMetalsItemChestChanger extends Item
 				if (te instanceof TileEntityFluidityIronChest)
 				{
 					chestContents = ((TileEntityFluidityIronChest) te).chestContents;
-					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal(this.type.ordinal()));
+					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal());
 					if (newchest == null)
 						return EnumActionResult.PASS;
 				}
 			}
 
 			te.updateContainingBlockInfo();
-			if (te instanceof TileEntityChest)
-				((TileEntityChest) te).checkForAdjacentChests();
 
 			world.removeTileEntity(pos);
 			world.setBlockToAir(pos);
@@ -127,21 +123,19 @@ public class BaseMetalsItemChestChanger extends Item
 				if (te instanceof TileEntityFluidityIronChest)
 				{
 					chestContents = ((TileEntityFluidityIronChest) te).chestContents;
-					newchest = IronChestType.VALUES[getTargetChestOrdinal(this.type2.ordinal())].makeEntity();
+					newchest = makeEntity(IronChestType.VALUES[getTargetChestOrdinal()]);
 					if (newchest == null)
 						return EnumActionResult.PASS;
 				}
 			}
 
 			te.updateContainingBlockInfo();
-			if (te instanceof TileEntityChest)
-				((TileEntityChest) te).checkForAdjacentChests();
 
 			world.removeTileEntity(pos);
 			world.setBlockToAir(pos);
 
 			world.setTileEntity(pos, newchest);
-			IBlockState state = IronChest.ironChestBlock.getStateFromMeta(newchest.getType().ordinal());
+			IBlockState state = IronChest.ironChestBlock.getStateFromMeta(getTargetChestOrdinal());
 			world.setBlockState(pos, state, 3);
 
 			world.notifyBlockUpdate(pos, state, state, 3);
@@ -172,7 +166,7 @@ public class BaseMetalsItemChestChanger extends Item
 				if (te instanceof TileEntityIronChest)
 				{
 					chestContents = ((TileEntityIronChest) te).chestContents;
-					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal(this.type3.ordinal()));
+					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal());
 					if (newchest == null)
 						return EnumActionResult.PASS;
 				}else if (te instanceof TileEntityChest){
@@ -183,7 +177,7 @@ public class BaseMetalsItemChestChanger extends Item
 					chestContents = new ItemStack[((TileEntityChest) te).getSizeInventory()];
 					for (int i = 0; i < chestContents.length; i++)
 						chestContents[i] = ((TileEntityChest) te).getStackInSlot(i);
-					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal(this.type3.ordinal()));
+					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal());
 				}
 			}
 
@@ -212,38 +206,68 @@ public class BaseMetalsItemChestChanger extends Item
 		return EnumActionResult.FAIL;
 	}
 
-	public int getTargetChestOrdinal(int sourceOrdinal)
+	public int getTargetChestOrdinal()
 	{
 		switch(useType){
-		case 0:
-			return type.getTarget();
-		case 1:
-			return type2.getTarget();
-		case 2:
-			return type3.getTarget();
+			case 0:
+				return type1.getTarget();
+			case 1:
+				return type2.getTarget();
+			case 2:
+				return type3.getTarget();
+			default:
+				System.out.println("Error with chest changer use type");
+				return 0;
 		}
-		return 0;
 	}
 	public String getSourceName(){
 		switch(useType){
-		case 0:
-			return type.sourcename;
-		case 1:
-			return type2.sourcename;
-		case 2:
-			return type3.sourcename;
+			case 0:
+				return type1.sourcename;
+			case 1:
+				return type2.sourcename;
+			case 2:
+				return type3.sourcename;
+			default:
+				System.out.println("Error with chest changer use type");
+				return null;
 		}
-		return null;
 	}
 	public String getTargetName(){
 		switch(useType){
-		case 0:
-			return type.targetname;
-		case 1:
-			return type2.targetname;
-		case 2:
-			return type3.targetname;
+			case 0:
+				return type1.targetname;
+			case 1:
+				return type2.targetname;
+			case 2:
+				return type3.targetname;
+			default:
+				System.out.println("Error with chest changer use type");
+				return null;
 		}
-		return null;
+	}
+
+	public TileEntityIronChest makeEntity(IronChestType entityType) {
+		switch(entityType) {
+			case DIRTCHEST9000:
+				return new TileEntityDirtChest();
+			case OBSIDIAN:
+				return new TileEntityObsidianChest();
+			case IRON:
+				return new TileEntityIronChest();
+			case GOLD:
+				return new TileEntityGoldChest();
+			case DIAMOND:
+				return new TileEntityDiamondChest();
+			case COPPER:
+				return new TileEntityCopperChest();
+			case SILVER:
+				return new TileEntitySilverChest();
+			case CRYSTAL:
+				return new TileEntityCrystalChest();
+			case WOOD:
+			default:
+				return null;
+		}
 	}
 }
