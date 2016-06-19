@@ -25,8 +25,9 @@ minecraft {
 
 dependencies {
 	deobfCompile group: "mezz.jei", name: "jei_1.9.4", version: "3.4.0.204"
-	compile "com.enderio.core:EnderCore:1.9.4-0.4.0.23-alpha:api"
-	compile "com.enderio:EnderIO:1.9.4-3.0.0.38_alpha:dev"
+	compile "com.enderio.core:EnderCore:1.9.4-0.4.0.26-alpha:api"
+	compile "com.enderio:EnderIO:1.9.4-3.0.0.43_alpha:dev"
+	compile "mcjty.theoneprobe:TheOneProbe:1.9.4-1.0.7-20"
 }
 
 repositories{
@@ -42,8 +43,11 @@ repositories{
     maven { //TechReborn+RebornCore
 		url "http://maven.modmuss50.me/"
 	}
-	maven { //EnderIO+EnderCore+EnderZoo
+	maven { //EnderIO+EnderCore+EnderZoo+TheOneProbe
 		url = "http://maven.tterrag.com"
+	}
+	maven { //IC2+Forestry
+		url = "http://maven.ic2.player.to/"
 	}
 }
 

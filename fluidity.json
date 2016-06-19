@@ -1,10 +1,11 @@
 {
 	"homepage": "http://minecraft.curseforge.com/projects/fluidity",
 	"promos": {
-		"1.9.4-latest": "6.0.0.5",
-		"1.9.4-recommended": "6.0.0.5"
+		"1.9.4-latest": "6.0.0.6",
+		"1.9.4-recommended": "6.0.0.6"
 	},
 	"1.9.4": {
+		"6.0.0.6": "Updated to work with the latest Actually Additions; Ocelots now sit on Base Metals Chests again",
 		"6.0.0.5": "Many bug fixes",
 		"6.0.0.4": "Added EnderIO Integration; Made Star-steel Anvil gradually regenerate; Added some Electric Advantage integration(more to come later)",
 		"6.0.0.3": "Fixed Block registration code(for real, this time), fixing several crashes",
