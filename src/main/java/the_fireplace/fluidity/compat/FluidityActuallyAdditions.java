@@ -1,14 +1,13 @@
 package the_fireplace.fluidity.compat;
 
 import de.ellpeck.actuallyadditions.mod.misc.cloud.ISmileyCloudEasterEgg;
+import de.ellpeck.actuallyadditions.mod.misc.cloud.SmileyCloudEasterEggs;
 import de.ellpeck.actuallyadditions.mod.util.AssetUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-
-import static de.ellpeck.actuallyadditions.mod.misc.cloud.SmileyCloudEasterEggs.cloudStuff;
 
 /**
  * @author The_Fireplace
@@ -44,7 +43,7 @@ public class FluidityActuallyAdditions implements IModCompat {
     }
 
     public static void register(ISmileyCloudEasterEgg egg){
-        cloudStuff.add(egg);
+        SmileyCloudEasterEggs.CLOUD_STUFF.add(egg);
     }
 
     public static void renderHoldingItem(boolean leftHand, ItemStack stack){
