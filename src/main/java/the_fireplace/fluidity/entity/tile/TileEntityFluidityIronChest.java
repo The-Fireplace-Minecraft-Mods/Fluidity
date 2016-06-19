@@ -303,14 +303,12 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	public void setFacing(EnumFacing newFacing)
 	{
 		this.facing = newFacing;
-		worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, UPDATE_FACING, facing.ordinal());
+		if(this.hasWorldObj())
+			worldObj.addBlockEvent(pos, BaseMetalsIronChests.fluidityChest, UPDATE_FACING, facing.ordinal());
 	}
 
 	@Override
 	public NBTTagCompound getUpdateTag(){
-		/*NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setByte("facing", (byte)this.facing.ordinal());
-		return nbt;*/
 		return writeToNBT(new NBTTagCompound());
 	}
 
@@ -322,12 +320,6 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
 	{
-		/*if (pkt.getTileEntityType() == 0)
-		{
-			NBTTagCompound nbt = pkt.getNbtCompound();
-			type = BaseMetalsIronChestType.values()[nbt.getInteger("type")];
-			facing = EnumFacing.VALUES[nbt.getByte("facing")];
-		}*/
 		readFromNBT(pkt.getNbtCompound());
 	}
 
