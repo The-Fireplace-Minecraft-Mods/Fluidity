@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * @author The_Fireplace
  */
-@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, updateJSON = "http://caterpillar.bitnamiapp.com/jsons/fluidity.json")
+@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, updateJSON = "http://caterpillar.bitnamiapp.com/jsons/fluidity.json", dependencies = "after:*")
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
