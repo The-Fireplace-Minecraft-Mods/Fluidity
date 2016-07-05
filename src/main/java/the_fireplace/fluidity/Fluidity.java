@@ -88,7 +88,8 @@ public class Fluidity {
 			compat = new ThaumcraftFRT();
 			compat.preInit();
 		}*/
-		overrideDescription(event.getModMetadata());
+		if(event.getSide().isClient())
+			overrideDescription(event.getModMetadata());
 
 		if(Loader.isModLoaded("actuallyadditions")){
 			compat = new FluidityActuallyAdditions();
