@@ -14,7 +14,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityChestChangerType;
@@ -39,7 +38,6 @@ public class FluidityItemChestChanger extends Item
 
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("fluidity:" + type.name());
-		this.setCreativeTab(Fluidity.tabFluidity);
 	}
 
 	public FluidityItemChestChanger(FluidityIronChestChangerType type)
@@ -49,7 +47,6 @@ public class FluidityItemChestChanger extends Item
 
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("fluidity:" + type.name());
-		this.setCreativeTab(Fluidity.tabFluidity);
 	}
 
 	public FluidityItemChestChanger(IronFluidityChestChangerType type)
@@ -59,7 +56,6 @@ public class FluidityItemChestChanger extends Item
 
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("fluidity:" + type.name());
-		this.setCreativeTab(Fluidity.tabFluidity);
 	}
 
 	@Override

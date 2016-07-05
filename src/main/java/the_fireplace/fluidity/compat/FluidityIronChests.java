@@ -24,9 +24,12 @@ import the_fireplace.fluidity.handler.FluidityIronChestsGuiHandler;
 import the_fireplace.fluidity.items.ItemFluidityIronChest;
 import the_fireplace.fluidity.tools.Registry;
 
+import java.util.ArrayList;
+
 public class FluidityIronChests implements IModCompat {
 
 	public static Block fluidityChest;
+	public static ArrayList<Item> creativeQueue = new ArrayList<Item>();
 
 	@Override
 	public void preInit() {
@@ -35,8 +38,12 @@ public class FluidityIronChests implements IModCompat {
 
 	@Override
 	public void postInit() {
-		if(canIronChest())
+		if(canIronChest()) {
 			fluidityChest.setCreativeTab(Fluidity.tabFluidity);
+			for(Item i:creativeQueue){
+				i.setCreativeTab(Fluidity.tabFluidity);
+			}
+		}
 	}
 
 	@Override

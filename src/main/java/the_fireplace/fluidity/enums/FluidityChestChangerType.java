@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.items.FluidityItemChestChanger;
 import the_fireplace.fluidity.tools.Registry;
 
@@ -95,6 +96,7 @@ public enum FluidityChestChangerType {
 		GameRegistry.register(item);
 		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
 			Registry.registerRender(item, itemName);
+		FluidityIronChests.creativeQueue.add(item);
 		return item;
 	}
 
