@@ -38,12 +38,7 @@ public class FluidityIronChests implements IModCompat {
 
 	@Override
 	public void postInit() {
-		if(canIronChest()) {
-			fluidityChest.setCreativeTab(Fluidity.tabFluidity);
-			for(Item i:creativeQueue){
-				i.setCreativeTab(Fluidity.tabFluidity);
-			}
-		}
+
 	}
 
 	@Override
@@ -70,6 +65,13 @@ public class FluidityIronChests implements IModCompat {
 		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new FluidityIronChestsGuiHandler());
 		addRecipes();
 		MinecraftForge.EVENT_BUS.register(new FluidityIronChestsCommonEvents());
+
+		if(canIronChest()) {
+			fluidityChest.setCreativeTab(Fluidity.tabFluidity);
+			for(Item i:creativeQueue){
+				i.setCreativeTab(Fluidity.tabFluidity);
+			}
+		}
 	}
 
 	private void addRecipes() {
@@ -121,8 +123,9 @@ public class FluidityIronChests implements IModCompat {
 	public static boolean canIronChest(){
 		String[] names = new String[]{"ingotBronze", "ingotTin", "ingotLead", "ingotNickel", "ingotPlatinum", "ingotCupronickel", "ingotBrass", "ingotColdiron", "ingotSteel", "ingotInvar", "ingotElectrum", "ingotMithril"};
 		for(String name:names){
-			if(OreDictionary.doesOreNameExist(name))
+			if(!OreDictionary.getOres(name).isEmpty()) {
 				return true;
+			}
 		}
 		return false;
 	}
