@@ -37,7 +37,9 @@ public class GUIFluidityIronChest extends GuiContainer {
 		ADAMANTINE(256, 256, ResourceList.ADAMANTINE, FluidityIronChestType.ADAMANTINE),
 		AQUARIUM(238, 256, ResourceList.DIAMOND, FluidityIronChestType.AQUARIUM),
 		MITHRIL(238, 256, ResourceList.DIAMOND, FluidityIronChestType.MITHRIL),
-		STARSTEEL(256, 256, ResourceList.ADAMANTINE, FluidityIronChestType.STARSTEEL);
+		STARSTEEL(256, 256, ResourceList.ADAMANTINE, FluidityIronChestType.STARSTEEL),
+		CUPRONICKEL(184, 202, ResourceList.IRON, FluidityIronChestType.CUPRONICKEL),
+		PLATINUM(184, 256, ResourceList.GOLD, FluidityIronChestType.PLATINUM);
 		private int xSize;
 		private int ySize;
 		private ResourceList guiResourceList;
