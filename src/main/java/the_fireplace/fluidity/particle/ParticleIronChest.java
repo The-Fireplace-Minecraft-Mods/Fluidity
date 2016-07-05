@@ -28,7 +28,7 @@ public class ParticleIronChest extends Particle
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
         this.sourceState = state;
         if(state.getProperties().containsKey(BlockFluidityIronChest.VARIANT_PROP))
-            this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(FluidityIronChestType.VALUES[state.getValue(BlockFluidityIronChest.VARIANT_PROP).ordinal()].getBreakTexture()));
+            this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(FluidityIronChestType.VALUES[state.getValue(BlockFluidityIronChest.VARIANT_PROP).ordinal()].getParticleTexture()));
         this.particleGravity = state.getBlock().blockParticleGravity;
         this.particleRed = this.particleGreen = this.particleBlue = 0.6F;
         this.particleScale /= 2.0F;
@@ -63,7 +63,7 @@ public class ParticleIronChest extends Particle
         }
         else
         {
-            this.multiplyColor((BlockPos)null);
+            this.multiplyColor(null);
             return this;
         }
     }

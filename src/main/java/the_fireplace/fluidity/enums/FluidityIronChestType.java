@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
@@ -205,9 +206,13 @@ public enum FluidityIronChestType implements IStringSerializable {
 		return this == ADAMANTINE;
 	}
 
-	public String getBreakTexture() {
+	public String getParticleTexture() {
 		if(this.breakTexture == null) {
-			this.breakTexture = "basemetals:blocks/" + this.getName() + "_block";
+			if(Loader.isModLoaded("basemetals")) {
+				this.breakTexture = "basemetals:blocks/" + this.getName() + "_block";
+			}else{
+				this.breakTexture = "fluidity:blocks/" + this.getName() + "_anvil_base";
+			}
 		}
 
 		return this.breakTexture;
