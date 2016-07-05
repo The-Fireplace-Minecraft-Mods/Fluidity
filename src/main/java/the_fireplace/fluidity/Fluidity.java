@@ -72,10 +72,6 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 		}*/
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("IronChest")){
-			compat = new BaseMetalsIronChests();
-			compat.preInit();
-		}
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.preInit();
@@ -84,6 +80,10 @@ public class Fluidity {
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
 		}*/
+		if(Loader.isModLoaded("IronChest")){
+			compat = new FluidityIronChests();
+			compat.preInit();
+		}
 		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
 			compat = new ThaumcraftFRT();
 			compat.preInit();
@@ -132,12 +132,6 @@ public class Fluidity {
 			compat = new BaseMetalsEnderIO();
 			compat.init();
 		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("IronChest")){
-			compat = new BaseMetalsIronChests();
-			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.init();
@@ -161,6 +155,12 @@ public class Fluidity {
 		if(Loader.isModLoaded("EnderIO") && Loader.isModLoaded("frt")){
 			compat = new EnderIOFRT();
 			compat.init();
+		}
+		if(Loader.isModLoaded("IronChest")){
+			compat = new FluidityIronChests();
+			compat.init();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}
 		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
 			compat = new ThaumcraftFRT();

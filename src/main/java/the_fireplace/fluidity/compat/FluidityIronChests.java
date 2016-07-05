@@ -12,18 +12,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
-import the_fireplace.fluidity.enums.BaseMetalsChestChangerType;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestChangerType;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
-import the_fireplace.fluidity.enums.IronBaseMetalsChestChangerType;
-import the_fireplace.fluidity.events.BaseMetalsIronChestsCommonEvents;
-import the_fireplace.fluidity.handler.BaseMetalsIronChestsGuiHandler;
-import the_fireplace.fluidity.items.ItemBaseMetalsIronChest;
+import the_fireplace.fluidity.enums.FluidityChestChangerType;
+import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
+import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
+import the_fireplace.fluidity.events.FluidityIronChestsCommonEvents;
+import the_fireplace.fluidity.handler.FluidityIronChestsGuiHandler;
+import the_fireplace.fluidity.items.ItemFluidityIronChest;
 import the_fireplace.fluidity.tools.Registry;
 
-public class BaseMetalsIronChests implements IModCompat {
+public class FluidityIronChests implements IModCompat {
 
 	public static Block fluidityChest;
 
@@ -34,33 +35,34 @@ public class BaseMetalsIronChests implements IModCompat {
 
 	@Override
 	public void postInit() {
-
+		if(canIronChest())
+			fluidityChest.setCreativeTab(Fluidity.tabFluidity);
 	}
 
 	@Override
 	public void init() {
-		BaseMetalsChestChangerType.buildItems();
-		BaseMetalsIronChestChangerType.buildItems();
-		IronBaseMetalsChestChangerType.buildItems();
+		FluidityChestChangerType.buildItems();
+		FluidityIronChestChangerType.buildItems();
+		IronFluidityChestChangerType.buildItems();
 		GameRegistry.register(fluidityChest);
-		GameRegistry.register(new ItemBaseMetalsIronChest(fluidityChest));
+		GameRegistry.register(new ItemFluidityIronChest(fluidityChest));
 		Fluidity.proxy.getBMICProxy().register();
-		BaseMetalsIronChestType.registerBlocksAndRecipes((BlockFluidityIronChest) fluidityChest);
-		BaseMetalsChestChangerType.generateRecipes();
-		BaseMetalsIronChestChangerType.generateRecipes();
-		IronBaseMetalsChestChangerType.generateRecipes();
+		FluidityIronChestType.registerBlocksAndRecipes((BlockFluidityIronChest) fluidityChest);
+		FluidityChestChangerType.generateRecipes();
+		FluidityIronChestChangerType.generateRecipes();
+		IronFluidityChestChangerType.generateRecipes();
 
-		BaseMetalsIronChestType[] chests = BaseMetalsIronChestType.VALUES;
+		FluidityIronChestType[] chests = FluidityIronChestType.VALUES;
 		int chestCount = chests.length;
 
 		for(int i = 0; i < chestCount; ++i) {
-			BaseMetalsIronChestType chestType = chests[i];
+			FluidityIronChestType chestType = chests[i];
 			GameRegistry.registerTileEntity(chestType.clazz, "Fluidity." + chestType.name());
 		}
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new BaseMetalsIronChestsGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(Fluidity.instance, new FluidityIronChestsGuiHandler());
 		addRecipes();
-		MinecraftForge.EVENT_BUS.register(new BaseMetalsIronChestsCommonEvents());
+		MinecraftForge.EVENT_BUS.register(new FluidityIronChestsCommonEvents());
 	}
 
 	private void addRecipes() {
@@ -98,11 +100,23 @@ public class BaseMetalsIronChests implements IModCompat {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBuiltInBlocks(fluidityChest);
 
 		ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-		for (BaseMetalsIronChestType chestType : BaseMetalsIronChestType.values()) {
+		for (FluidityIronChestType chestType : FluidityIronChestType.values()) {
 			Item chestItem = Item.getItemFromBlock(fluidityChest);
 			mesher.register(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase(), "inventory"));
 			ModelBakery.registerItemVariants(chestItem, new ResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase()));
 		}
 	}
 
+	/**
+	 * Are any metals in the OreDictionary that can be used to make the custom iron chests?
+	 * ONLY CALL IN POST-INIT OR LATER
+     */
+	public static boolean canIronChest(){
+		String[] names = new String[]{"ingotBronze", "ingotTin", "ingotLead", "ingotNickel", "ingotPlatinum", "ingotCupronickel", "ingotBrass", "ingotColdiron", "ingotSteel", "ingotInvar", "ingotElectrum", "ingotMithril"};
+		for(String name:names){
+			if(OreDictionary.doesOreNameExist(name))
+				return true;
+		}
+		return false;
+	}
 }

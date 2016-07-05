@@ -6,9 +6,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import the_fireplace.fluidity.compat.BaseMetalsIronChests;
+import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.entity.tile.renderer.TileEntityFluidityChestRenderer;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
 
 /**
  * @author The_Fireplace
@@ -16,9 +16,9 @@ import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
 @SideOnly(Side.CLIENT)
 public class BMICClient implements BMICProxy {
     public void register(){
-        Item chestItem = Item.getItemFromBlock(BaseMetalsIronChests.fluidityChest);
+        Item chestItem = Item.getItemFromBlock(FluidityIronChests.fluidityChest);
 
-        for(BaseMetalsIronChestType type : BaseMetalsIronChestType.values()) {
+        for(FluidityIronChestType type : FluidityIronChestType.values()) {
             ModelLoader.setCustomModelResourceLocation(chestItem, type.ordinal(), new ModelResourceLocation(chestItem.getRegistryName(), "variant=" + type.getName()));
 
             ClientRegistry.bindTileEntitySpecialRenderer(type.clazz, new TileEntityFluidityChestRenderer());

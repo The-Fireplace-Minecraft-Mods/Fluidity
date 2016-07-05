@@ -10,7 +10,7 @@ import the_fireplace.fluidity.entity.ai.BaseMetalsIronChestOcelotSit;
 
 import java.util.HashSet;
 
-public class BaseMetalsIronChestsCommonEvents {
+public class FluidityIronChestsCommonEvents {
 	@SubscribeEvent
 	public void changeSittingTaskForOcelots(LivingEvent.LivingUpdateEvent evt)
 	{

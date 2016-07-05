@@ -7,11 +7,11 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import the_fireplace.fluidity.Fluidity;
-import the_fireplace.fluidity.container.ContainerBaseMetalIronChest;
+import the_fireplace.fluidity.container.ContainerFluidityIronChest;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
 
-public class GUIBaseMetalsChest extends GuiContainer {
+public class GUIFluidityIronChest extends GuiContainer {
 	public enum ResourceList {
 		COPPER(new ResourceLocation("ironchest", "textures/gui/coppercontainer.png")),
 		IRON(new ResourceLocation("ironchest", "textures/gui/ironcontainer.png")),
@@ -25,25 +25,25 @@ public class GUIBaseMetalsChest extends GuiContainer {
 		}
 	}
 	public enum GUI {
-		BRONZE(184, 202, ResourceList.IRON, BaseMetalsIronChestType.BRONZE),
-		INVAR(184, 256, ResourceList.GOLD, BaseMetalsIronChestType.INVAR),
-		ELECTRUM(184, 256, ResourceList.GOLD, BaseMetalsIronChestType.ELECTRUM),
-		TIN(184, 184, ResourceList.COPPER, BaseMetalsIronChestType.TIN),
-		BRASS(184, 184, ResourceList.COPPER, BaseMetalsIronChestType.BRASS),
-		LEAD(184, 238, ResourceList.SILVER, BaseMetalsIronChestType.LEAD),
-		STEEL(184, 238, ResourceList.SILVER, BaseMetalsIronChestType.STEEL),
-		NICKEL(184, 238, ResourceList.SILVER, BaseMetalsIronChestType.NICKEL),
-		COLDIRON(184, 238, ResourceList.SILVER, BaseMetalsIronChestType.COLDIRON),
-		ADAMANTINE(256, 256, ResourceList.ADAMANTINE, BaseMetalsIronChestType.ADAMANTINE),
-		AQUARIUM(238, 256, ResourceList.DIAMOND, BaseMetalsIronChestType.AQUARIUM),
-		MITHRIL(238, 256, ResourceList.DIAMOND, BaseMetalsIronChestType.MITHRIL),
-		STARSTEEL(256, 256, ResourceList.ADAMANTINE, BaseMetalsIronChestType.STARSTEEL);
+		BRONZE(184, 202, ResourceList.IRON, FluidityIronChestType.BRONZE),
+		INVAR(184, 256, ResourceList.GOLD, FluidityIronChestType.INVAR),
+		ELECTRUM(184, 256, ResourceList.GOLD, FluidityIronChestType.ELECTRUM),
+		TIN(184, 184, ResourceList.COPPER, FluidityIronChestType.TIN),
+		BRASS(184, 184, ResourceList.COPPER, FluidityIronChestType.BRASS),
+		LEAD(184, 238, ResourceList.SILVER, FluidityIronChestType.LEAD),
+		STEEL(184, 238, ResourceList.SILVER, FluidityIronChestType.STEEL),
+		NICKEL(184, 238, ResourceList.SILVER, FluidityIronChestType.NICKEL),
+		COLDIRON(184, 238, ResourceList.SILVER, FluidityIronChestType.COLDIRON),
+		ADAMANTINE(256, 256, ResourceList.ADAMANTINE, FluidityIronChestType.ADAMANTINE),
+		AQUARIUM(238, 256, ResourceList.DIAMOND, FluidityIronChestType.AQUARIUM),
+		MITHRIL(238, 256, ResourceList.DIAMOND, FluidityIronChestType.MITHRIL),
+		STARSTEEL(256, 256, ResourceList.ADAMANTINE, FluidityIronChestType.STARSTEEL);
 		private int xSize;
 		private int ySize;
 		private ResourceList guiResourceList;
-		private BaseMetalsIronChestType mainType;
+		private FluidityIronChestType mainType;
 
-		GUI(int xSize, int ySize, ResourceList guiResourceList, BaseMetalsIronChestType mainType)
+		GUI(int xSize, int ySize, ResourceList guiResourceList, FluidityIronChestType mainType)
 		{
 			this.xSize = xSize;
 			this.ySize = ySize;
@@ -54,12 +54,12 @@ public class GUIBaseMetalsChest extends GuiContainer {
 
 		protected Container makeContainer(IInventory player, IInventory chest)
 		{
-			return new ContainerBaseMetalIronChest(player, chest, mainType, xSize, ySize);
+			return new ContainerFluidityIronChest(player, chest, mainType, xSize, ySize);
 		}
 
-		public static GUIBaseMetalsChest buildGUI(BaseMetalsIronChestType type, IInventory playerInventory, TileEntityFluidityIronChest chestInventory)
+		public static GUIFluidityIronChest buildGUI(FluidityIronChestType type, IInventory playerInventory, TileEntityFluidityIronChest chestInventory)
 		{
-			return new GUIBaseMetalsChest(values()[chestInventory.getType().ordinal()], playerInventory, chestInventory);
+			return new GUIFluidityIronChest(values()[chestInventory.getType().ordinal()], playerInventory, chestInventory);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class GUIBaseMetalsChest extends GuiContainer {
 
 	private GUI type;
 
-	private GUIBaseMetalsChest(GUI type, IInventory player, IInventory chest)
+	private GUIFluidityIronChest(GUI type, IInventory player, IInventory chest)
 	{
 		super(type.makeContainer(player, chest));
 		this.type = type;

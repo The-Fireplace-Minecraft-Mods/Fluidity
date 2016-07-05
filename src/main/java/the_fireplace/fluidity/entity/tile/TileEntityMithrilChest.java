@@ -1,10 +1,10 @@
 package the_fireplace.fluidity.entity.tile;
 
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
 
 public class TileEntityMithrilChest extends TileEntityFluidityIronChest {
 	public TileEntityMithrilChest()
 	{
-		super(BaseMetalsIronChestType.MITHRIL);
+		super(FluidityIronChestType.MITHRIL);
 	}
 }

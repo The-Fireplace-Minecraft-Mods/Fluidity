@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
 import the_fireplace.fluidity.particle.ParticleIronChest;
 
 import java.util.ArrayList;
@@ -40,18 +40,17 @@ import java.util.Random;
 
 public class BlockFluidityIronChest extends BlockContainer
 {
-	public static final PropertyEnum<BaseMetalsIronChestType> VARIANT_PROP = PropertyEnum.create("variant", BaseMetalsIronChestType.class);
+	public static final PropertyEnum<FluidityIronChestType> VARIANT_PROP = PropertyEnum.create("variant", FluidityIronChestType.class);
 	protected static final AxisAlignedBB IRON_CHEST_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.875D, 0.9375D);
 
 	public BlockFluidityIronChest()
 	{
 		super(Material.IRON);
 
-		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT_PROP, BaseMetalsIronChestType.BRONZE));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT_PROP, FluidityIronChestType.BRONZE));
 
 		this.setHardness(3.0F);
 		this.setUnlocalizedName("iron_chest");
-		this.setCreativeTab(Fluidity.tabFluidity);
 		this.setRegistryName("fluidity_iron_chest");
 	}
 
@@ -98,14 +97,14 @@ public class BlockFluidityIronChest extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world, int metadata)
 	{
-		return BaseMetalsIronChestType.makeEntity(metadata);
+		return FluidityIronChestType.makeEntity(metadata);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, List list)
 	{
-		for (BaseMetalsIronChestType type : BaseMetalsIronChestType.values())
+		for (FluidityIronChestType type : FluidityIronChestType.values())
 			if (type.isValidForCreativeMode())
 				list.add(new ItemStack(itemIn, 1, type.ordinal()));
 	}
@@ -113,7 +112,7 @@ public class BlockFluidityIronChest extends BlockContainer
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(VARIANT_PROP, BaseMetalsIronChestType.values()[meta]);
+		return this.getDefaultState().withProperty(VARIANT_PROP, FluidityIronChestType.values()[meta]);
 	}
 
 	@Override

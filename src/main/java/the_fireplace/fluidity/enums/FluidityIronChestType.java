@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public enum BaseMetalsIronChestType implements IStringSerializable {
+public enum FluidityIronChestType implements IStringSerializable {
 	BRONZE(54, 9, "Bronze Chest", "bronzechest.png", 0, Collections.singletonList("ingotBronze"), TileEntityFluidityIronChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
 	INVAR(81, 9, "Invar Chest", "invarchest.png", 1, Collections.singletonList("ingotInvar"), TileEntityInvarChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
 	ELECTRUM(81, 9, "Electrum Chest", "electrumchest.png", 2, Collections.singletonList("ingotElectrum"), TileEntityElectrumChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm"),
@@ -34,7 +34,7 @@ public enum BaseMetalsIronChestType implements IStringSerializable {
 	CUPRONICKEL(54, 9, "Cupronickel Chest", "cupronickelchest.png", 13, Collections.singletonList("ingotCupronickel"), TileEntityCupronickelChest.class, "mmmmCmmmm", "mGmGBGmGm", "mGmG3GmGm", "mGmG4GmGm"),
 	PLATINUM(81, 9, "Platinum Chest", "platinumchest.png", 14, Collections.singletonList("ingotPlatinum"), TileEntityPlatinumChest.class, "mmmm0mmmm", "mmmmdmmmm", "mmmmImmmm", "mGmG5GmGm", "mGmG6GmGm", "mGmG7GmGm", "mGmG8GmGm");
 
-	public static final BaseMetalsIronChestType[] VALUES;
+	public static final FluidityIronChestType[] VALUES;
 	public final int size;
 	public final int rowLength;
 	public String friendlyName;
@@ -46,13 +46,13 @@ public enum BaseMetalsIronChestType implements IStringSerializable {
 	private ArrayList<String> matList;
 	private Item itemFilter;
 
-	BaseMetalsIronChestType(int size, int rowLength, String friendlyName, String modelTexture, int textureRow, List<String> mats,
-							Class<? extends TileEntityFluidityIronChest> clazz, String... recipes)
+	FluidityIronChestType(int size, int rowLength, String friendlyName, String modelTexture, int textureRow, List<String> mats,
+						  Class<? extends TileEntityFluidityIronChest> clazz, String... recipes)
 	{
 		this(size, rowLength, friendlyName, modelTexture, textureRow, mats, clazz, null, recipes);
 	}
-	BaseMetalsIronChestType(int size, int rowLength, String friendlyName, String modelTexture, int textureRow, List<String> mats,
-							Class<? extends TileEntityFluidityIronChest> clazz, Item itemFilter, String... recipes)
+	FluidityIronChestType(int size, int rowLength, String friendlyName, String modelTexture, int textureRow, List<String> mats,
+						  Class<? extends TileEntityFluidityIronChest> clazz, Item itemFilter, String... recipes)
 	{
 		this.size = size;
 		this.rowLength = rowLength;
@@ -106,13 +106,13 @@ public enum BaseMetalsIronChestType implements IStringSerializable {
 
 	public static void registerBlocksAndRecipes(BlockFluidityIronChest blockResult)
 	{
-		for (BaseMetalsIronChestType typ : values())
+		for (FluidityIronChestType typ : values())
 		{
 			generateRecipesForType(blockResult, typ);
 		}
 	}
 
-	public static void generateRecipesForType(BlockFluidityIronChest blockResult, BaseMetalsIronChestType type)
+	public static void generateRecipesForType(BlockFluidityIronChest blockResult, FluidityIronChestType type)
 	{
 		for (String recipe : type.recipes)
 		{

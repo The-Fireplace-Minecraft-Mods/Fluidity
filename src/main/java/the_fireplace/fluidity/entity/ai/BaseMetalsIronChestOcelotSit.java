@@ -4,7 +4,7 @@ import cpw.mods.ironchest.IronChestAIOcelotSit;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import the_fireplace.fluidity.compat.BaseMetalsIronChests;
+import the_fireplace.fluidity.compat.FluidityIronChests;
 
 public class BaseMetalsIronChestOcelotSit extends IronChestAIOcelotSit {
 	public BaseMetalsIronChestOcelotSit(EntityOcelot par1EntityOcelot, float par2)
@@ -14,6 +14,6 @@ public class BaseMetalsIronChestOcelotSit extends IronChestAIOcelotSit {
 
 	@Override
 	protected boolean shouldMoveTo(World world, BlockPos pos) {
-		return world.getBlockState(pos).getBlock() == BaseMetalsIronChests.fluidityChest || super.shouldMoveTo(world, pos);
+		return world.getBlockState(pos).getBlock() == FluidityIronChests.fluidityChest || super.shouldMoveTo(world, pos);
 	}
 }

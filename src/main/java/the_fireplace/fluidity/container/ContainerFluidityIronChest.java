@@ -7,15 +7,15 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
 
 @ChestContainer(isLargeChest = true)
-public class ContainerBaseMetalIronChest extends Container {
-	private BaseMetalsIronChestType type;
+public class ContainerFluidityIronChest extends Container {
+	private FluidityIronChestType type;
 	private EntityPlayer player;
 	private IInventory chest;
 
-	public ContainerBaseMetalIronChest(IInventory playerInventory, IInventory chestInventory, BaseMetalsIronChestType type, int xSize, int ySize)
+	public ContainerFluidityIronChest(IInventory playerInventory, IInventory chestInventory, FluidityIronChestType type, int xSize, int ySize)
 	{
 		chest = chestInventory;
 		player = ((InventoryPlayer) playerInventory).player;
@@ -69,7 +69,7 @@ public class ContainerBaseMetalIronChest extends Container {
 		chest.closeInventory(entityplayer);
 	}
 
-	protected void layoutContainer(IInventory playerInventory, IInventory chestInventory, BaseMetalsIronChestType type, int xSize, int ySize)
+	protected void layoutContainer(IInventory playerInventory, IInventory chestInventory, FluidityIronChestType type, int xSize, int ySize)
 	{
 
 		for (int chestRow = 0; chestRow < type.getRowCount(); chestRow++)

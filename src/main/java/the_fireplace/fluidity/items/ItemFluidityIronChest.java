@@ -3,10 +3,10 @@ package the_fireplace.fluidity.items;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
 
-public class ItemBaseMetalsIronChest extends ItemBlock {
-	public ItemBaseMetalsIronChest(Block block)
+public class ItemFluidityIronChest extends ItemBlock {
+	public ItemFluidityIronChest(Block block)
 	{
 		super(block);
 
@@ -18,12 +18,12 @@ public class ItemBaseMetalsIronChest extends ItemBlock {
 	@Override
 	public int getMetadata(int meta)
 	{
-		return BaseMetalsIronChestType.validateMeta(meta);
+		return FluidityIronChestType.validateMeta(meta);
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack)
 	{
-		return "tile.ironchest:" + BaseMetalsIronChestType.values()[itemstack.getMetadata()].name();
+		return "tile.ironchest:" + FluidityIronChestType.values()[itemstack.getMetadata()].name();
 	}
 }

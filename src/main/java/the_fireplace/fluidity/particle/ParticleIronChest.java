@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
 
 import javax.annotation.Nullable;
 
@@ -28,7 +28,7 @@ public class ParticleIronChest extends Particle
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
         this.sourceState = state;
         if(state.getProperties().containsKey(BlockFluidityIronChest.VARIANT_PROP))
-            this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(BaseMetalsIronChestType.VALUES[state.getValue(BlockFluidityIronChest.VARIANT_PROP).ordinal()].getBreakTexture()));
+            this.setParticleTexture(Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(FluidityIronChestType.VALUES[state.getValue(BlockFluidityIronChest.VARIANT_PROP).ordinal()].getBreakTexture()));
         this.particleGravity = state.getBlock().blockParticleGravity;
         this.particleRed = this.particleGreen = this.particleBlue = 0.6F;
         this.particleScale /= 2.0F;

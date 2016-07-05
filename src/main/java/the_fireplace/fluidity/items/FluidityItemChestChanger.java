@@ -15,24 +15,24 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import the_fireplace.fluidity.Fluidity;
-import the_fireplace.fluidity.compat.BaseMetalsIronChests;
+import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
-import the_fireplace.fluidity.enums.BaseMetalsChestChangerType;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestChangerType;
-import the_fireplace.fluidity.enums.BaseMetalsIronChestType;
-import the_fireplace.fluidity.enums.IronBaseMetalsChestChangerType;
+import the_fireplace.fluidity.enums.FluidityChestChangerType;
+import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
+import the_fireplace.fluidity.enums.FluidityIronChestType;
+import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
 
-public class BaseMetalsItemChestChanger extends Item
+public class FluidityItemChestChanger extends Item
 {
 	/**
 	 * The changer type to use. 0 is Fluidity to Fluidity, 1 is Fluidity to Iron, 2 is Iron to Fluidity
 	 */
 	private byte useType;
-	private BaseMetalsChestChangerType type1;
-	private BaseMetalsIronChestChangerType type2;
-	private IronBaseMetalsChestChangerType type3;
+	private FluidityChestChangerType type1;
+	private FluidityIronChestChangerType type2;
+	private IronFluidityChestChangerType type3;
 
-	public BaseMetalsItemChestChanger(BaseMetalsChestChangerType type)
+	public FluidityItemChestChanger(FluidityChestChangerType type)
 	{
 		this.type1 = type;
 		this.useType = 0;
@@ -42,7 +42,7 @@ public class BaseMetalsItemChestChanger extends Item
 		this.setCreativeTab(Fluidity.tabFluidity);
 	}
 
-	public BaseMetalsItemChestChanger(BaseMetalsIronChestChangerType type)
+	public FluidityItemChestChanger(FluidityIronChestChangerType type)
 	{
 		this.type2 = type;
 		this.useType = 1;
@@ -52,7 +52,7 @@ public class BaseMetalsItemChestChanger extends Item
 		this.setCreativeTab(Fluidity.tabFluidity);
 	}
 
-	public BaseMetalsItemChestChanger(IronBaseMetalsChestChangerType type)
+	public FluidityItemChestChanger(IronFluidityChestChangerType type)
 	{
 		this.type3 = type;
 		this.useType = 2;
@@ -75,7 +75,7 @@ public class BaseMetalsItemChestChanger extends Item
 			return EnumActionResult.PASS;
 		switch(useType){
 		case 0:{
-			if(world.getBlockState(pos) != BaseMetalsIronChests.fluidityChest.getStateFromMeta(BaseMetalsIronChestType.valueOf(type1.sourcename.toUpperCase()).ordinal())){
+			if(world.getBlockState(pos) != FluidityIronChests.fluidityChest.getStateFromMeta(FluidityIronChestType.valueOf(type1.sourcename.toUpperCase()).ordinal())){
 				return EnumActionResult.PASS;
 			}
 			TileEntity te = world.getTileEntity(pos);
@@ -86,7 +86,7 @@ public class BaseMetalsItemChestChanger extends Item
 				if (te instanceof TileEntityFluidityIronChest)
 				{
 					chestContents = ((TileEntityFluidityIronChest) te).chestContents;
-					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal());
+					newchest = FluidityIronChestType.makeEntity(this.getTargetChestOrdinal());
 					if (newchest == null)
 						return EnumActionResult.PASS;
 				}
@@ -98,7 +98,7 @@ public class BaseMetalsItemChestChanger extends Item
 			world.setBlockToAir(pos);
 
 			world.setTileEntity(pos, newchest);
-			IBlockState state = BaseMetalsIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal());
+			IBlockState state = FluidityIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal());
 			world.setBlockState(pos, state, 3);
 
 			world.notifyBlockUpdate(pos, state, state, 3);
@@ -112,7 +112,7 @@ public class BaseMetalsItemChestChanger extends Item
 			stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
 			return EnumActionResult.SUCCESS;}
 		case 1:{
-			if(world.getBlockState(pos) != BaseMetalsIronChests.fluidityChest.getStateFromMeta(BaseMetalsIronChestType.valueOf(type2.sourcename.toUpperCase()).ordinal())){
+			if(world.getBlockState(pos) != FluidityIronChests.fluidityChest.getStateFromMeta(FluidityIronChestType.valueOf(type2.sourcename.toUpperCase()).ordinal())){
 				return EnumActionResult.PASS;
 			}
 			TileEntity te = world.getTileEntity(pos);
@@ -166,7 +166,7 @@ public class BaseMetalsItemChestChanger extends Item
 				if (te instanceof TileEntityIronChest)
 				{
 					chestContents = ((TileEntityIronChest) te).chestContents;
-					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal());
+					newchest = FluidityIronChestType.makeEntity(this.getTargetChestOrdinal());
 					if (newchest == null)
 						return EnumActionResult.PASS;
 				}else if (te instanceof TileEntityChest){
@@ -177,7 +177,7 @@ public class BaseMetalsItemChestChanger extends Item
 					chestContents = new ItemStack[((TileEntityChest) te).getSizeInventory()];
 					for (int i = 0; i < chestContents.length; i++)
 						chestContents[i] = ((TileEntityChest) te).getStackInSlot(i);
-					newchest = BaseMetalsIronChestType.makeEntity(this.getTargetChestOrdinal());
+					newchest = FluidityIronChestType.makeEntity(this.getTargetChestOrdinal());
 				}
 			}
 
@@ -189,7 +189,7 @@ public class BaseMetalsItemChestChanger extends Item
 			world.setBlockToAir(pos);
 
 			world.setTileEntity(pos, newchest);
-			IBlockState state = BaseMetalsIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal());
+			IBlockState state = FluidityIronChests.fluidityChest.getStateFromMeta(newchest.getType().ordinal());
 			world.setBlockState(pos, state, 3);
 
 			world.notifyBlockUpdate(pos, state, state, 3);
