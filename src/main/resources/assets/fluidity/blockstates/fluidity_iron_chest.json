@@ -1,8 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "ironchest:chest",
-    "transform": "forge:default-block"
+    "model": "ironchest:chest"
   },
   "variants": {
     "variant": {
