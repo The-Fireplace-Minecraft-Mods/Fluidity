@@ -6,12 +6,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntityLockable;
+import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
@@ -21,9 +22,10 @@ import the_fireplace.fluidity.compat.FluidityIronChests;
 import the_fireplace.fluidity.container.ContainerFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
-public class TileEntityFluidityIronChest extends TileEntityLockable implements ITickable, IInventory
+public class TileEntityFluidityIronChest extends TileEntityLockableLoot implements ITickable, IInventory
 {
 	private int ticksSinceSync = -1;
 	public float prevLidAngle;
@@ -83,38 +85,33 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	@Override
 	public ItemStack getStackInSlot(int i)
 	{
+		this.fillWithLoot(null);
+
 		inventoryTouched = true;
 		return chestContents[i];
 	}
 
 	@Override
+	@Nullable
 	public ItemStack decrStackSize(int i, int j)
 	{
-		if (chestContents[i] != null)
+		this.fillWithLoot(null);
+
+		ItemStack itemstack = ItemStackHelper.getAndSplit(this.chestContents, i, j);
+
+		if (itemstack != null)
 		{
-			if (chestContents[i].stackSize <= j)
-			{
-				ItemStack itemstack = chestContents[i];
-				chestContents[i] = null;
-				markDirty();
-				return itemstack;
-			}
-			ItemStack itemstack1 = chestContents[i].splitStack(j);
-			if (chestContents[i].stackSize == 0)
-			{
-				chestContents[i] = null;
-			}
-			markDirty();
-			return itemstack1;
-		} else
-		{
-			return null;
+			this.markDirty();
 		}
+
+		return itemstack;
 	}
 
 	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack)
 	{
+		this.fillWithLoot(null);
+
 		chestContents[i] = itemstack;
 		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit())
 		{
@@ -136,54 +133,71 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbttagcompound)
+	public void readFromNBT(NBTTagCompound compound)
 	{
-		super.readFromNBT(nbttagcompound);
+		super.readFromNBT(compound);
 
-		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		this.chestContents = new ItemStack[getSizeInventory()];
+		this.chestContents = new ItemStack[this.getSizeInventory()];
 
-		if (nbttagcompound.hasKey("CustomName", Constants.NBT.TAG_STRING))
+		if (compound.hasKey("CustomName", Constants.NBT.TAG_STRING))
 		{
-			this.customName = nbttagcompound.getString("CustomName");
+			this.customName = compound.getString("CustomName");
 		}
 
-		for (int i = 0; i < nbttaglist.tagCount(); i++)
+		if (!this.checkLootAndRead(compound))
 		{
-			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < chestContents.length)
+			NBTTagList itemList = compound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
+
+			for (int itemNumber = 0; itemNumber < itemList.tagCount(); ++itemNumber)
 			{
-				chestContents[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				NBTTagCompound item = itemList.getCompoundTagAt(itemNumber);
+
+				int slot = item.getByte("Slot") & 255;
+
+				if (slot >= 0 && slot < this.chestContents.length)
+				{
+					this.chestContents[slot] = ItemStack.loadItemStackFromNBT(item);
+				}
 			}
 		}
-		facing = EnumFacing.VALUES[nbttagcompound.getByte("facing")];
+
+		this.facing = EnumFacing.VALUES[compound.getByte("facing")];
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
-		super.writeToNBT(nbttagcompound);
-		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < chestContents.length; i++)
+		super.writeToNBT(compound);
+
+		if (!this.checkLootAndWrite(compound))
 		{
-			if (chestContents[i] != null)
+			NBTTagList itemList = new NBTTagList();
+
+			for (int slot = 0; slot < this.chestContents.length; ++slot)
 			{
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				chestContents[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
+				if (this.chestContents[slot] != null)
+				{
+					NBTTagCompound tag = new NBTTagCompound();
+
+					tag.setByte("Slot", (byte) slot);
+
+					this.chestContents[slot].writeToNBT(tag);
+
+					itemList.appendTag(tag);
+				}
 			}
+
+			compound.setTag("Items", itemList);
 		}
 
-		nbttagcompound.setTag("Items", nbttaglist);
-		nbttagcompound.setByte("facing", (byte)this.facing.ordinal());
+		compound.setByte("facing", (byte) this.facing.ordinal());
 
 		if (this.hasCustomName())
 		{
-			nbttagcompound.setString("CustomName", this.customName);
+			compound.setString("CustomName", this.customName);
 		}
-		return nbttagcompound;
+
+		return compound;
 	}
 
 	@Override
@@ -287,6 +301,8 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		}
 		numUsingPlayers++;
 		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, UPDATE_PLAYERNUMBERS, numUsingPlayers);
+		worldObj.notifyNeighborsOfStateChange(this.pos, FluidityIronChests.fluidityChest);
+		worldObj.notifyNeighborsOfStateChange(this.pos.down(), FluidityIronChests.fluidityChest);
 	}
 
 	@Override
@@ -298,6 +314,8 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 		}
 		numUsingPlayers--;
 		worldObj.addBlockEvent(pos, FluidityIronChests.fluidityChest, UPDATE_PLAYERNUMBERS, numUsingPlayers);
+		worldObj.notifyNeighborsOfStateChange(this.pos, FluidityIronChests.fluidityChest);
+		worldObj.notifyNeighborsOfStateChange(this.pos.down(), FluidityIronChests.fluidityChest);
 	}
 
 	public void setFacing(EnumFacing newFacing)
@@ -324,17 +342,12 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	}
 
 	@Override
-	public ItemStack removeStackFromSlot(int par1)
+	@Nullable
+	public ItemStack removeStackFromSlot(int index)
 	{
-		if (this.chestContents[par1] != null)
-		{
-			ItemStack var2 = this.chestContents[par1];
-			this.chestContents[par1] = null;
-			return var2;
-		} else
-		{
-			return null;
-		}
+		this.fillWithLoot(null);
+
+		return ItemStackHelper.getAndRemove(this.chestContents, index);
 	}
 
 	@Override
@@ -376,6 +389,8 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	@Override
 	public void clear()
 	{
+		this.fillWithLoot(null);
+
 		for (int i = 0; i < this.chestContents.length; ++i)
 		{
 			this.chestContents[i] = null;
@@ -385,7 +400,9 @@ public class TileEntityFluidityIronChest extends TileEntityLockable implements I
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer player)
 	{
-		return null;
+		this.fillWithLoot(null);
+
+		return new ContainerFluidityIronChest(playerInventory, this, type, 0, 0);//TODO: Replace 0,0 with someting else if needed
 	}
 
 	@Override

@@ -10,13 +10,12 @@ import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -168,39 +167,9 @@ public class BlockFluidityIronChest extends BlockContainer
 		if (tileentitychest != null)
 		{
 			tileentitychest.removeAdornments();
-			dropContent(0, tileentitychest, world, tileentitychest.getPos());
+			InventoryHelper.dropInventoryItems(world, pos, tileentitychest);
 		}
 		super.breakBlock(world, pos, blockState);
-	}
-
-	public void dropContent(int newSize, IInventory chest, World world, BlockPos pos)
-	{
-		Random random = world.rand;
-
-		for (int l = newSize; l < chest.getSizeInventory(); l++)
-		{
-			ItemStack itemstack = chest.getStackInSlot(l);
-			if (itemstack == null)
-				continue;
-			float f = random.nextFloat() * 0.8F + 0.1F;
-			float f1 = random.nextFloat() * 0.8F + 0.1F;
-			float f2 = random.nextFloat() * 0.8F + 0.1F;
-			while (itemstack.stackSize > 0)
-			{
-				int i1 = random.nextInt(21) + 10;
-				if (i1 > itemstack.stackSize)
-					i1 = itemstack.stackSize;
-				itemstack.stackSize -= i1;
-				EntityItem entityitem = new EntityItem(world, pos.getX() + f, (float) pos.getY() + (newSize > 0 ? 1 : 0) + f1, pos.getZ() + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getMetadata()));
-				float f3 = 0.05F;
-				entityitem.motionX = (float) random.nextGaussian() * f3;
-				entityitem.motionY = (float) random.nextGaussian() * f3 + 0.2F;
-				entityitem.motionZ = (float) random.nextGaussian() * f3;
-				if (itemstack.hasTagCompound())
-					entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
-				world.spawnEntityInWorld(entityitem);
-			}
-		}
 	}
 
 	@Override
