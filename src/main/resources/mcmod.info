@@ -3,16 +3,16 @@
   "modid": "fluidity",
   "name": "Fluidity",
   "description": "Adds all kinds of content that should only exist when certain mods are loaded together.",
-  "version": "6.0.0.8",
-  "mcversion": "1.9.4",
-  "url": "http://minecraft.curseforge.com/projects/fluidity",
-  "updateUrl": "http://minecraft.curseforge.com/projects/fluidity",
+  "version": "6.0.1.1",
+  "mcversion": "1.10.2",
+  "url": "https://mods.curse.com/mc-mods/minecraft/241409-fluidity",
+  "updateUrl": "https://mods.curse.com/mc-mods/minecraft/241409-fluidity",
   "authorList": ["The_Fireplace"],
   "credits": "The_Fireplace for the idea of and making the mod",
   "logoFile": "",
   "screenshots": [],
   "dependencies": [ "actuallyadditions", "adobeblocks", "basemetals", "cookingforblockheads", "electricadvantage", "EnderIO", "frt", "invtweaks", "IronChest", "moreanvils", "randomthings", "xreliquary"],
-  "requiredMods": ["Forge@[12.17.0.1909,)"],
+  "requiredMods": ["Forge@[12.18.1.2019,)"],
   "useDependencyInformation": true
 }
 ]
