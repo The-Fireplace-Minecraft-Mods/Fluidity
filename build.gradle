@@ -28,29 +28,33 @@ dependencies {
 	compile "com.enderio.core:EnderCore:1.10.2-0.4.1.51-beta:api"
 	compile "com.enderio:EnderIO:1.10.2-3.0.1.96_beta:dev"
 	compile "mcjty.theoneprobe:TheOneProbe:1.10-1.0.15-28"
+	compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.10.2-5.0.0.2079:deobf"
 }
 
 repositories{
-	maven{ //NeoTech+Bookshelf
+	maven{ //NeoTech, Bookshelf
 		url "http://teambrmodding.com/maven2/"
 	}
 	maven { //Waila
         url "http://mobiusstrip.eu/maven"
     }
-    maven { //JEI+Natura+Mantle+TCon
+    maven { //JEI, Natura, Mantle, TiCon
         url "http://dvs1.progwml6.com/files/maven"
     }
-    maven { //TechReborn+RebornCore
+    maven { //TechReborn, RebornCore
 		url "http://maven.modmuss50.me/"
 	}
-	maven { //EnderIO+EnderCore+EnderZoo+TheOneProbe
+	maven { //EnderIO, EnderCore, EnderZoo, The One Probe
 		url = "http://maven.tterrag.com"
 	}
-	maven { //IC2+Forestry
+	maven { //IC2, Forestry
 		url = "http://maven.ic2.player.to/"
 	}
-	maven { //ActuallyAdditions+OpenRadio
+	maven { //ActuallyAdditions, OpenRadio
 		url = "https://maven.chaosfield.at/"
+	}
+	maven { //Biomes O' Plenty, Iron Chests, probably others
+		url = "http://files.minecraftforge.net/maven/"
 	}
 }
 
