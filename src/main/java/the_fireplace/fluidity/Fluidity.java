@@ -42,10 +42,12 @@ public class Fluidity {
 		//supportedMods.add("cannibalism");
 		supportedMods.add("cookingforblockheads");
 		supportedMods.add("electricadvantage");
-		supportedMods.add("EnderIO");
+		supportedMods.add("EnderIO");//Remove in 1.11
+		supportedMods.add("enderio");
 		supportedMods.add("frt");
 		supportedMods.add("invtweaks");
-		supportedMods.add("IronChest");
+		supportedMods.add("IronChest");//remove in 1.11
+		supportedMods.add("ironchest");
 		supportedMods.add("moreanvils");
 		supportedMods.add("randomthings");
 		//supportedMods.add("realstonetools");
@@ -90,7 +92,7 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
-		if(Loader.isModLoaded("IronChest")){
+		if(Loader.isModLoaded("IronChest") || Loader.isModLoaded("ironchest")){
 			compat = new FluidityIronChests();
 			compat.preInit();
 			if(event.getSide().isClient())
@@ -117,7 +119,7 @@ public class Fluidity {
 			compat = new ActuallyAdditionsBaseMetals();
 			compat.init();
 		}
-		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("EnderIO")){
+		if(Loader.isModLoaded("actuallyadditions") && (Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio"))){
 			compat = new ActuallyAdditionsEnderIO();
 			compat.init();
 		}
@@ -137,7 +139,7 @@ public class Fluidity {
 			compat = new BaseMetalsCannibalism();
 			compat.init();
 		}*/
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("EnderIO")){
+		if(Loader.isModLoaded("basemetals") && (Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio"))){
 			compat = new BaseMetalsEnderIO();
 			compat.init();
 		}
@@ -153,15 +155,15 @@ public class Fluidity {
 			compat = new CannibalismThaumcraft();
 			compat.init();
 		}*/
-		if(Loader.isModLoaded("electricadvantage") && Loader.isModLoaded("EnderIO")){
+		if(Loader.isModLoaded("electricadvantage") && (Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio"))){
 			compat = new ElectricAdvantageEnderIO();
 			compat.init();
 		}
-		if(Loader.isModLoaded("EnderIO") && Loader.isModLoaded("frt")){
+		if((Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio")) && Loader.isModLoaded("frt")){
 			compat = new EnderIOFRT();
 			compat.init();
 		}
-		if(Loader.isModLoaded("IronChest")){
+		if(Loader.isModLoaded("IronChest") || Loader.isModLoaded("ironchest")){
 			compat = new FluidityIronChests();
 			compat.init();
 		}
