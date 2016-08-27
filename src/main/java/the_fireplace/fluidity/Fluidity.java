@@ -63,30 +63,44 @@ public class Fluidity {
 		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("randomthings")){
 			compat = new ActuallyAdditionsRandomThings();
 			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
 			compat = new AdobeBlocksFRT();
 			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}
 		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}*/
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}
 		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}*/
 		if(Loader.isModLoaded("IronChest")){
 			compat = new FluidityIronChests();
 			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}
 		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
 			compat = new ThaumcraftFRT();
 			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
 		}*/
 		if(event.getSide().isClient())
 			overrideDescription(event.getModMetadata());
@@ -110,8 +124,6 @@ public class Fluidity {
 		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("randomthings")){
 			compat = new ActuallyAdditionsRandomThings();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}
 		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("xreliquary")){
 			compat = new ActuallyAdditionsReliquary();
@@ -120,14 +132,10 @@ public class Fluidity {
 		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
 			compat = new AdobeBlocksFRT();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}
 		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}*/
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("EnderIO")){
 			compat = new BaseMetalsEnderIO();
@@ -136,8 +144,6 @@ public class Fluidity {
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}
 		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
 			compat = new CannibalismRealStoneTools();
@@ -146,8 +152,6 @@ public class Fluidity {
 		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}*/
 		if(Loader.isModLoaded("electricadvantage") && Loader.isModLoaded("EnderIO")){
 			compat = new ElectricAdvantageEnderIO();
@@ -160,14 +164,10 @@ public class Fluidity {
 		if(Loader.isModLoaded("IronChest")){
 			compat = new FluidityIronChests();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}
 		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
 			compat = new ThaumcraftFRT();
 			compat.init();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
 		}*/
 	}
 	@EventHandler

@@ -2,13 +2,11 @@ package the_fireplace.fluidity.compat;
 
 import cpw.mods.ironchest.IronChest;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -34,6 +32,13 @@ public class FluidityIronChests implements IModCompat {
 	@Override
 	public void preInit() {
 		fluidityChest = new BlockFluidityIronChest();
+
+		FluidityChestChangerType.buildItems();
+		FluidityIronChestChangerType.buildItems();
+		IronFluidityChestChangerType.buildItems();
+		GameRegistry.register(fluidityChest);
+		GameRegistry.register(new ItemFluidityIronChest(fluidityChest));
+		Fluidity.proxy.getBMICProxy().register();
 	}
 
 	@Override
@@ -43,12 +48,6 @@ public class FluidityIronChests implements IModCompat {
 
 	@Override
 	public void init() {
-		FluidityChestChangerType.buildItems();
-		FluidityIronChestChangerType.buildItems();
-		IronFluidityChestChangerType.buildItems();
-		GameRegistry.register(fluidityChest);
-		GameRegistry.register(new ItemFluidityIronChest(fluidityChest));
-		Fluidity.proxy.getBMICProxy().register();
 		FluidityIronChestType.registerBlocksAndRecipes((BlockFluidityIronChest) fluidityChest);
 		FluidityChestChangerType.generateRecipes();
 		FluidityIronChestChangerType.generateRecipes();
@@ -106,13 +105,12 @@ public class FluidityIronChests implements IModCompat {
 
 	@Override
 	public void registerInvRenderers() {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBuiltInBlocks(fluidityChest);
+		//Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBuiltInBlocks(fluidityChest);
 
-		ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
 		for (FluidityIronChestType chestType : FluidityIronChestType.values()) {
 			Item chestItem = Item.getItemFromBlock(fluidityChest);
-			mesher.register(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase(), "inventory"));
-			ModelBakery.registerItemVariants(chestItem, new ResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase()));
+			ModelLoader.setCustomModelResourceLocation(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase(), "inventory"));
+			ModelLoader.registerItemVariants(chestItem, new ResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase()));
 		}
 	}
 

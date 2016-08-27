@@ -4,11 +4,10 @@ import com.google.common.collect.Maps;
 import cyano.basemetals.init.Materials;
 import cyano.basemetals.material.MetalMaterial;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -62,7 +61,16 @@ public class BaseMetalsMoreAnvils implements IModCompat {
 
     @Override
     public void preInit() {
-
+        Materials.init();
+        materials = Materials.getAllMetals();
+        materials.remove(Materials.vanilla_diamond);
+        materials.remove(Materials.vanilla_gold);
+        materials.remove(Materials.vanilla_iron);
+        materials.remove(Materials.vanilla_stone);
+        materials.remove(Materials.vanilla_wood);
+        materials.remove(Materials.zinc);
+        buildAnvils();
+        registerAnvils();
     }
 
     @Override
@@ -74,9 +82,6 @@ public class BaseMetalsMoreAnvils implements IModCompat {
         materials.remove(Materials.vanilla_stone);
         materials.remove(Materials.vanilla_wood);
         materials.remove(Materials.zinc);
-        buildAnvils();
-
-        registerAnvils();
         addAnvilRecipes();
         if(Fluidity.instance.isClient)
             MinecraftForge.EVENT_BUS.register(new BaseMetalsMoreAnvilsClientEvents());
@@ -94,9 +99,9 @@ public class BaseMetalsMoreAnvils implements IModCompat {
 
     @SideOnly(Side.CLIENT)
     public void registerAnvilRenderer(Block anvil) {
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(anvil), new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_intact", "inventory"), new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_slightly_damaged", "inventory"), new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_very_damaged", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(anvil), 0, new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_intact", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(anvil), 1, new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_slightly_damaged", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(anvil), 2, new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_very_damaged", "inventory"));
+        ModelLoader.registerItemVariants(Item.getItemFromBlock(anvil), new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_intact", "inventory"), new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_slightly_damaged", "inventory"), new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_very_damaged", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(anvil), 0, new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_intact", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(anvil), 1, new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_slightly_damaged", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(anvil), 2, new ModelResourceLocation("fluidity:" + anvil.getUnlocalizedName().substring(5) + "_very_damaged", "inventory"));
     }
 }
