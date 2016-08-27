@@ -17,17 +17,17 @@ group= "the_fireplace.fluidity"
 archivesBaseName = "Fluidity-Forge"
 
 minecraft {
-    version = "1.9.4-12.17.0.1954"
+    version = "1.10.2-12.18.1.2075"
     runDir = "run"
     mappings = "snapshot_20160518"
     useDepAts = true
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.9.4", version: "3.4.0.204"
-	compile "com.enderio.core:EnderCore:1.9.4-0.4.0.26-alpha:api"
-	compile "com.enderio:EnderIO:1.9.4-3.0.0.43_alpha:dev"
-	compile "mcjty.theoneprobe:TheOneProbe:1.9.4-1.0.7-20"
+	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.9.0.246"
+	compile "com.enderio.core:EnderCore:1.10.2-0.4.1.51-beta:api"
+	compile "com.enderio:EnderIO:1.10.2-3.0.1.96_beta:dev"
+	compile "mcjty.theoneprobe:TheOneProbe:1.10-1.0.15-28"
 }
 
 repositories{
@@ -37,7 +37,7 @@ repositories{
 	maven { //Waila
         url "http://mobiusstrip.eu/maven"
     }
-    maven { //JEI
+    maven { //JEI+Natura+Mantle+TCon
         url "http://dvs1.progwml6.com/files/maven"
     }
     maven { //TechReborn+RebornCore
@@ -48,6 +48,9 @@ repositories{
 	}
 	maven { //IC2+Forestry
 		url = "http://maven.ic2.player.to/"
+	}
+	maven { //ActuallyAdditions+OpenRadio
+		url = "https://maven.chaosfield.at/"
 	}
 }
 
