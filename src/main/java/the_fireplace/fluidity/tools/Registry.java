@@ -22,11 +22,17 @@ import java.util.ArrayList;
  */
 public class Registry {
 	public static void register(Item i){
-		GameRegistry.register(i.setRegistryName(i.getUnlocalizedName().substring(5)));
+		if(i.getRegistryName() == null)
+			GameRegistry.register(i.setRegistryName(i.getUnlocalizedName().substring(5)));
+		else
+			GameRegistry.register(i);
 	}
 
 	public static void register(Block b){
-		GameRegistry.register(b.setRegistryName(b.getUnlocalizedName().substring(5)));
+		if(b.getRegistryName() == null)
+			GameRegistry.register(b.setRegistryName(b.getUnlocalizedName().substring(5)));
+		else
+			GameRegistry.register(b);
 		GameRegistry.register(new ItemBlock(b).setRegistryName(b.getRegistryName()));
 	}
 
