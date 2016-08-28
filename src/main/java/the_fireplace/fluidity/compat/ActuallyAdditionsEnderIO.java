@@ -23,7 +23,7 @@ public class ActuallyAdditionsEnderIO implements IModCompat {
 
     @Override
     public void init() {
-        addRecipe(new ItemStack(InitBlocks.blockMisc, 1, TheMiscBlocks.ORE_QUARTZ.ordinal()), SagMillRecipeManager.ORE_ENERGY_COST,
+        addRecipe(new ItemStack(InitBlocks.blockMisc, 1, TheMiscBlocks.ORE_QUARTZ.ordinal()), 3600,
                 new RecipeOutput(new ItemStack(InitItems.itemDust, 2, TheDusts.QUARTZ_BLACK.ordinal())),
                 new RecipeOutput(new ItemStack(InitItems.itemDust, 1, TheDusts.QUARTZ_BLACK.ordinal()), 0.12F),
                 new RecipeOutput(new ItemStack(Blocks.COBBLESTONE), 0.15F));
