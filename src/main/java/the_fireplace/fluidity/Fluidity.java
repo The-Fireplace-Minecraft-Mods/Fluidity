@@ -51,6 +51,7 @@ public class Fluidity {
 		supportedMods.add("moreanvils");
 		supportedMods.add("randomthings");
 		//supportedMods.add("realstonetools");
+		supportedMods.add("theoneprobe");
 		supportedMods.add("xreliquary");
 		//supportedMods.add("Thaumcraft");
 	}
@@ -82,6 +83,12 @@ public class Fluidity {
 		}*/
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
+			compat.preInit();
+			if(event.getSide().isClient())
+				compat.registerInvRenderers();
+		}
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("theoneprobe")){
+			compat = new BaseMetalsTOP();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
@@ -145,6 +152,10 @@ public class Fluidity {
 		}
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
+			compat.init();
+		}
+		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("theoneprobe")){
+			compat = new BaseMetalsTOP();
 			compat.init();
 		}
 		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
