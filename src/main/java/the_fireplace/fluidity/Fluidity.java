@@ -39,6 +39,8 @@ public class Fluidity {
 		supportedMods.add("adobeblocks");
 		supportedMods.add("basemetals");
 		//supportedMods.add("Baubles");
+		supportedMods.add("BiomesOPlenty");//Remove in 1.11
+		supportedMods.add("biomesoplenty");
 		//supportedMods.add("cannibalism");
 		supportedMods.add("cookingforblockheads");
 		supportedMods.add("electricadvantage");
@@ -50,7 +52,7 @@ public class Fluidity {
 		supportedMods.add("ironchest");
 		supportedMods.add("moreanvils");
 		supportedMods.add("randomthings");
-		//supportedMods.add("realstonetools");
+		supportedMods.add("realstonetools");
 		supportedMods.add("theoneprobe");
 		supportedMods.add("xreliquary");
 		//supportedMods.add("Thaumcraft");
@@ -156,6 +158,10 @@ public class Fluidity {
 		}
 		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("theoneprobe")){
 			compat = new BaseMetalsTOP();
+			compat.init();
+		}
+		if((Loader.isModLoaded("BiomesOPlenty") || Loader.isModLoaded("biomesoplenty")) && Loader.isModLoaded("realstonetools")){
+			compat = new BOPRealStoneTools();
 			compat.init();
 		}
 		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
