@@ -176,10 +176,6 @@ public class Fluidity {
 			compat = new ElectricAdvantageEnderIO();
 			compat.init();
 		}
-		if((Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio")) && Loader.isModLoaded("frt")){
-			compat = new EnderIOFRT();
-			compat.init();
-		}
 		if(Loader.isModLoaded("IronChest") || Loader.isModLoaded("ironchest")){
 			compat = new FluidityIronChests();
 			compat.init();
