@@ -2,6 +2,7 @@ package the_fireplace.fluidity.compat;
 
 import cyano.basemetals.init.Items;
 import cyano.basemetals.init.Materials;
+import cyano.basemetals.items.ItemMetalArmor;
 import cyano.basemetals.material.MetalMaterial;
 import mcjty.theoneprobe.items.AddProbeRecipe;
 import mcjty.theoneprobe.items.ModItems;
@@ -13,8 +14,10 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.fluidity.Fluidity;
+import the_fireplace.fluidity.events.BaseMetalsTOPCommonEvents;
 import the_fireplace.fluidity.tools.Registry;
 
 import java.util.List;
@@ -99,6 +102,8 @@ public class BaseMetalsTOP implements IModCompat {
         addProbeRecipe(Items.starsteel_helmet, starsteelHelmetProbe);
         addProbeRecipe(Items.steel_helmet, steelHelmetProbe);
         addProbeRecipe(Items.tin_helmet, tinHelmetProbe);
+        
+        MinecraftForge.EVENT_BUS.register(new BaseMetalsTOPCommonEvents());
     }
 
     @Override
@@ -133,7 +138,7 @@ public class BaseMetalsTOP implements IModCompat {
 
     public static Item makeHelmet(MetalMaterial metal, String name) {
         ItemArmor.ArmorMaterial material = Materials.getArmorMaterialFor(metal);
-        ItemArmor item = new ItemArmor(material, -1, EntityEquipmentSlot.HEAD) {
+        ItemMetalArmor item = new ItemMetalArmor(metal, material, -1, EntityEquipmentSlot.HEAD) {
             @Override
             public boolean getHasSubtypes() {
                 return true;
