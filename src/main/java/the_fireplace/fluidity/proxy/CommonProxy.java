@@ -5,6 +5,6 @@ package the_fireplace.fluidity.proxy;
  */
 public class CommonProxy {
     public BMICProxy getBMICProxy(){
-        return new BMICCommon();
+        return null;
     }
 }

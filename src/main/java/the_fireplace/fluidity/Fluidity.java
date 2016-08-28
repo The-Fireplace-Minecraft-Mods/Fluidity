@@ -27,6 +27,8 @@ public class Fluidity {
 	@Instance(MODID)
 	public static Fluidity instance;
 
+	public int entityID = -1;
+
 	@SidedProxy(clientSide = "the_fireplace.fluidity.proxy.ClientProxy", serverSide = "the_fireplace.fluidity.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
@@ -46,6 +48,7 @@ public class Fluidity {
 		supportedMods.add("electricadvantage");
 		supportedMods.add("EnderIO");//Remove in 1.11
 		supportedMods.add("enderio");
+		supportedMods.add("evilcraft");
 		supportedMods.add("frt");
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");//remove in 1.11
@@ -53,9 +56,9 @@ public class Fluidity {
 		supportedMods.add("moreanvils");
 		supportedMods.add("randomthings");
 		supportedMods.add("realstonetools");
+		//supportedMods.add("Thaumcraft");
 		supportedMods.add("theoneprobe");
 		supportedMods.add("xreliquary");
-		//supportedMods.add("Thaumcraft");
 	}
 
 	@EventHandler
@@ -101,6 +104,10 @@ public class Fluidity {
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
+		if(Loader.isModLoaded("evilcraft") && Loader.isModLoaded("frt")){
+			compat = new EvilCraftFRT();
+			compat.preInit();
+		}
 		if(Loader.isModLoaded("IronChest") || Loader.isModLoaded("ironchest")){
 			compat = new FluidityIronChests();
 			compat.preInit();
