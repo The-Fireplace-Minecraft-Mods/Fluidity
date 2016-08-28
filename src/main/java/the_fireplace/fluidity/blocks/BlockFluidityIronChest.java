@@ -54,6 +54,15 @@ public class BlockFluidityIronChest extends BlockContainer
 	}
 
 	@Override
+	public int getLightValue(IBlockState state){
+		if(state.getValue(VARIANT_PROP).equals(FluidityIronChestType.STARSTEEL)){
+			return (int)(15.0F * 0.5F);
+		}else{
+			return this.lightValue;
+		}
+	}
+
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return IRON_CHEST_AABB;
 	}

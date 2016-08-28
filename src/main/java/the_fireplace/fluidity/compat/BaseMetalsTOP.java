@@ -102,7 +102,7 @@ public class BaseMetalsTOP implements IModCompat {
         addProbeRecipe(Items.starsteel_helmet, starsteelHelmetProbe);
         addProbeRecipe(Items.steel_helmet, steelHelmetProbe);
         addProbeRecipe(Items.tin_helmet, tinHelmetProbe);
-        
+
         MinecraftForge.EVENT_BUS.register(new BaseMetalsTOPCommonEvents());
     }
 

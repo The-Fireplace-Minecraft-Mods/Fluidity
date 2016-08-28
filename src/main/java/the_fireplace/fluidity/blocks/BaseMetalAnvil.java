@@ -21,7 +21,9 @@ public class BaseMetalAnvil extends MaterialAnvil {
         setUnlocalizedName(material.getName()+"_anvil");
         setRegistryName(material.getName()+"_anvil");
         this.metalMaterial = material;
-        setTickRandomly(material == Materials.starsteel);
+        setTickRandomly(material.equals(Materials.starsteel));
+        if(material.equals(Materials.starsteel))
+            setLightLevel(0.5F);
     }
 
     @Override
