@@ -29,6 +29,8 @@ dependencies {
 	compile "com.enderio:EnderIO:1.10.2-3.0.1.96_beta:dev"
 	compile "mcjty.theoneprobe:TheOneProbe:1.10-1.0.15-28"
 	compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.10.2-5.0.0.2079:deobf"
+	compile "net.industrial-craft:industrialcraft-2:2.6.9-ex110:dev"
+	compile "net.sengir.forestry:forestry_1.10.2:5.2.9.241:api"
 }
 
 repositories{
