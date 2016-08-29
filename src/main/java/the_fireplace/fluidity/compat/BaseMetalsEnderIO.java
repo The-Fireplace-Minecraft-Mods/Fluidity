@@ -1,6 +1,7 @@
 package the_fireplace.fluidity.compat;
 
-import crazypants.enderio.machine.recipe.RecipeOutput;
+import crazypants.enderio.machine.alloy.AlloyRecipeManager;
+import crazypants.enderio.machine.recipe.*;
 import crazypants.enderio.machine.sagmill.SagMillRecipeManager;
 import cyano.basemetals.init.Blocks;
 import cyano.basemetals.init.Items;
@@ -32,6 +33,22 @@ public class BaseMetalsEnderIO implements IModCompat {
         SagMillRecipeManager.getInstance().addRecipe(new ItemStack(Blocks.starsteel_ore), 3600,
                 new RecipeOutput(new ItemStack(Items.starsteel_powder, 2)),
                 new RecipeOutput(new ItemStack(net.minecraft.init.Blocks.END_STONE), 0.15F));
+        //3 Copper + 1 Nickel in Alloy Furnace make Cupronickel
+        addAlloySmelterRecipe(new ItemStack(Items.cupronickel_ingot, 4), 4000, RecipeBonusType.NONE, new ItemStack(Items.copper_ingot, 3), new ItemStack(Items.nickel_ingot));
+        addAlloySmelterRecipe(new ItemStack(Items.cupronickel_ingot, 4), 4000, RecipeBonusType.NONE, new ItemStack(Items.copper_powder, 3), new ItemStack(Items.nickel_ingot));
+        addAlloySmelterRecipe(new ItemStack(Items.cupronickel_ingot, 4), 4000, RecipeBonusType.NONE, new ItemStack(Items.copper_powder, 3), new ItemStack(Items.nickel_powder));
+        addAlloySmelterRecipe(new ItemStack(Items.cupronickel_ingot, 4), 4000, RecipeBonusType.NONE, new ItemStack(Items.copper_ingot, 3), new ItemStack(Items.nickel_powder));
+    }
+
+    private static void addAlloySmelterRecipe(ItemStack output, int energyRequired, RecipeBonusType bonusType, ItemStack... inputs) {
+        RecipeOutput rOutput = new RecipeOutput(output);
+        RecipeInput[] rInputs = new RecipeInput[inputs.length];
+
+        for (int i = 0; i < inputs.length; i++) {
+            rInputs[i] = new RecipeInput(inputs[i]);
+        }
+
+        AlloyRecipeManager.getInstance().addRecipe(new BasicManyToOneRecipe(new Recipe(rOutput, energyRequired, bonusType, rInputs)));
     }
 
     @Override
