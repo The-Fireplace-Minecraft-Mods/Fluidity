@@ -64,23 +64,6 @@ public class BaseMetalsTOP implements IModCompat {
         starsteelHelmetProbe = makeHelmet(Materials.starsteel, "starsteel_helmet_probe");
         steelHelmetProbe = makeHelmet(Materials.steel, "steel_helmet_probe");
         tinHelmetProbe = makeHelmet(Materials.tin, "tin_helmet_probe");
-        Registry.register(adamantineHelmetProbe);
-        Registry.register(aquariumHelmetProbe);
-        Registry.register(brassHelmetProbe);
-        Registry.register(bronzeHelmetProbe);
-        Registry.register(coldironHelmetProbe);
-        Registry.register(copperHelmetProbe);
-        Registry.register(cupronickelHelmetProbe);
-        Registry.register(electrumHelmetProbe);
-        Registry.register(invarHelmetProbe);
-        Registry.register(leadHelmetProbe);
-        Registry.register(mithrilHelmetProbe);
-        Registry.register(nickelHelmetProbe);
-        Registry.register(platinumHelmetProbe);
-        Registry.register(silverHelmetProbe);
-        Registry.register(starsteelHelmetProbe);
-        Registry.register(steelHelmetProbe);
-        Registry.register(tinHelmetProbe);
     }
 
     @Override
