@@ -26,9 +26,9 @@ import java.util.Map;
  */
 public class BaseMetalsMoreAnvils implements IModCompat {
 
-    private Map<MetalMaterial, Block> anvils = Maps.newHashMap();
+    private static Map<MetalMaterial, Block> anvils = Maps.newHashMap();
 
-    private Collection<MetalMaterial> materials;
+    private static Collection<MetalMaterial> materials;
 
     private void buildAnvils(){
         for(MetalMaterial mat: materials){
@@ -75,13 +75,6 @@ public class BaseMetalsMoreAnvils implements IModCompat {
 
     @Override
     public void init() {
-        materials = Materials.getAllMetals();
-        materials.remove(Materials.vanilla_diamond);
-        materials.remove(Materials.vanilla_gold);
-        materials.remove(Materials.vanilla_iron);
-        materials.remove(Materials.vanilla_stone);
-        materials.remove(Materials.vanilla_wood);
-        materials.remove(Materials.zinc);
         addAnvilRecipes();
         if(Fluidity.instance.isClient)
             MinecraftForge.EVENT_BUS.register(new BaseMetalsMoreAnvilsClientEvents());
