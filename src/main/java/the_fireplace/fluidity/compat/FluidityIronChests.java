@@ -38,7 +38,8 @@ public class FluidityIronChests implements IModCompat {
 		IronFluidityChestChangerType.buildItems();
 		GameRegistry.register(fluidityChest);
 		GameRegistry.register(new ItemFluidityIronChest(fluidityChest));
-		Fluidity.proxy.getBMICProxy().register();
+		if(Fluidity.proxy.getBMICProxy() != null)
+			Fluidity.proxy.getBMICProxy().register();
 	}
 
 	@Override
