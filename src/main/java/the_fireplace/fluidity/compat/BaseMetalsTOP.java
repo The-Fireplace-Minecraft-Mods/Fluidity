@@ -16,6 +16,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.events.BaseMetalsTOPCommonEvents;
 import the_fireplace.fluidity.tools.Registry;
@@ -139,10 +141,15 @@ public class BaseMetalsTOP implements IModCompat {
             @Override
             public String getItemStackDisplayName(ItemStack stack)
             {
-                return I18n.translateToLocal("item.basemetals."+((ItemArmor)stack.getItem()).getArmorMaterial().getName()+"_helmet.name")+" "+I18n.translateToLocal("fluidity.with_probe");
+                try {
+                    return I18n.translateToLocal("item.basemetals." + ((ItemArmor) stack.getItem()).getArmorMaterial().getName() + "_helmet.name") + " " + I18n.translateToLocal("fluidity.with_probe");
+                } catch(NoSuchMethodError e){
+                    return "";
+                }
             }
 
             @Override
+            @SideOnly(Side.CLIENT)
             public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
             {
                 return "fluidity:textures/armor/"+((ItemArmor)stack.getItem()).getArmorMaterial().getName()+"_layer_1.png";
