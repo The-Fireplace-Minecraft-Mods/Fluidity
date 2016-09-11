@@ -34,6 +34,8 @@ public class BaseMetalsTOPCommonEvents {
         if(player.inventory.armorInventory[0] == null || player.inventory.armorInventory[1] == null || player.inventory.armorInventory[2] == null || player.inventory.armorInventory[3] == null)
             return;
         PotionEffect waterBreathing;
+        if(!(player.inventory.armorInventory[3].getItem() instanceof ItemArmor))
+            return;
         ItemArmor armorItem = (ItemArmor)player.inventory.armorInventory[3].getItem();
         World w = player.worldObj;
         if(armorItem == BaseMetalsTOP.coldironHelmetProbe && player.inventory.armorInventory[2] != null && player.inventory.armorInventory[2].getItem() == Items.coldiron_chestplate && player.inventory.armorInventory[1] != null && player.inventory.armorInventory[1].getItem() == Items.coldiron_leggings && player.inventory.armorInventory[0] != null && player.inventory.armorInventory[0].getItem() == Items.coldiron_boots) {
