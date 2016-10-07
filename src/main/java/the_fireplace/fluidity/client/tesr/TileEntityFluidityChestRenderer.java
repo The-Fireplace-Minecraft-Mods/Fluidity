@@ -66,11 +66,11 @@ public class TileEntityFluidityChestRenderer extends TileEntitySpecialRenderer<T
 			}
 
 			GlStateManager.translate(-0.5F, -0.5F, -0.5F);
-			float var23 = tile.prevLidAngle + (tile.lidAngle - tile.prevLidAngle) * partialTick;
-			var23 = 1.0F - var23;
-			var23 = 1.0F - var23 * var23 * var23;
+			float next = tile.prevLidAngle + (tile.lidAngle - tile.prevLidAngle) * partialTick;
+			next = 1.0F - next;
+			next = 1.0F - next * next * next;
 
-			this.model.chestLid.rotateAngleX = -var23 * halfPI;
+			this.model.chestLid.rotateAngleX = -next * halfPI;
 			this.model.renderAll();
 			if(breakStage >= 0) {
 				GlStateManager.matrixMode(5890);

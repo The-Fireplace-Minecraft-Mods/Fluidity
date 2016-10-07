@@ -108,8 +108,8 @@ public class FluidityIronChests implements IModCompat {
 	public void registerInvRenderers() {
 		//Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getBlockModelShapes().registerBuiltInBlocks(fluidityChest);
 
+		Item chestItem = Item.getItemFromBlock(fluidityChest);
 		for (FluidityIronChestType chestType : FluidityIronChestType.values()) {
-			Item chestItem = Item.getItemFromBlock(fluidityChest);
 			ModelLoader.setCustomModelResourceLocation(chestItem, chestType.ordinal(), new ModelResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase(), "inventory"));
 			ModelLoader.registerItemVariants(chestItem, new ResourceLocation(Fluidity.MODID + ":chest_" + chestType.getName().toLowerCase()));
 		}

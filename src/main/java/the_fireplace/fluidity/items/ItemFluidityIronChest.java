@@ -24,6 +24,6 @@ public class ItemFluidityIronChest extends ItemBlock {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack)
 	{
-		return "tileentity.ironchest:" + FluidityIronChestType.values()[itemstack.getMetadata()].name();
+		return "tile.ironchest:" + FluidityIronChestType.values()[itemstack.getMetadata()].name();
 	}
 }
