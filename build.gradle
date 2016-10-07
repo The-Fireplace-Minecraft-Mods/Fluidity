@@ -12,9 +12,9 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "6.0.1"
+version = "6.1.0"
 group= "the_fireplace.fluidity"
-archivesBaseName = "Fluidity-Forge"
+archivesBaseName = "Fluidity"
 
 minecraft {
     version = "1.10.2-12.18.1.2075"
