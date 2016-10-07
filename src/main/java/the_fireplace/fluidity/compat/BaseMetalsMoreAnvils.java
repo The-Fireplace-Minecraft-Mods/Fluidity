@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.blocks.BaseMetalAnvil;
-import the_fireplace.fluidity.events.BaseMetalsMoreAnvilsClientEvents;
+import the_fireplace.fluidity.client.events.BaseMetalsMoreAnvilsClientEvents;
 import the_fireplace.fluidity.items.ItemBaseMetalAnvil;
 import the_fireplace.fluidity.tools.Registry;
 

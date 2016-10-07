@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
-import the_fireplace.fluidity.particle.ParticleIronChest;
+import the_fireplace.fluidity.client.particle.ParticleIronChest;
 
 import java.util.ArrayList;
 import java.util.List;

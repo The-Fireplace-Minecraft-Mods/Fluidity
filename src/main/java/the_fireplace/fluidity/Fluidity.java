@@ -18,14 +18,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.fluidity.compat.*;
 import the_fireplace.fluidity.config.ConfigValues;
-import the_fireplace.fluidity.proxy.CommonProxy;
+import the_fireplace.fluidity.network.proxy.CommonProxy;
 
 import java.util.ArrayList;
 
 /**
  * @author The_Fireplace
  */
-@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, updateJSON = "http://thefireplace.bitnamiapp.com/jsons/fluidity.json", dependencies = "required-after:Forge@[12.18.1.2019,);after:*", guiFactory = "the_fireplace.fluidity.config.FluidityConfigGuiFactory")
+@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, updateJSON = "http://thefireplace.bitnamiapp.com/jsons/fluidity.json", dependencies = "required-after:Forge@[12.18.1.2019,);after:*", guiFactory = "the_fireplace.fluidity.client.gui.FluidityConfigGuiFactory")
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
@@ -36,7 +36,7 @@ public class Fluidity {
 
 	public int entityID = -1;
 
-	@SidedProxy(clientSide = "the_fireplace.fluidity.proxy.ClientProxy", serverSide = "the_fireplace.fluidity.proxy.CommonProxy")
+	@SidedProxy(clientSide = "the_fireplace.fluidity.network.proxy.ClientProxy", serverSide = "the_fireplace.fluidity.network.proxy.CommonProxy")
 	public static CommonProxy proxy;
 
 	public static final CreativeTabs tabFluidity = new TabFluidity();

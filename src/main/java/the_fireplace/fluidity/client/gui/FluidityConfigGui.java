@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.config;
+package the_fireplace.fluidity.client.gui;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;

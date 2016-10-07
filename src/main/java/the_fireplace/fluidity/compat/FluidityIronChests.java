@@ -18,7 +18,7 @@ import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 import the_fireplace.fluidity.enums.IronFluidityChestChangerType;
 import the_fireplace.fluidity.events.FluidityIronChestsCommonEvents;
-import the_fireplace.fluidity.handler.FluidityIronChestsGuiHandler;
+import the_fireplace.fluidity.network.FluidityIronChestsGuiHandler;
 import the_fireplace.fluidity.items.ItemFluidityIronChest;
 import the_fireplace.fluidity.tools.Registry;
 

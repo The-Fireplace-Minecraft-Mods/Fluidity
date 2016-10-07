@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.gui;
+package the_fireplace.fluidity.client.gui;
 
 import org.lwjgl.opengl.GL11;
 

@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.particle;
+package the_fireplace.fluidity.client.particle;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

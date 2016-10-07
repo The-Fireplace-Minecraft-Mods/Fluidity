@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.proxy;
+package the_fireplace.fluidity.network.proxy;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

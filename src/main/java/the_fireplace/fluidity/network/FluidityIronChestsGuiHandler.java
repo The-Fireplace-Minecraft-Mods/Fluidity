@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.handler;
+package the_fireplace.fluidity.network;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import the_fireplace.fluidity.container.ContainerFluidityIronChest;
 import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
-import the_fireplace.fluidity.gui.GUIFluidityIronChest;
+import the_fireplace.fluidity.client.gui.GUIFluidityIronChest;
 
 public class FluidityIronChestsGuiHandler implements IGuiHandler {
 	@Override

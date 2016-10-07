@@ -5,8 +5,8 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.cyclops.evilcraft.item.BloodWaxedCoalConfig;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.entity.projectile.EntityBloodWaxedCoal;
-import the_fireplace.fluidity.proxy.ECFRTClient;
-import the_fireplace.fluidity.proxy.ECFRTProxy;
+import the_fireplace.fluidity.network.proxy.ECFRTClient;
+import the_fireplace.fluidity.network.proxy.ECFRTProxy;
 import the_fireplace.frt.api.AmmoRegistry;
 
 /**

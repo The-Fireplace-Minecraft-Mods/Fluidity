@@ -1,9 +1,9 @@
-package the_fireplace.fluidity.events;
+package the_fireplace.fluidity.client.events;
 
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import the_fireplace.fluidity.blocks.BaseMetalAnvil;
-import the_fireplace.fluidity.gui.GuiBaseMetalsAnvil;
+import the_fireplace.fluidity.client.gui.GuiBaseMetalsAnvil;
 import the_fireplace.moreanvils.gui.GuiMaterialAnvil;
 
 /**

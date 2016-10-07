@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.proxy;
+package the_fireplace.fluidity.network.proxy;
 
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;

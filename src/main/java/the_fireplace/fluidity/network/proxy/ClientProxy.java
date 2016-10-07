@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.proxy;
+package the_fireplace.fluidity.network.proxy;
 
 /**
  * @author The_Fireplace
