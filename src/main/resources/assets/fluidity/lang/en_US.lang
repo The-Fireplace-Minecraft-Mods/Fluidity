@@ -68,3 +68,5 @@ tile.black_quartz_glass.name=Black Quartz Glass
 itemGroup.fluidity=Fluidity
 fluidity.desc.line1=Adds all kinds of content that should only exist when certain mods are loaded together.
 fluidity.desc.line2=Loaded mods that Fluidity improves upon:
+fluidity.disabled_compat=Disabled Mod Integrations
+fluidity.disabled_compat.tooltip=Add modids of mods you want to disable integration with.

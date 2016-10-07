@@ -4,13 +4,20 @@ import com.google.common.collect.Lists;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.fluidity.compat.*;
+import the_fireplace.fluidity.config.ConfigValues;
 import the_fireplace.fluidity.proxy.CommonProxy;
 
 import java.util.ArrayList;
@@ -18,7 +25,7 @@ import java.util.ArrayList;
 /**
  * @author The_Fireplace
  */
-@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, updateJSON = "http://thefireplace.bitnamiapp.com/jsons/fluidity.json", dependencies = "required-after:Forge@[12.18.1.2019,);after:*")
+@Mod(modid=Fluidity.MODID, name=Fluidity.MODNAME, updateJSON = "http://thefireplace.bitnamiapp.com/jsons/fluidity.json", dependencies = "required-after:Forge@[12.18.1.2019,);after:*", guiFactory = "the_fireplace.fluidity.config.FluidityConfigGuiFactory")
 public class Fluidity {
 	public static final String MODID = "fluidity";
 	public static final String MODNAME = "Fluidity";
@@ -35,6 +42,15 @@ public class Fluidity {
 	public static final CreativeTabs tabFluidity = new TabFluidity();
 
 	public boolean isClient=false;
+
+	public static Configuration config;
+	public static Property DISABLEDCOMPAT_PROP;
+	
+	public static void syncConfig(){
+		ConfigValues.DISABLEDCOMPAT = DISABLEDCOMPAT_PROP.getStringList();
+		if(config.hasChanged())
+			config.save();
+	}
 
 	private void addSupported(){
 		supportedMods.add("actuallyadditions");
@@ -66,55 +82,59 @@ public class Fluidity {
 		if(event.getSide().isClient())
 			isClient=true;
 		addSupported();
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		config.load();
+		DISABLEDCOMPAT_PROP = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.DISABLEDCOMPAT_NAME, ConfigValues.DISABLEDCOMPAT_DEFAULT);
+		syncConfig();
 		IModCompat compat;
 
-		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("randomthings")){
+		if(canLoadModule("actuallyadditions") && canLoadModule("randomthings")){
 			compat = new ActuallyAdditionsRandomThings();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
+		if(canLoadModule("adobeblocks") && canLoadModule("frt")){
 			compat = new AdobeBlocksFRT();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
+		if(canLoadModule("basemetals") && canLoadModule("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
-		}*/
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
+		}
+		if(canLoadModule("basemetals") && canLoadModule("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("theoneprobe")){
+		if(canLoadModule("basemetals") && canLoadModule("theoneprobe")){
 			compat = new BaseMetalsTOP();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
+		/*if(canLoadModule("cannibalism") && canLoadModule("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}*/
-		if(Loader.isModLoaded("evilcraft") && Loader.isModLoaded("frt")){
+		if(canLoadModule("evilcraft") && canLoadModule("frt")){
 			compat = new EvilCraftFRT();
 			compat.preInit();
 		}
-		if(Loader.isModLoaded("IronChest") || Loader.isModLoaded("ironchest")){
+		if(canLoadModule("IronChest") || canLoadModule("ironchest")){
 			compat = new FluidityIronChests();
 			compat.preInit();
 			if(event.getSide().isClient())
 				compat.registerInvRenderers();
 		}
-		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
+		/*if(canLoadModule("Thaumcraft") && canLoadModule("frt")){
 			compat = new ThaumcraftFRT();
 			compat.preInit();
 			if(event.getSide().isClient())
@@ -123,7 +143,7 @@ public class Fluidity {
 		if(event.getSide().isClient())
 			overrideDescription(event.getModMetadata());
 
-		if(Loader.isModLoaded("actuallyadditions")){
+		if(canLoadModule("actuallyadditions")){
 			compat = new FluidityActuallyAdditions();
 			compat.preInit();
 		}
@@ -131,75 +151,76 @@ public class Fluidity {
 	@EventHandler
 	public void init(FMLInitializationEvent event){
 		IModCompat compat;
-		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("basemetals")){
+		if(canLoadModule("actuallyadditions") && canLoadModule("basemetals")){
 			compat = new ActuallyAdditionsBaseMetals();
 			compat.init();
 		}
-		if(Loader.isModLoaded("actuallyadditions") && (Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio"))){
+		if(canLoadModule("actuallyadditions") && (canLoadModule("EnderIO") || canLoadModule("enderio"))){
 			compat = new ActuallyAdditionsEnderIO();
 			compat.init();
 		}
-		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("randomthings")){
+		if(canLoadModule("actuallyadditions") && canLoadModule("randomthings")){
 			compat = new ActuallyAdditionsRandomThings();
 			compat.init();
 		}
-		if(Loader.isModLoaded("actuallyadditions") && Loader.isModLoaded("xreliquary")){
+		if(canLoadModule("actuallyadditions") && canLoadModule("xreliquary")){
 			compat = new ActuallyAdditionsReliquary();
 			compat.init();
 		}
-		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("frt")){
+		if(canLoadModule("adobeblocks") && canLoadModule("frt")){
 			compat = new AdobeBlocksFRT();
 			compat.init();
 		}
-		/*if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("cannibalism")){
+		if(canLoadModule("basemetals") && canLoadModule("cannibalism")){
 			compat = new BaseMetalsCannibalism();
 			compat.init();
-		}*/
-		if(Loader.isModLoaded("basemetals") && (Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio"))){
+		}
+		if(canLoadModule("basemetals") && (canLoadModule("EnderIO") || canLoadModule("enderio"))){
 			compat = new BaseMetalsEnderIO();
 			compat.init();
 		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("moreanvils")){
+		if(canLoadModule("basemetals") && canLoadModule("moreanvils")){
 			compat = new BaseMetalsMoreAnvils();
 			compat.init();
 		}
-		if(Loader.isModLoaded("basemetals") && Loader.isModLoaded("theoneprobe")){
+		if(canLoadModule("basemetals") && canLoadModule("theoneprobe")){
 			compat = new BaseMetalsTOP();
 			compat.init();
 		}
-		if((Loader.isModLoaded("BiomesOPlenty") || Loader.isModLoaded("biomesoplenty")) && Loader.isModLoaded("realstonetools")){
+		if((canLoadModule("BiomesOPlenty") || canLoadModule("biomesoplenty")) && canLoadModule("realstonetools")){
 			compat = new BOPRealStoneTools();
 			compat.init();
 		}
-		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("realstonetools")){
+		if(canLoadModule("cannibalism") && canLoadModule("realstonetools")){
 			compat = new CannibalismRealStoneTools();
 			compat.init();
-		}*/
-		/*if(Loader.isModLoaded("cannibalism") && Loader.isModLoaded("Thaumcraft")){
+		}
+		/*if(canLoadModule("cannibalism") && canLoadModule("Thaumcraft")){
 			compat = new CannibalismThaumcraft();
 			compat.init();
 		}*/
-		if(Loader.isModLoaded("electricadvantage") && (Loader.isModLoaded("EnderIO") || Loader.isModLoaded("enderio"))){
+		if(canLoadModule("electricadvantage") && (canLoadModule("EnderIO") || canLoadModule("enderio"))){
 			compat = new ElectricAdvantageEnderIO();
 			compat.init();
 		}
-		if(Loader.isModLoaded("IronChest") || Loader.isModLoaded("ironchest")){
+		if(canLoadModule("IronChest") || canLoadModule("ironchest")){
 			compat = new FluidityIronChests();
 			compat.init();
 		}
-		/*if(Loader.isModLoaded("Thaumcraft") && Loader.isModLoaded("frt")){
+		/*if(canLoadModule("Thaumcraft") && canLoadModule("frt")){
 			compat = new ThaumcraftFRT();
 			compat.init();
 		}*/
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event){
 		IModCompat compat;
-		if(Loader.isModLoaded("adobeblocks") && Loader.isModLoaded("cookingforblockheads")){
+		if(canLoadModule("adobeblocks") && canLoadModule("cookingforblockheads")){
 			compat = new AdobeBlocksCookingForBlockheads();
 			compat.postInit();
 		}
-		if(Loader.isModLoaded("cookingforblockheads") && Loader.isModLoaded("frt")){
+		if(canLoadModule("cookingforblockheads") && canLoadModule("frt")){
 			compat = new CookingForBlockheadsFRT();
 			compat.postInit();
 		}
@@ -210,11 +231,21 @@ public class Fluidity {
 			if(Loader.isModLoaded(mid))
 				for(ModContainer mod:Loader.instance().getActiveModList())
 					if(mid.equals(mod.getModId()))
-						mods += "\n"+mod.getName();
+						mods += "\n"+(canLoadModule(mid) ? "" : TextFormatting.RED)+mod.getName()+(canLoadModule(mid) ? "" : TextFormatting.WHITE);
 		if(mods.equals(""))
 			mods = mods.concat("\n"+ TextFormatting.RED+"none");
 		meta.description = I18n.translateToLocal("fluidity.desc.line1")+"\n"
 				+ TextFormatting.GREEN + I18n.translateToLocal("fluidity.desc.line2") + TextFormatting.WHITE
 				+ mods;
+	}
+
+	public static boolean canLoadModule(String modid){
+		return Loader.isModLoaded(modid) && !ArrayUtils.contains(ConfigValues.DISABLEDCOMPAT, modid);
+	}
+
+	@SubscribeEvent
+	public void configChanged(ConfigChangedEvent.OnConfigChangedEvent event){
+		if(event.getModID().equals(MODID))
+			syncConfig();
 	}
 }
