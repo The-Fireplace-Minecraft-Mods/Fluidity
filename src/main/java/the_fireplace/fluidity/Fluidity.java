@@ -59,7 +59,7 @@ public class Fluidity {
 		//supportedMods.add("Baubles");
 		supportedMods.add("BiomesOPlenty");//Remove in 1.11
 		supportedMods.add("biomesoplenty");
-		//supportedMods.add("cannibalism");
+		supportedMods.add("cannibalism");
 		supportedMods.add("cookingforblockheads");
 		supportedMods.add("electricadvantage");
 		supportedMods.add("EnderIO");//Remove in 1.11

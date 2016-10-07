@@ -1,4 +1,4 @@
-/*package the_fireplace.fluidity.compat;
+package the_fireplace.fluidity.compat;
 
 import cyano.basemetals.init.Materials;
 import net.minecraft.item.Item;
@@ -26,9 +26,12 @@ public class BaseMetalsCannibalism implements IModCompat {
 	public static Item adamantine_knife;
 	public static Item starsteel_knife;
 	public static Item aquarium_knife;
+	public static Item cupronickel_knife;
+	public static Item platinum_knife;
 
 	@Override
 	public void preInit() {
+		Materials.init();
 		copper_knife = new ItemBaseMetalKnife(Materials.copper).setUnlocalizedName("copper_knife").setCreativeTab(Fluidity.tabFluidity);
 		silver_knife = new ItemBaseMetalKnife(Materials.silver).setUnlocalizedName("silver_knife").setCreativeTab(Fluidity.tabFluidity);
 		tin_knife = new ItemBaseMetalKnife(Materials.tin).setUnlocalizedName("tin_knife").setCreativeTab(Fluidity.tabFluidity);
@@ -44,10 +47,9 @@ public class BaseMetalsCannibalism implements IModCompat {
 		adamantine_knife = new ItemBaseMetalKnife(Materials.adamantine).setUnlocalizedName("adamantine_knife").setCreativeTab(Fluidity.tabFluidity);
 		starsteel_knife = new ItemBaseMetalKnife(Materials.starsteel).setUnlocalizedName("starsteel_knife").setCreativeTab(Fluidity.tabFluidity);
 		aquarium_knife = new ItemBaseMetalKnife(Materials.aquarium).setUnlocalizedName("aquarium_knife").setCreativeTab(Fluidity.tabFluidity);
-	}
+		cupronickel_knife = new ItemBaseMetalKnife(Materials.cupronickel).setUnlocalizedName("cupronickel_knife").setCreativeTab(Fluidity.tabFluidity);
+		platinum_knife = new ItemBaseMetalKnife(Materials.platinum).setUnlocalizedName("platinum_knife").setCreativeTab(Fluidity.tabFluidity);
 
-	@Override
-	public void init() {//Crashes if done before init, due to Base Metals material registry taking place during init
 		Registry.register(copper_knife);
 		Registry.register(silver_knife);
 		Registry.register(tin_knife);
@@ -63,6 +65,12 @@ public class BaseMetalsCannibalism implements IModCompat {
 		Registry.register(adamantine_knife);
 		Registry.register(starsteel_knife);
 		Registry.register(aquarium_knife);
+		Registry.register(cupronickel_knife);
+		Registry.register(platinum_knife);
+	}
+
+	@Override
+	public void init() {
 		Registry.addRecipe(new ItemStack(copper_knife), "x ", " y", 'x', "ingotCopper", 'y', "stickWood");
 		Registry.addRecipe(new ItemStack(silver_knife), "x ", " y", 'x', "ingotSilver", 'y', "stickWood");
 		Registry.addRecipe(new ItemStack(tin_knife), "x ", " y", 'x', "ingotTin", 'y', "stickWood");
@@ -78,6 +86,13 @@ public class BaseMetalsCannibalism implements IModCompat {
 		Registry.addRecipe(new ItemStack(adamantine_knife), "x ", " y", 'x', "ingotAdamantine", 'y', "stickWood");
 		Registry.addRecipe(new ItemStack(starsteel_knife), "x ", " y", 'x', "ingotStarsteel", 'y', "stickWood");
 		Registry.addRecipe(new ItemStack(aquarium_knife), "x ", " y", 'x', "ingotAquarium", 'y', "stickWood");
+		Registry.addRecipe(new ItemStack(cupronickel_knife), "x ", " y", 'x', "ingotCupronickel", 'y', "stickWood");
+		Registry.addRecipe(new ItemStack(platinum_knife), "x ", " y", 'x', "ingotPlatinum", 'y', "stickWood");
+	}
+
+	@Override
+	public void postInit() {
+
 	}
 
 	@Override
@@ -98,6 +113,7 @@ public class BaseMetalsCannibalism implements IModCompat {
 		Registry.registerRender(adamantine_knife);
 		Registry.registerRender(starsteel_knife);
 		Registry.registerRender(aquarium_knife);
+		Registry.registerRender(cupronickel_knife);
+		Registry.registerRender(platinum_knife);
 	}
 }
-*/

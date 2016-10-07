@@ -1,6 +1,4 @@
-/*package the_fireplace.fluidity.items;
-
-import java.util.List;
+package the_fireplace.fluidity.items;
 
 import cyano.basemetals.init.Materials;
 import cyano.basemetals.items.MetalToolEffects;
@@ -9,6 +7,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import sorazodia.cannibalism.items.ItemKnife;
+
+import java.util.List;
 
 public class ItemBaseMetalKnife extends ItemKnife {
 	protected final MetalMaterial metal;
@@ -32,4 +32,3 @@ public class ItemBaseMetalKnife extends ItemKnife {
 		MetalToolEffects.addToolSpecialPropertiesToolTip(metal,list);
 	}
 }
-*/

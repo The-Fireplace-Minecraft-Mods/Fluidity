@@ -1,6 +1,6 @@
 {
     "parent": "cannibalism:item/itemRoot",
     "textures": {
-        "layer0": "fluidity:items/adamantine_knife"
+        "layer0": "fluidity:items/platinum_knife"
     }
 }

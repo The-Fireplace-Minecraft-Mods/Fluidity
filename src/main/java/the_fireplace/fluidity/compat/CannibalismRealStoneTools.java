@@ -1,4 +1,4 @@
-/*package the_fireplace.fluidity.compat;
+package the_fireplace.fluidity.compat;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,12 @@ public class CannibalismRealStoneTools implements IModCompat {
 	@Override
 	public void init() {
 		Registry.removeRecipe(new ItemStack(ItemList.stoneKnife));
-		Registry.addRecipe(new ItemStack(ItemList.stoneKnife), " r", "s ", 'r', new ItemStack(Blocks.stone), 's', "stickWood");
+		Registry.addRecipe(new ItemStack(ItemList.stoneKnife), " r", "s ", 'r', new ItemStack(Blocks.STONE), 's', "stickWood");
+	}
+
+	@Override
+	public void postInit() {
+
 	}
 
 	@Override
@@ -27,4 +32,3 @@ public class CannibalismRealStoneTools implements IModCompat {
 	}
 
 }
-*/
