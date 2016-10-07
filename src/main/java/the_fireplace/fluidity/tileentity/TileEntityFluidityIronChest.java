@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.entity.tile;
+package the_fireplace.fluidity.tileentity;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

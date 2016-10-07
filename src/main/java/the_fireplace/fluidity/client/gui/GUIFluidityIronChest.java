@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import the_fireplace.fluidity.Fluidity;
 import the_fireplace.fluidity.container.ContainerFluidityIronChest;
-import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
+import the_fireplace.fluidity.tileentity.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 
 public class GUIFluidityIronChest extends GuiContainer {

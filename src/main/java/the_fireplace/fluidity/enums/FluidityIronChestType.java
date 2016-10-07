@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
 import the_fireplace.fluidity.container.ValidatingIronChestSlot;
-import the_fireplace.fluidity.entity.tile.*;
+import the_fireplace.fluidity.tileentity.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.entity.tile.renderer;
+package the_fireplace.fluidity.client.tesr;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelChest;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.blocks.BlockFluidityIronChest;
 import the_fireplace.fluidity.compat.FluidityIronChests;
-import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
+import the_fireplace.fluidity.tileentity.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 
 @SideOnly(Side.CLIENT)

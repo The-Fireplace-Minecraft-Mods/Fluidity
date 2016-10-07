@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import the_fireplace.fluidity.container.ContainerFluidityIronChest;
-import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
+import the_fireplace.fluidity.tileentity.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 import the_fireplace.fluidity.client.gui.GUIFluidityIronChest;
 

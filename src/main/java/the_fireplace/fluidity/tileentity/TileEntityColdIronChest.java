@@ -1,4 +1,4 @@
-package the_fireplace.fluidity.entity.tile;
+package the_fireplace.fluidity.tileentity;
 
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 

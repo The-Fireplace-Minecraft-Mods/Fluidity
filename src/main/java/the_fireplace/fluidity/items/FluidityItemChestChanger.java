@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import the_fireplace.fluidity.compat.FluidityIronChests;
-import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
+import the_fireplace.fluidity.tileentity.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestChangerType;
 import the_fireplace.fluidity.enums.FluidityIronChestType;

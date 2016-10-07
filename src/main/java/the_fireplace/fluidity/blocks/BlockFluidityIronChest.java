@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.fluidity.Fluidity;
-import the_fireplace.fluidity.entity.tile.TileEntityFluidityIronChest;
+import the_fireplace.fluidity.tileentity.TileEntityFluidityIronChest;
 import the_fireplace.fluidity.enums.FluidityIronChestType;
 import the_fireplace.fluidity.client.particle.ParticleIronChest;
 
