@@ -1,6 +1,6 @@
 package the_fireplace.fluidity.compat;
 
-import crazypants.enderio.EnderIO;
+import crazypants.enderio.ModObject;
 import crazypants.enderio.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -16,8 +16,8 @@ public class ElectricAdvantageEnderIO implements IModCompat {
 
     @Override
     public void init() {
-        OreDictionary.registerOre("silicon", new ItemStack(EnderIO.itemMaterial, 1, Material.SILICON.ordinal()));
-        OreDictionary.registerOre("ingotSilicon", new ItemStack(EnderIO.itemMaterial, 1, Material.SILICON.ordinal()));
+        OreDictionary.registerOre("silicon", new ItemStack(ModObject.itemMaterial.getItem(), 1, Material.SILICON.ordinal()));
+        OreDictionary.registerOre("ingotSilicon", new ItemStack(ModObject.itemMaterial.getItem(), 1, Material.SILICON.ordinal()));
     }
 
     @Override

@@ -24,13 +24,13 @@ minecraft {
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.9.0.246"
-	compile "com.enderio.core:EnderCore:1.10.2-0.4.1.51-beta:api"
-	compile "com.enderio:EnderIO:1.10.2-3.0.1.96_beta:dev"
-	compile "mcjty.theoneprobe:TheOneProbe:1.10-1.0.15-28"
-	compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.10.2-5.0.0.2079:deobf"
-	compile "net.industrial-craft:industrialcraft-2:2.6.9-ex110:dev"
-	compile "net.sengir.forestry:forestry_1.10.2:5.2.9.241:api"
+	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.13.0.338"
+	compile "com.enderio.core:EnderCore:1.10.2-0.4.1.58-beta:api"
+	compile "com.enderio:EnderIO:1.10.2-3.0.1.125_beta"
+	compile "mcjty.theoneprobe:TheOneProbe:1.10-1.2.0-40"
+	compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.10.2-5.0.0.2089:deobf"
+	compile "net.industrial-craft:industrialcraft-2:2.6.87-ex110:dev"
+	compile "net.sengir.forestry:forestry_1.10.2:5.2.16.308:api"
 }
 
 repositories{
@@ -46,7 +46,7 @@ repositories{
     maven { //TechReborn, RebornCore
 		url "http://maven.modmuss50.me/"
 	}
-	maven { //EnderIO, EnderCore, EnderZoo, The One Probe
+	maven { //EnderIO, EnderCore, EnderZoo, The One Probe, Chisel
 		url = "http://maven.tterrag.com"
 	}
 	maven { //IC2, Forestry
@@ -58,6 +58,17 @@ repositories{
 	maven { //Biomes O' Plenty, Iron Chests, probably others
 		url = "http://files.minecraftforge.net/maven/"
 	}
+	maven { //Chicken Bones Mods
+		url = "http://chickenbones.net/maven/"
+	}
+	maven { url = "http://maven.cil.li/" }
+	maven { url = "http://dl.tsr.me/artifactory/libs-release-local" }
+	maven { // Draconic Evolution
+        url "http://adel.podgeweb.com:1616/maven/"
+    }
+    maven { // Tesla
+        url = "http://maven.epoxide.xyz"
+    }
 }
 
 processResources
