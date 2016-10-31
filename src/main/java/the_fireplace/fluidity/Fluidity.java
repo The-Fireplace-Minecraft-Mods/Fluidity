@@ -21,6 +21,8 @@ import the_fireplace.fluidity.config.ConfigValues;
 import the_fireplace.fluidity.network.proxy.CommonProxy;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author The_Fireplace
@@ -31,6 +33,7 @@ public class Fluidity {
 	public static final String MODNAME = "Fluidity";
 	public static String VERSION;
 	public final ArrayList<String> supportedMods = Lists.newArrayList();
+	public final List<IModCompat> compats = new LinkedList<>();
 	@Instance(MODID)
 	public static Fluidity instance;
 
@@ -77,6 +80,47 @@ public class Fluidity {
 		supportedMods.add("xreliquary");
 	}
 
+	public void addCompats(){
+		if(canLoadModule("actuallyadditions") && canLoadModule("basemetals"))
+			compats.add(new ActuallyAdditionsBaseMetals());
+		if(canLoadModule("actuallyadditions") && (canLoadModule("EnderIO") || canLoadModule("enderio")))
+			compats.add(new ActuallyAdditionsEnderIO());
+		if(canLoadModule("actuallyadditions") && canLoadModule("randomthings"))
+			compats.add(new ActuallyAdditionsRandomThings());
+		if(canLoadModule("actuallyadditions") && canLoadModule("xreliquary"))
+			compats.add(new ActuallyAdditionsReliquary());
+		if(canLoadModule("adobeblocks") && canLoadModule("cookingforblockheads"))
+			compats.add(new AdobeBlocksCookingForBlockheads());
+		if(canLoadModule("adobeblocks") && canLoadModule("frt"))
+			compats.add(new AdobeBlocksFRT());
+		if(canLoadModule("basemetals") && canLoadModule("cannibalism"))
+			compats.add(new BaseMetalsCannibalism());
+		if(canLoadModule("basemetals") && (canLoadModule("EnderIO") || canLoadModule("enderio")))
+			compats.add(new BaseMetalsEnderIO());
+		if(canLoadModule("basemetals") && canLoadModule("moreanvils"))
+			compats.add(new BaseMetalsMoreAnvils());
+		if(canLoadModule("basemetals") && canLoadModule("theoneprobe"))
+			compats.add(new BaseMetalsTOP());
+		if((canLoadModule("BiomesOPlenty") || canLoadModule("biomesoplenty")) && canLoadModule("realstonetools"))
+			compats.add(new BOPRealStoneTools());
+		if(canLoadModule("cannibalism") && canLoadModule("realstonetools"))
+			compats.add(new CannibalismRealStoneTools());
+		//if(canLoadModule("cannibalism") && canLoadModule("Thaumcraft"))
+			//compats.add(new CannibalismThaumcraft());
+		if(canLoadModule("cookingforblockheads") && canLoadModule("frt"))
+			compats.add(new CookingForBlockheadsFRT());
+		if(canLoadModule("electricadvantage") && (canLoadModule("EnderIO") || canLoadModule("enderio")))
+			compats.add(new ElectricAdvantageEnderIO());
+		if(canLoadModule("evilcraft") && canLoadModule("frt"))
+			compats.add(new EvilCraftFRT());
+		if(canLoadModule("IronChest") || canLoadModule("ironchest"))
+			compats.add(new FluidityIronChests());
+		//if(canLoadModule("Thaumcraft") && canLoadModule("frt"))
+			//compats.add(new ThaumcraftFRT());
+		if(canLoadModule("actuallyadditions"))
+			compats.add(new FluidityActuallyAdditions());
+	}
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
 		if(event.getSide().isClient())
@@ -86,144 +130,23 @@ public class Fluidity {
 		config.load();
 		DISABLEDCOMPAT_PROP = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.DISABLEDCOMPAT_NAME, ConfigValues.DISABLEDCOMPAT_DEFAULT);
 		syncConfig();
-		IModCompat compat;
+		addCompats();
+		
+		compats.forEach(compat -> compat.preInit());
 
-		if(canLoadModule("actuallyadditions") && canLoadModule("randomthings")){
-			compat = new ActuallyAdditionsRandomThings();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
-		if(canLoadModule("adobeblocks") && canLoadModule("frt")){
-			compat = new AdobeBlocksFRT();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
-		if(canLoadModule("basemetals") && canLoadModule("cannibalism")){
-			compat = new BaseMetalsCannibalism();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
-		if(canLoadModule("basemetals") && canLoadModule("moreanvils")){
-			compat = new BaseMetalsMoreAnvils();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
-		if(canLoadModule("basemetals") && canLoadModule("theoneprobe")){
-			compat = new BaseMetalsTOP();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
-		/*if(canLoadModule("cannibalism") && canLoadModule("Thaumcraft")){
-			compat = new CannibalismThaumcraft();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}*/
-		if(canLoadModule("evilcraft") && canLoadModule("frt")){
-			compat = new EvilCraftFRT();
-			compat.preInit();
-		}
-		if(canLoadModule("IronChest") || canLoadModule("ironchest")){
-			compat = new FluidityIronChests();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}
-		/*if(canLoadModule("Thaumcraft") && canLoadModule("frt")){
-			compat = new ThaumcraftFRT();
-			compat.preInit();
-			if(event.getSide().isClient())
-				compat.registerInvRenderers();
-		}*/
-		if(event.getSide().isClient())
+		if(event.getSide().isClient()) {
+			compats.forEach(compat -> compat.registerInvRenderers());
 			overrideDescription(event.getModMetadata());
-
-		if(canLoadModule("actuallyadditions")){
-			compat = new FluidityActuallyAdditions();
-			compat.preInit();
 		}
 	}
 	@EventHandler
 	public void init(FMLInitializationEvent event){
-		IModCompat compat;
-		if(canLoadModule("actuallyadditions") && canLoadModule("basemetals")){
-			compat = new ActuallyAdditionsBaseMetals();
-			compat.init();
-		}
-		if(canLoadModule("actuallyadditions") && (canLoadModule("EnderIO") || canLoadModule("enderio"))){
-			compat = new ActuallyAdditionsEnderIO();
-			compat.init();
-		}
-		if(canLoadModule("actuallyadditions") && canLoadModule("randomthings")){
-			compat = new ActuallyAdditionsRandomThings();
-			compat.init();
-		}
-		if(canLoadModule("actuallyadditions") && canLoadModule("xreliquary")){
-			compat = new ActuallyAdditionsReliquary();
-			compat.init();
-		}
-		if(canLoadModule("adobeblocks") && canLoadModule("frt")){
-			compat = new AdobeBlocksFRT();
-			compat.init();
-		}
-		if(canLoadModule("basemetals") && canLoadModule("cannibalism")){
-			compat = new BaseMetalsCannibalism();
-			compat.init();
-		}
-		if(canLoadModule("basemetals") && (canLoadModule("EnderIO") || canLoadModule("enderio"))){
-			compat = new BaseMetalsEnderIO();
-			compat.init();
-		}
-		if(canLoadModule("basemetals") && canLoadModule("moreanvils")){
-			compat = new BaseMetalsMoreAnvils();
-			compat.init();
-		}
-		if(canLoadModule("basemetals") && canLoadModule("theoneprobe")){
-			compat = new BaseMetalsTOP();
-			compat.init();
-		}
-		if((canLoadModule("BiomesOPlenty") || canLoadModule("biomesoplenty")) && canLoadModule("realstonetools")){
-			compat = new BOPRealStoneTools();
-			compat.init();
-		}
-		if(canLoadModule("cannibalism") && canLoadModule("realstonetools")){
-			compat = new CannibalismRealStoneTools();
-			compat.init();
-		}
-		/*if(canLoadModule("cannibalism") && canLoadModule("Thaumcraft")){
-			compat = new CannibalismThaumcraft();
-			compat.init();
-		}*/
-		if(canLoadModule("electricadvantage") && (canLoadModule("EnderIO") || canLoadModule("enderio"))){
-			compat = new ElectricAdvantageEnderIO();
-			compat.init();
-		}
-		if(canLoadModule("IronChest") || canLoadModule("ironchest")){
-			compat = new FluidityIronChests();
-			compat.init();
-		}
-		/*if(canLoadModule("Thaumcraft") && canLoadModule("frt")){
-			compat = new ThaumcraftFRT();
-			compat.init();
-		}*/
+		compats.forEach(compat -> compat.init());
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event){
-		IModCompat compat;
-		if(canLoadModule("adobeblocks") && canLoadModule("cookingforblockheads")){
-			compat = new AdobeBlocksCookingForBlockheads();
-			compat.postInit();
-		}
-		if(canLoadModule("cookingforblockheads") && canLoadModule("frt")){
-			compat = new CookingForBlockheadsFRT();
-			compat.postInit();
-		}
+		compats.forEach(compat -> compat.postInit());
 	}
 	private void overrideDescription(ModMetadata meta){
 		String mods = "";
