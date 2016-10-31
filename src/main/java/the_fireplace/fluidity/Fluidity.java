@@ -131,7 +131,7 @@ public class Fluidity {
 		DISABLEDCOMPAT_PROP = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.DISABLEDCOMPAT_NAME, ConfigValues.DISABLEDCOMPAT_DEFAULT);
 		syncConfig();
 		addCompats();
-		
+
 		compats.forEach(compat -> compat.preInit());
 
 		if(event.getSide().isClient()) {

@@ -12,12 +12,17 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+allprojects {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
 version = "6.1.2"
 group= "the_fireplace.fluidity"
 archivesBaseName = "Fluidity"
 
 minecraft {
-    version = "1.10.2-12.18.1.2075"
+    version = "1.10.2-12.18.2.2116"
     runDir = "run"
     mappings = "snapshot_20160518"
     useDepAts = true
@@ -25,7 +30,7 @@ minecraft {
 
 dependencies {
 	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.13.0.338"
-	compile "com.enderio.core:EnderCore:1.10.2-0.4.1.58-beta:api"
+	provided "com.enderio.core:EnderCore:1.10.2-0.4.1.58-beta:api"
 	compile "com.enderio:EnderIO:1.10.2-3.0.1.125_beta"
 	compile "mcjty.theoneprobe:TheOneProbe:1.10-1.2.0-40"
 	compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.10.2-5.0.0.2089:deobf"
