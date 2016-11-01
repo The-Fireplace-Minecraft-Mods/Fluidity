@@ -5,12 +5,12 @@ This is the repository for the Fluidity Minecraft mod. The goal of this mod is t
 ### What is this repository for? ###
 
 * This is a repository for the Fluidity Minecraft mod
-* Fluidity is currently being developed for Minecraft 1.9.4 running [Forge 12.17.0.1954](http://adfoc.us/serve/sitelinks/?id=271228&url=http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.9.4-12.17.0.1954/forge-1.9.4-12.17.0.1954-mdk.zip)
+* Fluidity is currently being developed for Minecraft 1.10.2 running [Forge 12.18.2.2116](http://adfoc.us/serve/sitelinks/?id=271228&url=http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.10.2-12.18.2.2116/forge-1.10.2-12.18.2.2116-mdk.zip)
 
 ### How do I get set up? ###
 
 * First, clone the repo
-* Second, you should just be able to run setupforge.bat or setupforge.sh, it sets it up for use with IntelliJ Idea
+* Second, open the command window and run gradle setupDecompWorkspace idea
 * Third, open Fluidity.ipr in Idea
 
 ### Contribution guidelines ###
