@@ -70,9 +70,8 @@ public class Fluidity {
 		supportedMods.add("evilcraft");
 		supportedMods.add("frt");
 		supportedMods.add("invtweaks");
-		supportedMods.add("IronChest");//remove in 1.11
+		supportedMods.add("IronChest");//Remove in 1.11
 		supportedMods.add("ironchest");
-		supportedMods.add("moreanvils");
 		supportedMods.add("randomthings");
 		supportedMods.add("realstonetools");
 		//supportedMods.add("Thaumcraft");

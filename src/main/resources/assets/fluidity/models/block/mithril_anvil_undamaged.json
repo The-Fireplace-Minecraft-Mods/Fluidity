@@ -1,8 +1,0 @@
-{
-  "parent": "block/anvil",
-  "textures": {
-    "particle": "fluidity:blocks/mithril_anvil_base",
-    "body": "fluidity:blocks/mithril_anvil_base",
-    "top": "fluidity:blocks/mithril_anvil_top_damaged_0"
-  }
-}

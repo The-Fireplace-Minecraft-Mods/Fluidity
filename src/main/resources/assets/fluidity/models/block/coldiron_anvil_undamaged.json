@@ -1,8 +1,0 @@
-{
-  "parent": "block/anvil",
-  "textures": {
-    "particle": "fluidity:blocks/coldiron_anvil_base",
-    "body": "fluidity:blocks/coldiron_anvil_base",
-    "top": "fluidity:blocks/coldiron_anvil_top_damaged_0"
-  }
-}

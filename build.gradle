@@ -17,7 +17,7 @@ allprojects {
     targetCompatibility = 1.8
 }
 
-version = "6.1.2"
+version = "6.1.3"
 group= "the_fireplace.fluidity"
 archivesBaseName = "Fluidity"
 

@@ -1,8 +1,0 @@
-{
-  "parent": "block/anvil",
-  "textures": {
-    "particle": "fluidity:blocks/cupronickel_anvil_base",
-    "body": "fluidity:blocks/cupronickel_anvil_base",
-    "top": "fluidity:blocks/cupronickel_anvil_top_damaged_1"
-  }
-}
