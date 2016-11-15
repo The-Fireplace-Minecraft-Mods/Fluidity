@@ -22,20 +22,26 @@ group= "the_fireplace.fluidity"
 archivesBaseName = "Fluidity"
 
 minecraft {
-    version = "1.10.2-12.18.2.2116"
+    version = "1.10.2-12.18.2.2124"
     runDir = "run"
-    mappings = "snapshot_20160518"
-    useDepAts = true
+    mappings = "stable_26"
+    //useDepAts = true
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.13.0.338"
+	deobfProvided group: "mezz.jei", name: "jei_1.10.2", version: "3.13.0.338"
 	provided "com.enderio.core:EnderCore:1.10.2-0.4.1.58-beta:api"
 	compile "com.enderio:EnderIO:1.10.2-3.0.1.125_beta"
 	compile "mcjty.theoneprobe:TheOneProbe:1.10-1.2.0-40"
 	compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.10.2-5.0.0.2089:deobf"
 	compile "net.industrial-craft:industrialcraft-2:2.6.87-ex110:dev"
 	compile "net.sengir.forestry:forestry_1.10.2:5.2.16.308:api"
+    deobfProvided group: "slimeknights", name: "TConstruct", version: "1.10.2-2.5.6b.jenkins425"
+    deobfProvided group: "slimeknights.mantle", name: "Mantle", version: "1.10.2-1.1.1.194"
+    compile("com.brandon3055.draconicevolution:Draconic-Evolution:1.10.2-2.0.1.126:deobf") {
+        exclude module: 'jei_1.10.2'
+        exclude module: 'OpenComputers'
+    }
 }
 
 repositories{
