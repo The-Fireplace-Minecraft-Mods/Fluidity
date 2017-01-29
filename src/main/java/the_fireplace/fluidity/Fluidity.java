@@ -63,6 +63,7 @@ public class Fluidity {
 		supportedMods.add("BiomesOPlenty");//Remove in 1.11
 		supportedMods.add("biomesoplenty");
 		supportedMods.add("cannibalism");
+		supportedMods.add("chisel");
 		supportedMods.add("cookingforblockheads");
 		supportedMods.add("electricadvantage");
 		supportedMods.add("EnderIO");//Remove in 1.11
@@ -72,6 +73,8 @@ public class Fluidity {
 		supportedMods.add("invtweaks");
 		supportedMods.add("IronChest");//Remove in 1.11
 		supportedMods.add("ironchest");
+		supportedMods.add("Quark");//Remove in 1.11
+		supportedMods.add("quark");
 		supportedMods.add("randomthings");
 		supportedMods.add("realstonetools");
 		//supportedMods.add("Thaumcraft");
@@ -106,6 +109,8 @@ public class Fluidity {
 			compats.add(new CannibalismRealStoneTools());
 		//if(canLoadModule("cannibalism") && canLoadModule("Thaumcraft"))
 			//compats.add(new CannibalismThaumcraft());
+		if(canLoadModule("chisel") && (canLoadModule("quark") || canLoadModule("Quark")))
+			compats.add(new ChiselQuark());
 		if(canLoadModule("cookingforblockheads") && canLoadModule("frt"))
 			compats.add(new CookingForBlockheadsFRT());
 		if(canLoadModule("electricadvantage") && (canLoadModule("EnderIO") || canLoadModule("enderio")))
