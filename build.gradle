@@ -17,7 +17,7 @@ allprojects {
     targetCompatibility = 1.8
 }
 
-version = "6.1.3"
+version = "6.1.4"
 group= "the_fireplace.fluidity"
 archivesBaseName = "Fluidity"
 
@@ -36,6 +36,13 @@ dependencies {
 	compile "com.github.glitchfiend.biomesoplenty:BiomesOPlenty:1.10.2-5.0.0.2089:deobf"
 	compile "net.industrial-craft:industrialcraft-2:2.6.87-ex110:dev"
 	compile "net.sengir.forestry:forestry_1.10.2:5.2.16.308:api"
+	compile name: 'Baubles', version: "1.3.BETA11", ext: 'jar'
+    compile name: 'Botania', version: "r1.9-337", ext: 'jar'
+	deobfCompile group: "the_fireplace.adobeblocks", name: "AdobeBlocks", version: "6.0.5"
+	deobfCompile group: "the_fireplace.frt", name: "FiresRandomThings", version: "6.4.6"
+	deobfCompile group: "the_fireplace.netheressence", name: "NetherEssence-Forge-1.10.2", version: "7.1.0"
+	deobfCompile group: "the_fireplace.overlord", name: "Overlord-1.10.2", version: "2.1.1"
+	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.10.2-0.0.7.7"
     deobfProvided group: "slimeknights", name: "TConstruct", version: "1.10.2-2.5.6b.jenkins425"
     deobfProvided group: "slimeknights.mantle", name: "Mantle", version: "1.10.2-1.1.1.194"
     compile("com.brandon3055.draconicevolution:Draconic-Evolution:1.10.2-2.0.1.126:deobf") {
@@ -79,6 +86,24 @@ repositories{
     }
     maven { // Tesla
         url = "http://maven.epoxide.xyz"
+    }
+    maven { // OpenTransport, IE
+		url = "http://maven.blamejared.com/"
+	}
+	maven { // My mods
+		url = "http://maven.brainstonemod.com/"
+	}
+	ivy {
+		name "Botania"
+		artifactPattern "http://botaniamod.net/files/deobf/[module] [revision]-deobf.[ext]"
+	}
+	ivy {
+		name "Psi"
+		artifactPattern "http://psi.vazkii.us/files/deobf/[module]-[revision]-deobf.[ext]"
+	}
+	ivy {
+        name "Baubles"
+        artifactPattern "https://dl.dropboxusercontent.com/u/47135879/[module]-1.10.2-[revision]-deobf.[ext]"
     }
 }
 
