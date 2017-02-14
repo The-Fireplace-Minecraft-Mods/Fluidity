@@ -24,6 +24,7 @@ archivesBaseName = "Fluidity"
 minecraft {
     version = "1.10.2-12.18.2.2124"
     runDir = "run"
+    replace '${version}', project.version
     mappings = "stable_26"
     //useDepAts = true
 }
